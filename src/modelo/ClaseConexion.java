@@ -9,9 +9,9 @@ import java.io.IOException;
 
 public class ClaseConexion {
     // Variables para la cadena de conexión
-    private static String URL;
-    private static String USUARIO;
-    private static String CONT;
+    private static String Url;
+    private static String Usuario;
+    private static String Cont;
     
     // Instancia de logger para sustituir los system out 
     private static final Logger logger = Logger.getLogger(ClaseConexion.class.getName());
@@ -43,7 +43,7 @@ public class ClaseConexion {
     public static Connection getConexion() {
         try {
             // Obtener la conexión en una variable
-            return DriverManager.getConnection(URL, USUARIO, CONT);
+            return DriverManager.getConnection(Url, Usuario, Cont);
         } catch (SQLException e) {
             logger.log(Level.SEVERE, "Error de SQL: ", e);
             return null;
