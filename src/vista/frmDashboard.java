@@ -4,8 +4,8 @@
  */
 package vista;
 
-import controlador.ctrlAdministrarEmpresas;
-import controlador.ctrlAdministrarUsuario;
+import controlador.CtrlAdministrarEmpresas;
+import controlador.CtrlAdministrarUsuario;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.SwingConstants;
@@ -28,7 +28,7 @@ public class frmDashboard extends javax.swing.JPanel {
 
         frmDashboard frmDashboard = this;
         AdministrarEmpresas modelo = new AdministrarEmpresas();
-        ctrlAdministrarEmpresas controlador = new ctrlAdministrarEmpresas(modelo, frmDashboard);
+        CtrlAdministrarEmpresas controlador = new CtrlAdministrarEmpresas(modelo, frmDashboard);
 
         UIManager.getSystemLookAndFeelClassName();
 
@@ -67,7 +67,7 @@ public class frmDashboard extends javax.swing.JPanel {
     public static void initDashboard() {
         frmDashboard frmDashboard = new frmDashboard();
         AdministrarEmpresas modelo = new AdministrarEmpresas();
-        ctrlAdministrarEmpresas controlador = new ctrlAdministrarEmpresas(modelo, frmDashboard);
+        CtrlAdministrarEmpresas controlador = new CtrlAdministrarEmpresas(modelo, frmDashboard);
         //  frmAdministrarUsuarios.setVisible(true); 
 
     }

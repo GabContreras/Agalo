@@ -8,6 +8,7 @@ package controlador;
  *
  * @author Jero
  */
-public class ctrlAdministrarTrabajo {
-    
+public class CtrlAdministrarTrabajo {
+
+    //Controlador que no se utilizará, borrar en caso de ser necesario
 }

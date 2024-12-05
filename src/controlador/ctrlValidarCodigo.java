@@ -27,7 +27,7 @@ public class ctrlValidarCodigo implements ActionListener {
         if (e.getSource() == vistaValidacion.btnValidar) {
             try {
                 int codigoIngresado = Integer.parseInt(this.vistaValidacion.txtCodigo.getText());
-                if (codigoIngresado == ctrlIngresoCorreo.numeroAleatorio) {
+                if (codigoIngresado == CtrlIngresoCorreo.numeroAleatorio) {
                     frmCambiarContrasena.initFrmCambiarContrasena();
                     this.vistaValidacion.dispose();
                 } else {

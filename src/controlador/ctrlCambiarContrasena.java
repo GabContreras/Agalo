@@ -10,11 +10,12 @@ import modelo.UsuarioEscritorio;
 import vista.frmCambiarContrasena;
 import vista.frmLogin;
 
-public class ctrlCambiarContrasena implements ActionListener {
+public class CtrlCambiarContrasena implements ActionListener {
+
     private UsuarioEscritorio modelo;
     private frmCambiarContrasena vista;
 
-    public ctrlCambiarContrasena(UsuarioEscritorio modelo, frmCambiarContrasena vista) {
+    public CtrlCambiarContrasena(UsuarioEscritorio modelo, frmCambiarContrasena vista) {
         this.modelo = modelo;
         this.vista = vista;
         this.vista.btnCambiarContrasena.addActionListener(this);
@@ -36,7 +37,7 @@ public class ctrlCambiarContrasena implements ActionListener {
             String contrasenaEncriptada = encriptarContrasena(nuevaContrasena);
             if (contrasenaEncriptada != null) {
                 // Actualizar la contraseña en la base de datos
-                modelo.actualizar_contra(ctrlIngresoCorreo.correoEnviado, contrasenaEncriptada);
+                modelo.actualizar_contra(CtrlIngresoCorreo.correoEnviado, contrasenaEncriptada);
                 JOptionPane.showMessageDialog(vista, "La contraseña se cambió correctamente.");
 
                 // Redirigir al login después del cambio de contraseña
@@ -57,7 +58,9 @@ public class ctrlCambiarContrasena implements ActionListener {
 
             for (byte b : hash) {
                 String hex = Integer.toHexString(0xff & b);
-                if (hex.length() == 1) hexString.append('0');
+                if (hex.length() == 1) {
+                    hexString.append('0');
+                }
                 hexString.append(hex);
             }
 

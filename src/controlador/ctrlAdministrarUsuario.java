@@ -11,14 +11,19 @@ import javax.swing.JOptionPane;
 import modelo.AdministrarUsuario;
 import vista.frmAdministrarUsuarios;
 
-public class ctrlAdministrarUsuario implements MouseListener, KeyListener {
+public class CtrlAdministrarUsuario implements MouseListener, KeyListener {
 
     // 1- Mandar a llamar a las otras capas (modelo y vista)
     private AdministrarUsuario modelo;
     private frmAdministrarUsuarios vista;
 
+    /**
+     *
+     * Metodos vacíos porque el programa lo pide
+     */
+    
     // 2- Crear el constructor
-    public ctrlAdministrarUsuario(AdministrarUsuario modelo, frmAdministrarUsuarios vista) {
+    public CtrlAdministrarUsuario(AdministrarUsuario modelo, frmAdministrarUsuarios vista) {
         this.modelo = modelo;
         this.vista = vista;
 

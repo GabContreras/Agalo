@@ -16,12 +16,18 @@ import vista.frmEmpresa;
  *
  * @author Contr
  */
-public class ctrlAdministrarEmpleadores implements MouseListener, KeyListener {
+
+/**
+ *
+ * Metodos vacíos están así porque se descartó su uso o se implementará en un
+ * futuro
+ */
+public class CtrlAdministrarEmpleadores implements MouseListener, KeyListener {
 
     private AdministrarEmpleadores modelo;
     private frmEmpresa vista;
 
-    public ctrlAdministrarEmpleadores(AdministrarEmpleadores modelo, frmEmpresa vista) {
+    public CtrlAdministrarEmpleadores(AdministrarEmpleadores modelo, frmEmpresa vista) {
         this.modelo = modelo;
         this.vista = vista;
 

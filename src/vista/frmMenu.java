@@ -4,7 +4,7 @@
  */
 package vista;
 
-import controlador.ctrlMenu;
+import controlador.CtrlMenu;
 import modelo.UsuarioEscritorio;
 
 /**
@@ -21,7 +21,7 @@ public class frmMenu extends javax.swing.JFrame {
         frmSolicitantes frmSolicitantes = new frmSolicitantes();
         frmTrabajos frmTrabajos = new frmTrabajos();
 
-        ctrlMenu controlador = new ctrlMenu(vista, frmDashboard, frmAdministrarUsuarios, frmEmpresa, frmSolicitantes, frmTrabajos, modelo);
+        CtrlMenu controlador = new CtrlMenu(vista, frmDashboard, frmAdministrarUsuarios, frmEmpresa, frmSolicitantes, frmTrabajos, modelo);
 
         vista.setVisible(true);
     }

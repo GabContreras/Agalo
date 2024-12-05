@@ -4,9 +4,9 @@
  */
 package vista;
 
-import controlador.ctrlAdministrarSolicitantes;
-import controlador.ctrlAdministrarTrabajo;
-import controlador.ctrlAdministrarUsuario;
+import controlador.CtrlAdministrarSolicitantes;
+import controlador.CtrlAdministrarTrabajo;
+import controlador.CtrlAdministrarUsuario;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;

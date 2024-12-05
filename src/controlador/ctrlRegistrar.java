@@ -16,13 +16,13 @@ import vista.frmAdministrarUsuarios;
  *
  * @author lagal
  */
-public class ctrlRegistrar implements ActionListener {
+public class CtrlRegistrar implements ActionListener {
 
     private UsuarioEscritorio modelo;
     private frmRegistro vista;
 
     // Constructor 
-    public ctrlRegistrar(UsuarioEscritorio modelo, frmRegistro vista) {
+    public CtrlRegistrar(UsuarioEscritorio modelo, frmRegistro vista) {
         this.modelo = modelo;
         this.vista = vista;
 

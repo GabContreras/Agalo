@@ -4,7 +4,7 @@
  */
 package vista;
 
-import controlador.ctrlLogin;
+import controlador.CtrlLogin;
 import modelo.UsuarioEscritorio;
 
 /**
@@ -24,7 +24,7 @@ public class frmLogin extends javax.swing.JFrame {
     public static void initFrmLogin(){
         UsuarioEscritorio modelo = new UsuarioEscritorio();
         frmLogin vista = new frmLogin();
-        ctrlLogin controlador = new ctrlLogin (modelo,vista);
+        CtrlLogin controlador = new CtrlLogin (modelo,vista);
         vista.setVisible(true);
     }
     

@@ -9,7 +9,12 @@ import modelo.UsuarioEscritorio;
 import vista.frmIngresoCorreo;
 import vista.frmValidarCodigo;
 
-public class ctrlIngresoCorreo implements MouseListener {
+/**
+ *
+ * No se utilizarán los métodos vacíos
+ */
+
+public class CtrlIngresoCorreo implements MouseListener {
 
     private UsuarioEscritorio modelo;
     private frmIngresoCorreo vista;
@@ -17,7 +22,7 @@ public class ctrlIngresoCorreo implements MouseListener {
     static int numeroAleatorio = 1000 + random.nextInt(9000);
     static String correoEnviado;
 
-    public ctrlIngresoCorreo(UsuarioEscritorio modelo, frmIngresoCorreo vista) {
+    public CtrlIngresoCorreo(UsuarioEscritorio modelo, frmIngresoCorreo vista) {
         this.modelo = modelo;
         this.vista = vista;
 

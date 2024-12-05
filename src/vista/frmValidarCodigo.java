@@ -4,8 +4,8 @@
  */
 package vista;
 
-import controlador.ctrlCambiarContrasena;
-import controlador.ctrlIngresoCorreo;
+import controlador.CtrlCambiarContrasena;
+import controlador.CtrlIngresoCorreo;
 import controlador.ctrlValidarCodigo;
 import java.awt.Color;
 import modelo.UsuarioEscritorio;

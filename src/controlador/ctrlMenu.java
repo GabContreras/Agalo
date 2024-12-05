@@ -12,7 +12,11 @@ import vista.frmTrabajos;
 import javax.swing.JPanel;
 import modelo.UsuarioEscritorio;
 
-public class ctrlMenu implements MouseListener {
+/**
+ *
+ * Si se ve un método vacío, consultar con desarrolador encargado
+ */
+public class CtrlMenu implements MouseListener {
 
     frmMenu vista;
     frmDashboard frmDashboard;
@@ -23,7 +27,7 @@ public class ctrlMenu implements MouseListener {
 
     private UsuarioEscritorio modelo;
 
-    public ctrlMenu(frmMenu vista, frmDashboard frmDashboard, frmAdministrarUsuarios frmAdministrarUsuarios,
+    public CtrlMenu(frmMenu vista, frmDashboard frmDashboard, frmAdministrarUsuarios frmAdministrarUsuarios,
             frmEmpresa frmEmpresa, frmSolicitantes frmSolicitantes, frmTrabajos frmTrabajos, UsuarioEscritorio modelo) {
         this.vista = vista;
         this.frmDashboard = frmDashboard;
@@ -39,26 +43,26 @@ public class ctrlMenu implements MouseListener {
         vista.btnEmpresa.addMouseListener(this);
         vista.btnsolicitantes.addMouseListener(this);
         vista.btnTrabajos.addMouseListener(this);
-        
+
         // Desactiva el botón "Administrador" si el rol del usuario no coincide con el rol permitido
         desactivarBotonAdministrar();
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-      if (e.getSource() == vista.btnAdd) {
-        if (vista.btnAdd.isEnabled()) {
-            // Inicialización perezosa (solo se crea la primera vez)
-            if (frmAdministrarUsuarios == null) {
-                frmAdministrarUsuarios = new frmAdministrarUsuarios();
-                frmAdministrarUsuarios.initfrmADMIN();
-            }
-            // Cambiar el panel contenido
-            cambiarPanel(vista.jPContenedor, frmAdministrarUsuarios);
-        } else {
+        if (e.getSource() == vista.btnAdd) {
+            if (vista.btnAdd.isEnabled()) {
+                // Inicialización perezosa (solo se crea la primera vez)
+                if (frmAdministrarUsuarios == null) {
+                    frmAdministrarUsuarios = new frmAdministrarUsuarios();
+                    frmAdministrarUsuarios.initfrmADMIN();
+                }
+                // Cambiar el panel contenido
+                cambiarPanel(vista.jPContenedor, frmAdministrarUsuarios);
+            } else {
                 JOptionPane.showMessageDialog(vista, "No tienes permiso para acceder a este formulario.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            }
         }
-    }
 
         if (e.getSource() == vista.btnHome) {
             if (frmDashboard == null) {

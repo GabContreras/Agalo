@@ -4,7 +4,7 @@
  */
 package vista;
 
-import controlador.ctrlRegistrar;
+import controlador.CtrlRegistrar;
 import java.awt.Color;
 import modelo.UsuarioEscritorio;
 import static vista.frmRegistro.initFrmRegistro;
@@ -26,7 +26,7 @@ public class frmRegistro extends javax.swing.JFrame {
     public static void initFrmRegistro(){
         UsuarioEscritorio modelo = new UsuarioEscritorio();
         frmRegistro vista = new frmRegistro();
-        ctrlRegistrar controlador = new ctrlRegistrar (modelo,vista);
+        CtrlRegistrar controlador = new CtrlRegistrar (modelo,vista);
         vista.setVisible(true);
         
     }

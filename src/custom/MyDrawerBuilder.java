@@ -4,8 +4,8 @@
  */
 package custom;
 
-import controlador.ctrlAdministrarUsuario;
-import controlador.ctrlLogin;
+import controlador.CtrlAdministrarUsuario;
+import controlador.CtrlLogin;
 import raven.drawer.component.SimpleDrawerBuilder;
 import raven.drawer.component.footer.SimpleFooterData;
 import raven.drawer.component.header.SimpleHeaderData;
@@ -20,7 +20,7 @@ public class MyDrawerBuilder extends SimpleDrawerBuilder{
 
     @Override
     public SimpleHeaderData getSimpleHeaderData() {
-         String correo = ctrlLogin.CorreoUsuario;
+         String correo = CtrlLogin.CorreoUsuario;
         return new SimpleHeaderData()
        .setIcon(new AvatarIcon(getClass().getResource("/raven/image/profile.png"), 60, 60, 999))
                 .setTitle("AGALO")

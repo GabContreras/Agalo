@@ -4,8 +4,8 @@
  */
 package vista;
 
-import controlador.ctrlCambiarContrasena;
-import controlador.ctrlIngresoCorreo;
+import controlador.CtrlCambiarContrasena;
+import controlador.CtrlIngresoCorreo;
 import java.awt.Color;
 import modelo.UsuarioEscritorio;
 import static vista.frmIngresoCorreo.initFrmIngresoCorreo;
@@ -26,7 +26,7 @@ public class frmCambiarContrasena extends javax.swing.JFrame {
      public static void initFrmCambiarContrasena(){
         UsuarioEscritorio modelo = new UsuarioEscritorio();
          frmCambiarContrasena vista = new frmCambiarContrasena();
-        ctrlCambiarContrasena controlador = new ctrlCambiarContrasena(modelo, vista);
+        CtrlCambiarContrasena controlador = new CtrlCambiarContrasena(modelo, vista);
         
         vista.setVisible(true);
     }

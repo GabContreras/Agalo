@@ -1,7 +1,7 @@
 package vista;
 
-import controlador.ctrlAdministrarUsuario;
-import controlador.ctrlMenu;
+import controlador.CtrlAdministrarUsuario;
+import controlador.CtrlMenu;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.SwingConstants;
@@ -18,7 +18,7 @@ public class frmAdministrarUsuarios extends javax.swing.JPanel {
 
         frmAdministrarUsuarios frmAdministrarUsuarios = this;
         AdministrarUsuario modelo = new AdministrarUsuario();
-        ctrlAdministrarUsuario controlador = new ctrlAdministrarUsuario(modelo, frmAdministrarUsuarios);
+        CtrlAdministrarUsuario controlador = new CtrlAdministrarUsuario(modelo, frmAdministrarUsuarios);
 
         UIManager.getSystemLookAndFeelClassName();
 
@@ -56,7 +56,7 @@ public class frmAdministrarUsuarios extends javax.swing.JPanel {
     public static void initfrmADMIN() {
         frmAdministrarUsuarios frmAdministrarUsuarios = new frmAdministrarUsuarios();
         AdministrarUsuario modelo = new AdministrarUsuario();
-        ctrlAdministrarUsuario controlador = new ctrlAdministrarUsuario(modelo, frmAdministrarUsuarios);
+        CtrlAdministrarUsuario controlador = new CtrlAdministrarUsuario(modelo, frmAdministrarUsuarios);
         //  frmAdministrarUsuarios.setVisible(true); 
 
     }

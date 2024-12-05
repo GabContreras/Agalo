@@ -1,6 +1,6 @@
 package vista;
 
-import controlador.ctrlAdministrarEmpleadores;
+import controlador.CtrlAdministrarEmpleadores;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
@@ -18,14 +18,14 @@ public class frmEmpresa extends javax.swing.JPanel {
     /**
      * Creates new form empresa
      */
-    private ctrlAdministrarEmpleadores controlador; // Instancia del controlador
+    private CtrlAdministrarEmpleadores controlador; // Instancia del controlador
 
     public frmEmpresa() {
 
         initComponents();
 
         AdministrarEmpleadores modelo = new AdministrarEmpleadores();
-        controlador = new ctrlAdministrarEmpleadores(modelo, this); // Inicializar el controlador
+        controlador = new CtrlAdministrarEmpleadores(modelo, this); // Inicializar el controlador
 
         UIManager.getSystemLookAndFeelClassName();
         UIManager.put("ComboBox.border", BorderFactory.createEmptyBorder());

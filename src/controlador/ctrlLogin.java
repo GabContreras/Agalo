@@ -18,14 +18,17 @@ import vista.frmMenu;
  *
  * @author lagal
  */
-public class ctrlLogin implements ActionListener, MouseListener {
+/**
+ *
+ * Considerar que los métodos vacíos están así porque no se utilizarán o por un futuro cambio
+ */
+public class CtrlLogin implements ActionListener, MouseListener {
 
     private UsuarioEscritorio modelo;
     private frmLogin vista;
     public static String CorreoUsuario;
- 
-    
-    public ctrlLogin(UsuarioEscritorio modelo, frmLogin vista) {
+
+    public CtrlLogin(UsuarioEscritorio modelo, frmLogin vista) {
         this.modelo = modelo;
         this.vista = vista;
 
@@ -33,14 +36,14 @@ public class ctrlLogin implements ActionListener, MouseListener {
         this.vista.btnRegister.addActionListener(this); // Añadir ActionListener para el botón de registro
         this.vista.jOlvidarContrasena.addMouseListener(this);
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == vista.btnIngresar) {
             String correo = vista.txtCorreo.getText();
             CorreoUsuario = correo;
             String contrasena = vista.txtContrasena.getText();
-            
+
             // Validar entradas
             if (!validarEntradas(correo, contrasena)) {
                 return;
@@ -48,16 +51,16 @@ public class ctrlLogin implements ActionListener, MouseListener {
 
             // Encriptar la contraseña antes de comparar
             String contrasenaEncriptada = encriptarContrasena(contrasena);
-            
+
             int idRol = modelo.obtenerRol(correo, contrasenaEncriptada);
 
             modelo.setCorreo(correo);
             modelo.setContrasena(contrasenaEncriptada);
-            
+
             // Intentar iniciar sesión
             boolean comprobar = modelo.iniciarSesion();
 
-             if (comprobar) {
+            if (comprobar) {
                 JOptionPane.showMessageDialog(vista, "¡Bienvenido, usuario encontrado!");
                 frmLogin login = new frmLogin();
                 frmMenu.initfrmMenu(modelo); // Pasa el modelo al controlador ctrlMenu
@@ -66,14 +69,15 @@ public class ctrlLogin implements ActionListener, MouseListener {
                 JOptionPane.showMessageDialog(vista, "Usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } else if (e.getSource() == vista.btnRegister) {
-            
+
             frmRegistro.initFrmRegistro();
-            vista.dispose(); 
+            vista.dispose();
         }
     }
 
     /**
      * Método para validar los campos de entrada del formulario.
+     *
      * @return true si todas las validaciones pasan, false en caso contrario.
      */
     private boolean validarEntradas(String usuario, String contrasena) {
@@ -97,6 +101,7 @@ public class ctrlLogin implements ActionListener, MouseListener {
 
     /**
      * Método para encriptar la contraseña utilizando SHA-256.
+     *
      * @param contrasena la contraseña a encriptar.
      * @return la contraseña encriptada en formato hexadecimal.
      */
@@ -105,10 +110,12 @@ public class ctrlLogin implements ActionListener, MouseListener {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] hash = digest.digest(contrasena.getBytes(StandardCharsets.UTF_8));
             StringBuilder hexString = new StringBuilder();
-            
+
             for (byte b : hash) {
                 String hex = Integer.toHexString(0xff & b);
-                if (hex.length() == 1) hexString.append('0');
+                if (hex.length() == 1) {
+                    hexString.append('0');
+                }
                 hexString.append(hex);
             }
 
@@ -122,41 +129,33 @@ public class ctrlLogin implements ActionListener, MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        
-        
-     if (e.getSource() == vista.jOlvidarContrasena)
-     {
-          frmIngresoCorreo ingresocorreo = new frmIngresoCorreo();
-          frmIngresoCorreo.initFrmIngresoCorreo(); 
-          vista.dispose();
-        
-        
+
+        if (e.getSource() == vista.jOlvidarContrasena) {
+            frmIngresoCorreo ingresocorreo = new frmIngresoCorreo();
+            frmIngresoCorreo.initFrmIngresoCorreo();
+            vista.dispose();
+
+        }
     }
-    }
-    
-    
-    
-    
-    
 
     @Override
     public void mousePressed(MouseEvent e) {
-        
+
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        
+
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        
+
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        
+
     }
-    
+
 }

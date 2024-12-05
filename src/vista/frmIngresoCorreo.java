@@ -4,7 +4,7 @@
  */
 package vista;
 
-import controlador.ctrlIngresoCorreo;
+import controlador.CtrlIngresoCorreo;
 import modelo.UsuarioEscritorio;
 
 /**
@@ -23,7 +23,7 @@ public class frmIngresoCorreo extends javax.swing.JFrame {
     public static void initFrmIngresoCorreo(){
         UsuarioEscritorio modelo = new UsuarioEscritorio();
         frmIngresoCorreo vista = new frmIngresoCorreo();
-        ctrlIngresoCorreo controlador = new ctrlIngresoCorreo(modelo, vista);
+        CtrlIngresoCorreo controlador = new CtrlIngresoCorreo(modelo, vista);
         
         vista.setVisible(true);
     }
