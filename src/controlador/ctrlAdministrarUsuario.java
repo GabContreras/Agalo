@@ -7,11 +7,15 @@ import java.awt.event.MouseListener;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import modelo.AdministrarUsuario;
 import vista.frmAdministrarUsuarios;
 
 public class CtrlAdministrarUsuario implements MouseListener, KeyListener {
+
+    private static final Logger logger = Logger.getLogger(CtrlAdministrarUsuario.class.getName());
 
     // 1- Mandar a llamar a las otras capas (modelo y vista)
     private AdministrarUsuario modelo;
@@ -21,7 +25,6 @@ public class CtrlAdministrarUsuario implements MouseListener, KeyListener {
      *
      * Metodos vacíos porque el programa lo pide
      */
-    
     // 2- Crear el constructor
     public CtrlAdministrarUsuario(AdministrarUsuario modelo, frmAdministrarUsuarios vista) {
         this.modelo = modelo;
@@ -30,7 +33,7 @@ public class CtrlAdministrarUsuario implements MouseListener, KeyListener {
         vista.btnAgregarAdmin.addMouseListener(this);
         vista.btnEditarAdmin.addMouseListener(this);
         vista.btnEliminarAdmin.addMouseListener(this);
-        
+
         vista.txtBuscarUsuarios.addKeyListener(this);
 
         vista.jtbAdmin.addMouseListener(this); // Listener para la tabla
@@ -79,7 +82,6 @@ public class CtrlAdministrarUsuario implements MouseListener, KeyListener {
 
 //            // Mensaje de éxito
 //            JOptionPane.showMessageDialog(vista, "Administrador agregado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-
             // Limpiar los campos después de agregar
             limpiarCampos();
         }
@@ -177,9 +179,9 @@ public class CtrlAdministrarUsuario implements MouseListener, KeyListener {
 
     @Override
     public void keyTyped(KeyEvent e) {
-         if (e.getSource() == vista.txtBuscarUsuarios) {
+        if (e.getSource() == vista.txtBuscarUsuarios) {
             modelo.buscarUsuario(vista.jtbAdmin, vista.txtBuscarUsuarios);
-        }        
+        }
     }
 
     @Override
@@ -212,9 +214,11 @@ public class CtrlAdministrarUsuario implements MouseListener, KeyListener {
 
             return hexString.toString();
         } catch (NoSuchAlgorithmException e) {
-            JOptionPane.showMessageDialog(vista, "Error en la encriptación de la contraseña: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
-            return null;
+            // Registrar el error en el log
+            logger.log(Level.SEVERE, "Error en la encriptación de la contraseña", e);
+            // Mostrar un mensaje genérico al usuario
+            JOptionPane.showMessageDialog(null, "Ocurrió un error al procesar la contraseña. Por favor, inténtelo de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
+            return null; // O manejar el error de otra manera
         }
     }
 

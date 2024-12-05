@@ -6,6 +6,8 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import javax.swing.JOptionPane;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modelo.UsuarioEscritorio;
 import vista.frmCambiarContrasena;
 import vista.frmLogin;
@@ -14,6 +16,7 @@ public class CtrlCambiarContrasena implements ActionListener {
 
     private UsuarioEscritorio modelo;
     private frmCambiarContrasena vista;
+    private static final Logger logger = Logger.getLogger(CtrlCambiarContrasena.class.getName());
 
     public CtrlCambiarContrasena(UsuarioEscritorio modelo, frmCambiarContrasena vista) {
         this.modelo = modelo;
@@ -66,8 +69,9 @@ public class CtrlCambiarContrasena implements ActionListener {
 
             return hexString.toString();
         } catch (NoSuchAlgorithmException e) {
-            JOptionPane.showMessageDialog(vista, "Error en la encriptación de la contraseña: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
+            logger.log(Level.SEVERE, "Error en la encriptación de la contraseña", e);
+            // Mostrar un mensaje genérico al usuario
+            JOptionPane.showMessageDialog(null, "Ocurrió un error al procesar la contraseña. Por favor, inténtelo de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
             return null;
         }
     }

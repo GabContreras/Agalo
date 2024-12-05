@@ -22,13 +22,12 @@ public class ClaseConexion {
         try (InputStream input = ClaseConexion.class.getClassLoader().getResourceAsStream("config.properties")) {
             if (input == null) {
                 logger.log(Level.SEVERE, "No se pudo encontrar el archivo de configuración.");
-                // Este return es válido porque está dentro de un bloque estático
             }
             // Cargar las propiedades
             properties.load(input);
-            URL = properties.getProperty("db.url");
-            USUARIO = properties.getProperty("db.user");
-            CONT = properties.getProperty("db.password");
+            Url = properties.getProperty("db.url");
+            Usuario = properties.getProperty("db.user");
+            Cont = properties.getProperty("db.password");
         } catch (IOException ex) {
             logger.log(Level.SEVERE, "Error al cargar el archivo de propiedades: ", ex);
         }

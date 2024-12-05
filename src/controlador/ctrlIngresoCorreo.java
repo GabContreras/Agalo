@@ -13,7 +13,6 @@ import vista.frmValidarCodigo;
  *
  * No se utilizarán los métodos vacíos
  */
-
 public class CtrlIngresoCorreo implements MouseListener {
 
     private UsuarioEscritorio modelo;
@@ -58,13 +57,19 @@ public class CtrlIngresoCorreo implements MouseListener {
             System.out.println("El código es: " + numeroAleatorio);
 
             // Envía el correo con el código de recuperación en formato HTML
-            EnviarCorreo.enviarCorreo(correoEnviado, subject, contentHtml);
-            // Cambiar a la ventana de validación del código
-            frmValidarCodigo.initFrmValidarCodigo();
-            vista.dispose();
+            boolean correoEnviadoExitosamente = EnviarCorreo.enviarCorreo(correoEnviado, subject, contentHtml);
 
-            // Mostrar mensaje de éxito
-            JOptionPane.showMessageDialog(vista, "Se ha enviado un código de recuperación a tu correo.");
+            if (correoEnviadoExitosamente) {
+                // Cambiar a la ventana de validación del código
+                frmValidarCodigo.initFrmValidarCodigo();
+                vista.dispose();
+
+                // Mostrar mensaje de éxito
+                JOptionPane.showMessageDialog(vista, "Se ha enviado un código de recuperación a tu correo.");
+            } else {
+                // Mostrar mensaje de error si no se pudo enviar el correo
+                JOptionPane.showMessageDialog(vista, "No se pudo enviar el correo. Por favor, inténtelo de nuevo más tarde.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
 
