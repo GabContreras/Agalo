@@ -218,7 +218,7 @@ public class CtrlAdministrarUsuario implements MouseListener, KeyListener {
             logger.log(Level.SEVERE, "Error en la encriptación de la contraseña", e);
             // Mostrar un mensaje genérico al usuario
             JOptionPane.showMessageDialog(null, "Ocurrió un error al procesar la contraseña. Por favor, inténtelo de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
-            return null; // O manejar el error de otra manera
+            return null; 
         }
     }
 
