@@ -6,11 +6,8 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Random;
 import javax.swing.JOptionPane;
-import modelo.UsuarioEscritorio;
 import vista.frmCambiarContrasena;
-import vista.frmIngresoCorreo;
 import vista.frmValidarCodigo;
 
 public class ctrlValidarCodigo implements ActionListener {

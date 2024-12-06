@@ -14,7 +14,6 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.io.InputStream;
@@ -26,6 +25,11 @@ import java.io.IOException;
  */
 public class EnviarCorreo {
 
+    
+    // Constructor privado para evitar instanciación
+    private EnviarCorreo() {
+        // No se permite la instanciación
+    }
     // Variables para la cadena de conexión
     private static String MyAccEm;
     private static String PassAcc;
@@ -84,5 +88,7 @@ public class EnviarCorreo {
             logger.log(Level.SEVERE, "Error al enviar correo: ", e);
             return false;
         }
+
     }
+
 }

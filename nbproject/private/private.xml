@@ -3,9 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Gudelia/Desktop/Agalo/src/vista/frmMenu.java</file>
-            <file>file:/C:/Users/Gudelia/Desktop/Agalo/src/controlador/ctrlMenu.java</file>
-            <file>file:/C:/Users/Gudelia/Desktop/Agalo/src/modelo/UsuarioEscritorio.java</file>
+            <file>file:/C:/Users/Datum-Redsoft/Desktop/Agalo/src/tests/ClaseConexiontest.java</file>
+            <file>file:/C:/Users/Datum-Redsoft/Desktop/Agalo/src/modelo/ClaseConexion.java</file>
+            <file>file:/C:/Users/Datum-Redsoft/Desktop/Agalo/src/modelo/EnviarCorreo.java</file>
+            <file>file:/C:/Users/Datum-Redsoft/Desktop/Agalo/src/controlador/CtrlRegistrar.java</file>
+            <file>file:/C:/Users/Datum-Redsoft/Desktop/Agalo/src/modelo/UsuarioEscritorio.java</file>
+            <file>file:/C:/Users/Datum-Redsoft/Desktop/Agalo/src/controlador/ctrlValidarCodigo.java</file>
         </group>
     </open-files>
 </project-private>

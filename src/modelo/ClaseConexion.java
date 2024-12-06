@@ -1,5 +1,6 @@
 package modelo;
-
+import org.junit.Test;
+import static org.junit.Assert.*;
 import java.sql.*;
 import java.util.Properties;
 import java.util.logging.Level;
@@ -46,6 +47,24 @@ public class ClaseConexion {
         } catch (SQLException e) {
             logger.log(Level.SEVERE, "Error de SQL: ", e);
             return null;
+        }
+    }
+    
+    @Test
+    public void testGetConexion() {
+        // Intentar obtener una conexión
+        Connection conexion = ClaseConexion.getConexion();
+
+        // Verificar que la conexión no sea nula
+        assertNotNull("La conexión no debe ser nula", conexion);
+
+        // Cerrar la conexión si se ha establecido
+        if (conexion != null) {
+            try {
+                conexion.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 }
