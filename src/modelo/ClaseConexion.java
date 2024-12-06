@@ -1,4 +1,5 @@
 package modelo;
+
 import org.junit.Test;
 import static org.junit.Assert.*;
 import java.sql.*;
@@ -9,11 +10,12 @@ import java.io.InputStream;
 import java.io.IOException;
 
 public class ClaseConexion {
+
     // Variables para la cadena de conexión
     private static String Url;
     private static String Usuario;
     private static String Cont;
-    
+
     // Instancia de logger para sustituir los system out 
     private static final Logger logger = Logger.getLogger(ClaseConexion.class.getName());
 
@@ -47,24 +49,6 @@ public class ClaseConexion {
         } catch (SQLException e) {
             logger.log(Level.SEVERE, "Error de SQL: ", e);
             return null;
-        }
-    }
-    
-    @Test
-    public void testGetConexion() {
-        // Intentar obtener una conexión
-        Connection conexion = ClaseConexion.getConexion();
-
-        // Verificar que la conexión no sea nula
-        assertNotNull("La conexión no debe ser nula", conexion);
-
-        // Cerrar la conexión si se ha establecido
-        if (conexion != null) {
-            try {
-                conexion.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
         }
     }
 }

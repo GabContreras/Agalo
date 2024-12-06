@@ -14,15 +14,22 @@ import java.nio.charset.StandardCharsets;
 import vista.frmIngresoCorreo;
 import vista.frmMenu;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author lagal
  */
 /**
  *
- * Considerar que los métodos vacíos están así porque no se utilizarán o por un futuro cambio
+ * Considerar que los métodos vacíos están así porque no se utilizarán o por un
+ * futuro cambio
  */
 public class CtrlLogin implements ActionListener, MouseListener {
+
+    // Instancia de logger para sustituir los system out 
+    private static final Logger logger = Logger.getLogger(CtrlLogin.class.getName());
 
     private UsuarioEscritorio modelo;
     private frmLogin vista;
@@ -121,8 +128,9 @@ public class CtrlLogin implements ActionListener, MouseListener {
 
             return hexString.toString();
         } catch (NoSuchAlgorithmException e) {
-            JOptionPane.showMessageDialog(vista, "Error en la encriptación de la contraseña: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
+            logger.log(Level.SEVERE, "Error en la encriptación de la contraseña", e);
+            // Mostrar un mensaje genérico al usuario
+            JOptionPane.showMessageDialog(null, "Ocurrió un error al procesar la contraseña. Por favor, inténtelo de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
             return null;
         }
     }

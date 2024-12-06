@@ -12,11 +12,17 @@ import java.security.NoSuchAlgorithmException;
 import java.nio.charset.StandardCharsets;
 import vista.frmAdministrarUsuarios;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author lagal
  */
 public class CtrlRegistrar implements ActionListener {
+
+    // Instancia de logger para sustituir los system out 
+    private static final Logger logger = Logger.getLogger(CtrlRegistrar.class.getName());
 
     private UsuarioEscritorio modelo;
     private frmRegistro vista;
@@ -35,7 +41,7 @@ public class CtrlRegistrar implements ActionListener {
         if (e.getSource() == vista.btnRegistrar) {
             System.out.println("Botón registrar clicado");
 
-           // Validar entradas primero
+            // Validar entradas primero
             if (!validarEntradas()) {
 //                JOptionPane.showMessageDialog(vista, "Por favor, complete todos los campos requeridos.", "Advertencia", JOptionPane.WARNING_MESSAGE);
                 return; // Si las validaciones de los campos fallan, salir del método
@@ -46,7 +52,7 @@ public class CtrlRegistrar implements ActionListener {
                 JOptionPane.showMessageDialog(vista, "Debe aceptar los términos y condiciones para registrarse.", "Advertencia", JOptionPane.WARNING_MESSAGE);
                 return; // Si el checkbox no está marcado, salir del método
             }
-            
+
             // Configurar modelo con los datos de la vista
             modelo.setNombre(vista.txtNombre.getText());
             modelo.setUsuario(vista.txtUsuario.getText());
@@ -68,9 +74,10 @@ public class CtrlRegistrar implements ActionListener {
                 frmLogin.initFrmLogin();
                 vista.dispose();
             } catch (Exception ex) {
+                logger.log(Level.SEVERE, "Error al guardar el usuario:", ex);
                 // Si ocurre una excepción, mostramos el mensaje de error
                 JOptionPane.showMessageDialog(vista, "Error al guardar el usuario: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                ex.printStackTrace();
+
             }
 
         } else if (e.getSource() == vista.btnLogear) {
@@ -155,8 +162,9 @@ public class CtrlRegistrar implements ActionListener {
 
             return hexString.toString();
         } catch (NoSuchAlgorithmException e) {
-            JOptionPane.showMessageDialog(vista, "Error en la encriptación de la contraseña: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
+            logger.log(Level.SEVERE, "Error en la encriptación de la contraseña", e);
+            // Mostrar un mensaje genérico al usuario
+            JOptionPane.showMessageDialog(null, "Ocurrió un error al procesar la contraseña. Por favor, inténtelo de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
             return null;
         }
     }

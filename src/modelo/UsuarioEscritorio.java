@@ -5,11 +5,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author Jero
  */
 public class UsuarioEscritorio {
+// Instancia de logger para sustituir los system out 
+    private static final Logger logger = Logger.getLogger(UsuarioEscritorio.class.getName());
 
     public int getIdRol() {
         return IdRol;
@@ -24,7 +28,6 @@ public class UsuarioEscritorio {
     private String Correo;
     private String Contrasena;
     private int IdRol;  // Rol del usuario
-
 
     // Getters y Setters
     public String getNombre() {
@@ -59,61 +62,60 @@ public class UsuarioEscritorio {
         this.Contrasena = Contrasena;
     }
 
-   public void GuardarUsuario() throws SQLException {
-    Connection conexion = ClaseConexion.getConexion();
-    if (conexion == null) {
-        throw new SQLException("No se pudo establecer conexión con la base de datos.");
-    }
-    PreparedStatement addUsuarioEscritorio = null;
-    PreparedStatement checkSuperAdmin = null;
-    ResultSet rs = null;
-
-    try {
-        // Verificar si ya existe un superadmin
-        String sqlCheckSuperAdmin = "SELECT COUNT(*) FROM UsuarioEscritorio WHERE idrol = 2";
-        checkSuperAdmin = conexion.prepareStatement(sqlCheckSuperAdmin);
-        rs = checkSuperAdmin.executeQuery();
-        rs.next();
-
-        if (rs.getInt(1) > 0) {
-            // Si ya existe un superadmin, lanzar una excepción
-            throw new SQLException("Ya existe un Super Admin registrado, para poder tener una cuenta con los privilegios necesarios, comunicarse con la empresa.");
-        } else {
-            // Si no existe, insertar el nuevo usuario
-            String sqlInsert = "INSERT INTO UsuarioEscritorio (Nombre, Usuario, CorreoElectronico, Contrasena, idrol) VALUES (?, ?, ?, ?, ?)";
-            addUsuarioEscritorio = conexion.prepareStatement(sqlInsert);
-            addUsuarioEscritorio.setString(1, getNombre());
-            addUsuarioEscritorio.setString(2, getUsuario());
-            addUsuarioEscritorio.setString(3, getCorreo());
-            addUsuarioEscritorio.setString(4, getContrasena());
-            addUsuarioEscritorio.setInt(5, 2); // Asignar rol 2 (superadmin)
-            addUsuarioEscritorio.executeUpdate();
-            System.out.println("Usuario guardado correctamente.");
+    public void GuardarUsuario() throws SQLException {
+        Connection conexion = ClaseConexion.getConexion();
+        if (conexion == null) {
+            throw new SQLException("No se pudo establecer conexión con la base de datos.");
         }
+        PreparedStatement addUsuarioEscritorio = null;
+        PreparedStatement checkSuperAdmin = null;
+        ResultSet rs = null;
 
-    } catch (SQLException ex) {
-        // Manejo de errores de la base de datos
-        throw new SQLException(ex.getMessage());
-    } 
-}
+        try {
+            // Verificar si ya existe un superadmin
+            String sqlCheckSuperAdmin = "SELECT COUNT(*) FROM UsuarioEscritorio WHERE idrol = 2";
+            checkSuperAdmin = conexion.prepareStatement(sqlCheckSuperAdmin);
+            rs = checkSuperAdmin.executeQuery();
+            rs.next();
+
+            if (rs.getInt(1) > 0) {
+                // Si ya existe un superadmin, lanzar una excepción
+                throw new SQLException("Ya existe un Super Admin registrado, para poder tener una cuenta con los privilegios necesarios, comunicarse con la empresa.");
+            } else {
+                // Si no existe, insertar el nuevo usuario
+                String sqlInsert = "INSERT INTO UsuarioEscritorio (Nombre, Usuario, CorreoElectronico, Contrasena, idrol) VALUES (?, ?, ?, ?, ?)";
+                addUsuarioEscritorio = conexion.prepareStatement(sqlInsert);
+                addUsuarioEscritorio.setString(1, getNombre());
+                addUsuarioEscritorio.setString(2, getUsuario());
+                addUsuarioEscritorio.setString(3, getCorreo());
+                addUsuarioEscritorio.setString(4, getContrasena());
+                addUsuarioEscritorio.setInt(5, 2); // Asignar rol 2 (superadmin)
+                addUsuarioEscritorio.executeUpdate();
+                System.out.println("Usuario guardado correctamente.");
+            }
+
+        } catch (SQLException ex) {
+            // Manejo de errores de la base de datos
+            throw new SQLException(ex.getMessage());
+        }
+    }
 
     public int obtenerRol(String correo, String contrasena) {
-    String query = "SELECT idRol FROM UsuarioEscritorio WHERE CorreoElectronico = ? AND Contrasena = ?";
-    try (Connection conexion = ClaseConexion.getConexion();
-         PreparedStatement pst = conexion.prepareStatement(query)) {
-        pst.setString(1, correo);
-        pst.setString(2, contrasena);
-        try (ResultSet rs = pst.executeQuery()) {
-            if (rs.next()) {
-                return rs.getInt("IdRol");
+        String query = "SELECT idRol FROM UsuarioEscritorio WHERE CorreoElectronico = ? AND Contrasena = ?";
+        try (Connection conexion = ClaseConexion.getConexion(); PreparedStatement pst = conexion.prepareStatement(query)) {
+            pst.setString(1, correo);
+            pst.setString(2, contrasena);
+            try (ResultSet rs = pst.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("IdRol");
+                }
             }
+        } catch (SQLException e) {
+            logger.log(Level.SEVERE, "Error en la consulta SQL:", e);
         }
-    } catch (SQLException e) {
-        System.out.println("Error en la consulta SQL: " + e.getMessage());
-        e.printStackTrace();
+        return -1;  // Retorna -1 si no se encuentra el Usuario
     }
-    return -1;  // Retorna -1 si no se encuentra el Usuario
-}
+
     // Método para iniciar sesión
     public boolean iniciarSesion() {
         Connection conexion = ClaseConexion.getConexion();
@@ -135,8 +137,7 @@ public class UsuarioEscritorio {
             }
 
         } catch (SQLException ex) {
-            System.out.println("Error en el método iniciarSesion: " + ex.getMessage());
-            ex.printStackTrace(); // Para más detalles del error
+            logger.log(Level.SEVERE, "Error en el método iniciarSesion:", ex);
 
         } finally {
             // Cerrar recursos
@@ -192,8 +193,9 @@ public class UsuarioEscritorio {
             }
 
         } catch (Exception e) {
-            System.out.println("Error al actualizar la contraseña: " + e.getMessage());
-            e.printStackTrace();
+
+            logger.log(Level.SEVERE, "Error al actualizar la contraseña:", e);
+
         }
     }
 
