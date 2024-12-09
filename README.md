@@ -1,1 +1,1 @@
-Versión del proyecto de java, "Corregida" utilizando SonarCloud.
+Versión "Corregida" del proyecto de java, utilizando SonarCloud.
