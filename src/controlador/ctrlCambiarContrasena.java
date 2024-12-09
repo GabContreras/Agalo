@@ -14,6 +14,8 @@ import vista.frmLogin;
 
 public class CtrlCambiarContrasena implements ActionListener {
 
+    private static final String MENSAJE_ERROR = "Error";
+
     private UsuarioEscritorio modelo;
     private frmCambiarContrasena vista;
     private static final Logger logger = Logger.getLogger(CtrlCambiarContrasena.class.getName());
@@ -32,7 +34,7 @@ public class CtrlCambiarContrasena implements ActionListener {
 
             // Validar que ambas contraseñas coincidan
             if (!nuevaContrasena.equals(confirmarContrasena)) {
-                JOptionPane.showMessageDialog(vista, "Las contraseñas no coinciden.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(vista, "Las contraseñas no coinciden.", MENSAJE_ERROR, JOptionPane.ERROR_MESSAGE);
                 return; // Sale de la función si no coinciden
             }
 
@@ -48,7 +50,7 @@ public class CtrlCambiarContrasena implements ActionListener {
                 login.initFrmLogin();
                 vista.dispose();
             } else {
-                JOptionPane.showMessageDialog(vista, "Error al encriptar la contraseña.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(vista, "Error al encriptar la contraseña.", MENSAJE_ERROR, JOptionPane.ERROR_MESSAGE);
             }
         }
     }
@@ -71,7 +73,7 @@ public class CtrlCambiarContrasena implements ActionListener {
         } catch (NoSuchAlgorithmException e) {
             logger.log(Level.SEVERE, "Error en la encriptación de la contraseña", e);
             // Mostrar un mensaje genérico al usuario
-            JOptionPane.showMessageDialog(null, "Ocurrió un error al procesar la contraseña. Por favor, inténtelo de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Ocurrió un error al procesar la contraseña. Por favor, inténtelo de nuevo.", MENSAJE_ERROR , JOptionPane.ERROR_MESSAGE);
             return null;
         }
     }

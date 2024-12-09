@@ -15,6 +15,8 @@ import vista.frmAdministrarUsuarios;
 
 public class CtrlAdministrarUsuario implements MouseListener, KeyListener {
 
+    private static final String CONTRASENA_ADMINISTRADOR = "Contraseña Administrador";
+
     private static final Logger logger = Logger.getLogger(CtrlAdministrarUsuario.class.getName());
 
     // 1- Mandar a llamar a las otras capas (modelo y vista)
@@ -90,7 +92,7 @@ public class CtrlAdministrarUsuario implements MouseListener, KeyListener {
             return;
         }
 
-        if (contrasena.isEmpty() || contrasena.equals("Contraseña Administrador")) {
+        if (contrasena.isEmpty() || contrasena.equals(CONTRASENA_ADMINISTRADOR)) {
             modelo.setNombre(nombre);
             modelo.setUsuario(usuario);
             modelo.setCorreoElectronico(correo);
@@ -125,7 +127,7 @@ public class CtrlAdministrarUsuario implements MouseListener, KeyListener {
             mostrarError("El correo electrónico debe ser válido.");
             return false;
         }
-        if (!esEdicion && (contrasena.equals("Contraseña Administrador") || contrasena.length() < 6)) {
+        if (!esEdicion && (contrasena.equals(CONTRASENA_ADMINISTRADOR) || contrasena.length() < 6)) {
             mostrarError("La contraseña debe tener al menos 6 caracteres.");
             return false;
         }
@@ -225,6 +227,6 @@ public class CtrlAdministrarUsuario implements MouseListener, KeyListener {
         vista.txtNombreAdmin.setText("Nombre Administrador");
         vista.txtUsuarioAdmin.setText("Usuario Administrador");
         vista.txtCorreoAdmin.setText("Correo Electronico Administrador");
-        vista.txtContrasenaAdmin.setText("Contraseña Administrador");
+        vista.txtContrasenaAdmin.setText(CONTRASENA_ADMINISTRADOR);
     }
 }
