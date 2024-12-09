@@ -16,12 +16,6 @@ import vista.frmEmpresa;
  *
  * @author Contr
  */
-
-/**
- *
- * Metodos vacíos están así porque se descartó su uso o se implementará en un
- * futuro
- */
 public class CtrlAdministrarEmpleadores implements MouseListener, KeyListener {
 
     private AdministrarEmpleadores modelo;
@@ -55,18 +49,38 @@ public class CtrlAdministrarEmpleadores implements MouseListener, KeyListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
+        /**
+         *
+         * Metodos vacíos están así porque se descartó su uso o se implementará
+         * en un futuro
+         */
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
+        /**
+         *
+         * Metodos vacíos están así porque se descartó su uso o se implementará
+         * en un futuro
+         */
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
+        /**
+         *
+         * Metodos vacíos están así porque se descartó su uso o se implementará
+         * en un futuro
+         */
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
+        /**
+         *
+         * Metodos vacíos están así porque se descartó su uso o se implementará
+         * en un futuro
+         */
     }
 
     @Override
@@ -78,10 +92,20 @@ public class CtrlAdministrarEmpleadores implements MouseListener, KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
+        /**
+         *
+         * Metodos vacíos están así porque se descartó su uso o se implementará
+         * en un futuro
+         */
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
+        /**
+         *
+         * Metodos vacíos están así porque se descartó su uso o se implementará
+         * en un futuro
+         */
     }
 
 }

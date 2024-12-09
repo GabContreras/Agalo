@@ -59,7 +59,6 @@ public class CtrlLogin implements ActionListener, MouseListener {
             // Encriptar la contraseña antes de comparar
             String contrasenaEncriptada = encriptarContrasena(contrasena);
 
-            int idRol = modelo.obtenerRol(correo, contrasenaEncriptada);
 
             modelo.setCorreo(correo);
             modelo.setContrasena(contrasenaEncriptada);

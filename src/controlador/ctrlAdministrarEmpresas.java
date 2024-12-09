@@ -8,11 +8,6 @@ import javax.swing.JOptionPane;
 import modelo.AdministrarEmpresas; // Asegúrate de tener este modelo
 import vista.frmDashboard; // Asegúrate de importar la vista correcta
 
-
-/**
- *
- * Metodos vacíos están así porque se implementará en un futuro
- */
 public class CtrlAdministrarEmpresas implements MouseListener, KeyListener {
 
     // 1- Mandar a llamar a las otras capas (modelo y vista)
@@ -53,18 +48,34 @@ public class CtrlAdministrarEmpresas implements MouseListener, KeyListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
+        /**
+         *
+         * Metodos vacíos están así porque se implementará en un futuro
+         */
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
+        /**
+         *
+         * Metodos vacíos están así porque se implementará en un futuro
+         */
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
+        /**
+         *
+         * Metodos vacíos están así porque se implementará en un futuro
+         */
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
+        /**
+         *
+         * Metodos vacíos están así porque se implementará en un futuro
+         */
     }
 
     @Override
@@ -76,9 +87,17 @@ public class CtrlAdministrarEmpresas implements MouseListener, KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
+        /**
+         *
+         * Metodos vacíos están así porque se implementará en un futuro
+         */
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
+        /**
+         *
+         * Metodos vacíos están así porque se implementará en un futuro
+         */
     }
 }

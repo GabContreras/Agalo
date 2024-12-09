@@ -16,11 +16,6 @@ import vista.frmSolicitantes;
  *
  * @author Contr
  */
-
-/**
- *
- * Metodos vacíos están así porque el programa lo pide
- */
 public class CtrlAdministrarSolicitantes implements MouseListener, KeyListener {
 
     private AdministrarSolicitantes modelo;
@@ -54,18 +49,34 @@ public class CtrlAdministrarSolicitantes implements MouseListener, KeyListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
+        /**
+         *
+         * Metodos vacíos están así porque el programa lo pide
+         */
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
+        /**
+         *
+         * Metodos vacíos están así porque el programa lo pide
+         */
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
+        /**
+         *
+         * Metodos vacíos están así porque el programa lo pide
+         */
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
+        /**
+         *
+         * Metodos vacíos están así porque el programa lo pide
+         */
     }
 
     @Override
@@ -78,10 +89,17 @@ public class CtrlAdministrarSolicitantes implements MouseListener, KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
+        /**
+         *
+         * Metodos vacíos están así porque el programa lo pide
+         */
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
+        /**
+         *
+         * Metodos vacíos están así porque el programa lo pide
+         */
     }
-
 }

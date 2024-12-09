@@ -21,10 +21,6 @@ public class CtrlAdministrarUsuario implements MouseListener, KeyListener {
     private AdministrarUsuario modelo;
     private frmAdministrarUsuarios vista;
 
-    /**
-     *
-     * Metodos vacíos porque el programa lo pide
-     */
     // 2- Crear el constructor
     public CtrlAdministrarUsuario(AdministrarUsuario modelo, frmAdministrarUsuarios vista) {
         this.modelo = modelo;
@@ -43,138 +39,133 @@ public class CtrlAdministrarUsuario implements MouseListener, KeyListener {
     @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getSource() == vista.btnAgregarAdmin) {
-            String nombre = vista.txtNombreAdmin.getText();
-            String usuario = vista.txtUsuarioAdmin.getText();
-            String correo = vista.txtCorreoAdmin.getText();
-            String contrasena = vista.txtContrasenaAdmin.getText(); // Asegúrate de que tengas este campo
+            agregarAdmin();
+        } else if (e.getSource() == vista.btnEliminarAdmin) {
+            eliminarAdmin();
+        } else if (e.getSource() == vista.jtbAdmin) {
+            modelo.cargarDatosTabla(vista);
+        } else if (e.getSource() == vista.btnEditarAdmin) {
+            editarAdmin();
+        }
+    }
 
-            // Encriptar la contraseña antes de guardarla
-            String contrasenaEncriptada = encriptarContrasena(vista.txtContrasenaAdmin.getText());
-            if (contrasenaEncriptada == null) {
-                JOptionPane.showMessageDialog(vista, "Error al encriptar la contraseña.", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            // Validaciones
-            if (usuario.equals("Usuario Administrador") || usuario.isEmpty()) {
-                JOptionPane.showMessageDialog(vista, "El usuario no puede estar vacío.", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            if (nombre.equals("Nombre Administrador") || nombre.isEmpty()) {
-                JOptionPane.showMessageDialog(vista, "El nombre no puede estar vacío.", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            if (!correo.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")) {
-                JOptionPane.showMessageDialog(vista, "El correo electrónico debe ser válido.", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            if (contrasena.equals("Contraseña Administrador") || contrasena.length() < 6) { // Asegúrate de que el tamaño sea suficiente
-                JOptionPane.showMessageDialog(vista, "La contraseña debe tener al menos 6 caracteres.", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
+    private void agregarAdmin() {
+        String nombre = vista.txtNombreAdmin.getText();
+        String usuario = vista.txtUsuarioAdmin.getText();
+        String correo = vista.txtCorreoAdmin.getText();
+        String contrasena = vista.txtContrasenaAdmin.getText();
 
+        String contrasenaEncriptada = encriptarContrasena(contrasena);
+        if (contrasenaEncriptada == null) {
+            mostrarError("Error al encriptar la contraseña.");
+            return;
+        }
+
+        if (!validarDatosUsuario(usuario, nombre, correo, contrasena, false)) {
+            return;
+        }
+
+        modelo.setNombre(nombre);
+        modelo.setUsuario(usuario);
+        modelo.setCorreoElectronico(correo);
+        modelo.setContrasena(contrasenaEncriptada);
+        modelo.Guardar();
+        modelo.Mostrar(vista.jtbAdmin);
+        limpiarCampos();
+    }
+
+    //Agregar Mensaje de error cuando no se ha seleccionado ningún usuario, agregar mensaje de éxito cuando se haya eliminado un usuario correctamente
+    private void eliminarAdmin() {
+        modelo.Eliminar(vista.jtbAdmin);
+        modelo.Mostrar(vista.jtbAdmin);
+    }
+
+    private void editarAdmin() {
+        String nombre = vista.txtNombreAdmin.getText();
+        String usuario = vista.txtUsuarioAdmin.getText();
+        String correo = vista.txtCorreoAdmin.getText();
+        String contrasena = vista.txtContrasenaAdmin.getText();
+
+        if (!validarDatosUsuario(usuario, nombre, correo, contrasena, true)) {
+            return;
+        }
+
+        if (contrasena.isEmpty() || contrasena.equals("Contraseña Administrador")) {
             modelo.setNombre(nombre);
             modelo.setUsuario(usuario);
             modelo.setCorreoElectronico(correo);
+            modelo.ActualizarSinContrasena(vista.jtbAdmin);
+        } else {
+            String contrasenaEncriptada = encriptarContrasena(contrasena);
+            if (contrasenaEncriptada == null) {
+                mostrarError("Error al encriptar la contraseña.");
+                return;
+            }
             modelo.setContrasena(contrasenaEncriptada);
-
-            modelo.Guardar();
-            modelo.Mostrar(vista.jtbAdmin);
-
-//            // Mensaje de éxito
-//            JOptionPane.showMessageDialog(vista, "Administrador agregado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-            // Limpiar los campos después de agregar
-            limpiarCampos();
+            modelo.setNombre(nombre);
+            modelo.setUsuario(usuario);
+            modelo.setCorreoElectronico(correo);
+            modelo.Actualizar(vista.jtbAdmin);
         }
 
-        if (e.getSource() == vista.btnEliminarAdmin) {
-            modelo.Eliminar(vista.jtbAdmin);
-            modelo.Mostrar(vista.jtbAdmin);
-//            // Mensaje de éxito
-//            JOptionPane.showMessageDialog(vista, "Administrador eliminado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        modelo.Mostrar(vista.jtbAdmin);
+        limpiarCampos();
+    }
+
+    private boolean validarDatosUsuario(String usuario, String nombre, String correo, String contrasena, boolean esEdicion) {
+        if (usuario.equals("Usuario Administrador") || usuario.isEmpty()) {
+            mostrarError("El usuario no puede estar vacío.");
+            return false;
         }
-
-        if (e.getSource() == vista.jtbAdmin) {
-            modelo.cargarDatosTabla(vista);
+        if (nombre.equals("Nombre Administrador") || nombre.isEmpty()) {
+            mostrarError("El nombre no puede estar vacío.");
+            return false;
         }
-
-        if (e.getSource() == vista.btnEditarAdmin) {
-            // Obtener datos de los campos de texto
-            String nombre = vista.txtNombreAdmin.getText();
-            String usuario = vista.txtUsuarioAdmin.getText();
-            String correo = vista.txtCorreoAdmin.getText();
-            String contrasena = vista.txtContrasenaAdmin.getText();
-
-            // Validaciones
-            if (usuario.equals("Usuario Administrador") || usuario.isEmpty()) {
-                JOptionPane.showMessageDialog(vista, "El usuario no puede estar vacío.", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            if (nombre.equals("Nombre Administrador") || nombre.isEmpty()) {
-                JOptionPane.showMessageDialog(vista, "El nombre no puede estar vacío.", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            if (!correo.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")) {
-                JOptionPane.showMessageDialog(vista, "El correo electrónico debe ser válido.", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-
-            // Verificar si el campo de contraseña está vacío
-            if (contrasena.isEmpty() || contrasena.equals("Contraseña Administrador")) {
-                // Si la contraseña está vacía, llamar a ActualizarSinContrasena
-                modelo.setNombre(nombre);
-                modelo.setUsuario(usuario);
-                modelo.setCorreoElectronico(correo);
-                modelo.ActualizarSinContrasena(vista.jtbAdmin);
-
-                // Mensaje de éxito
-                JOptionPane.showMessageDialog(vista, "Administrador actualizado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-
-            } else {
-                // Si la contraseña no está vacía, encriptarla y llamar a Actualizar
-                String contrasenaEncriptada = encriptarContrasena(contrasena);
-                if (contrasenaEncriptada == null) {
-                    JOptionPane.showMessageDialog(vista, "Error al encriptar la contraseña.", "Error", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-
-                // Asignar valores al modelo
-                modelo.setContrasena(contrasenaEncriptada);
-                modelo.setNombre(nombre);
-                modelo.setUsuario(usuario);
-                modelo.setCorreoElectronico(correo);
-                modelo.Actualizar(vista.jtbAdmin);
-
-                // Mensaje de éxito
-                JOptionPane.showMessageDialog(vista, "Administrador actualizado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-
-            }
-
-            modelo.Mostrar(vista.jtbAdmin); // Actualizar la tabla
-
-            // Limpiar los campos después de agregar
-            limpiarCampos();
+        if (!correo.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")) {
+            mostrarError("El correo electrónico debe ser válido.");
+            return false;
         }
-
-        if (e.getSource() == vista.jtbAdmin) {
-            // Cargar datos del administrador seleccionado en los campos de texto
-            modelo.cargarDatosTabla(vista);
+        if (!esEdicion && (contrasena.equals("Contraseña Administrador") || contrasena.length() < 6)) {
+            mostrarError("La contraseña debe tener al menos 6 caracteres.");
+            return false;
         }
+        return true;
+    }
+
+    private void mostrarError(String mensaje) {
+        JOptionPane.showMessageDialog(vista, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
+        /**
+         *
+         * Metodos vacíos porque el programa lo pide
+         */
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
+        /**
+         *
+         * Metodos vacíos porque el programa lo pide
+         */
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
+        /**
+         *
+         * Metodos vacíos porque el programa lo pide
+         */
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
+        /**
+         *
+         * Metodos vacíos porque el programa lo pide
+         */
     }
 
     @Override
@@ -186,10 +177,18 @@ public class CtrlAdministrarUsuario implements MouseListener, KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
+        /**
+         *
+         * Metodos vacíos porque el programa lo pide
+         */
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
+        /**
+         *
+         * Metodos vacíos porque el programa lo pide
+         */
     }
 
     /**
@@ -218,7 +217,7 @@ public class CtrlAdministrarUsuario implements MouseListener, KeyListener {
             logger.log(Level.SEVERE, "Error en la encriptación de la contraseña", e);
             // Mostrar un mensaje genérico al usuario
             JOptionPane.showMessageDialog(null, "Ocurrió un error al procesar la contraseña. Por favor, inténtelo de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
-            return null; 
+            return null;
         }
     }
 
