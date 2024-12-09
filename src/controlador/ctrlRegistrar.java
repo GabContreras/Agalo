@@ -41,11 +41,10 @@ public class CtrlRegistrar implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == vista.btnRegistrar) {
-            System.out.println("Botón registrar clicado");
 
             // Validar entradas primero
             if (!validarEntradas()) {
-//                JOptionPane.showMessageDialog(vista, "Por favor, complete todos los campos requeridos.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(vista, "Por favor, complete todos los campos requeridos.", "Advertencia", JOptionPane.WARNING_MESSAGE);
                 return; // Si las validaciones de los campos fallan, salir del método
             }
 
@@ -72,7 +71,6 @@ public class CtrlRegistrar implements ActionListener {
                 modelo.GuardarUsuario(); // Llamada para guardar el usuario
                 // Solo si no se lanza excepción mostramos el mensaje de éxito
                 JOptionPane.showMessageDialog(vista, "Usuario Guardado con éxito.");
-                frmLogin login = new frmLogin();
                 frmLogin.initFrmLogin();
                 vista.dispose();
             } catch (Exception ex) {
@@ -84,7 +82,6 @@ public class CtrlRegistrar implements ActionListener {
 
         } else if (e.getSource() == vista.btnLogear) {
             // Cambiar al formulario de login
-            frmLogin loginForm = new frmLogin();
             frmLogin.initFrmLogin();
             vista.dispose(); // Cierra el formulario actual
         }
@@ -166,7 +163,7 @@ public class CtrlRegistrar implements ActionListener {
         } catch (NoSuchAlgorithmException e) {
             logger.log(Level.SEVERE, "Error en la encriptación de la contraseña", e);
             // Mostrar un mensaje genérico al usuario
-            JOptionPane.showMessageDialog(null, "Ocurrió un error al procesar la contraseña. Por favor, inténtelo de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Ocurrió un error al procesar la contraseña. Por favor, inténtelo de nuevo.", TITULO_ERROR, JOptionPane.ERROR_MESSAGE);
             return null;
         }
     }

@@ -24,7 +24,6 @@ public class CtrlMenu implements MouseListener {
     frmSolicitantes frmSolicitantes;
     frmTrabajos frmTrabajos;
     frmAdministrarUsuarios frmAdministrarUsuarios;
-    private static final String TITULO_ERROR = "Error";
 
     private UsuarioEscritorio modelo;
 

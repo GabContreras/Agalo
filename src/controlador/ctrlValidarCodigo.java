@@ -10,11 +10,11 @@ import javax.swing.JOptionPane;
 import vista.frmCambiarContrasena;
 import vista.frmValidarCodigo;
 
-public class ctrlValidarCodigo implements ActionListener {
+public class CtrlValidarCodigo implements ActionListener {
 
     private frmValidarCodigo vistaValidacion;
 
-    public ctrlValidarCodigo(frmValidarCodigo vista) {
+    public CtrlValidarCodigo(frmValidarCodigo vista) {
         this.vistaValidacion = vista;
         this.vistaValidacion.btnValidar.addActionListener(this);
     }

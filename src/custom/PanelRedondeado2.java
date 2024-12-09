@@ -79,13 +79,7 @@ public class PanelRedondeado2 extends JPanel {
 
         int arcWidthTopLeft = Math.min(roundTopLeft, height);
         int arcHeightTopLeft = Math.min(roundTopLeft, width);
-        int arcWidthTopRight = Math.min(roundTopRight, height);
-        int arcHeightTopRight = Math.min(roundTopRight, width);
-        int arcWidthBottomLeft = Math.min(roundBottomLeft, height);
-        int arcHeightBottomLeft = Math.min(roundBottomLeft, width);
-        int arcWidthBottomRight = Math.min(roundBottomRight, height);
-        int arcHeightBottomRight = Math.min(roundBottomRight, width);
-
+      
         return new RoundRectangle2D.Double(
                 0, 0, width, height,
                 arcWidthTopLeft, arcHeightTopLeft

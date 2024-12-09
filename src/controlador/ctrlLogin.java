@@ -68,7 +68,6 @@ public class CtrlLogin implements ActionListener, MouseListener {
 
             if (comprobar) {
                 JOptionPane.showMessageDialog(vista, "¡Bienvenido, usuario encontrado!");
-                frmLogin login = new frmLogin();
                 frmMenu.initfrmMenu(modelo); // Pasa el modelo al controlador ctrlMenu
                 vista.dispose();
             } else {
@@ -138,7 +137,6 @@ public class CtrlLogin implements ActionListener, MouseListener {
     public void mouseClicked(MouseEvent e) {
 
         if (e.getSource() == vista.jOlvidarContrasena) {
-            frmIngresoCorreo ingresocorreo = new frmIngresoCorreo();
             frmIngresoCorreo.initFrmIngresoCorreo();
             vista.dispose();
 
