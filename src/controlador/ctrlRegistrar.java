@@ -24,6 +24,8 @@ public class CtrlRegistrar implements ActionListener {
     // Instancia de logger para sustituir los system out 
     private static final Logger logger = Logger.getLogger(CtrlRegistrar.class.getName());
 
+        private static final String TITULO_ERROR = "Error";
+
     private UsuarioEscritorio modelo;
     private frmRegistro vista;
 
@@ -61,7 +63,7 @@ public class CtrlRegistrar implements ActionListener {
             // Encriptar la contraseña antes de guardarla
             String contrasenaEncriptada = encriptarContrasena(vista.txtContra.getText());
             if (contrasenaEncriptada == null) {
-                JOptionPane.showMessageDialog(vista, "Error al encriptar la contraseña.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(vista, "Error al encriptar la contraseña.", TITULO_ERROR, JOptionPane.ERROR_MESSAGE);
                 return;
             }
             modelo.setContrasena(contrasenaEncriptada);
@@ -76,7 +78,7 @@ public class CtrlRegistrar implements ActionListener {
             } catch (Exception ex) {
                 logger.log(Level.SEVERE, "Error al guardar el usuario:", ex);
                 // Si ocurre una excepción, mostramos el mensaje de error
-                JOptionPane.showMessageDialog(vista, "Error al guardar el usuario: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(vista, "Error al guardar el usuario: " + ex.getMessage(), TITULO_ERROR, JOptionPane.ERROR_MESSAGE);
 
             }
 
@@ -120,7 +122,7 @@ public class CtrlRegistrar implements ActionListener {
 
         // Mostrar errores si existen
         if (errores.length() > 0) {
-            JOptionPane.showMessageDialog(vista, errores.toString(), "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(vista, errores.toString(), TITULO_ERROR, JOptionPane.ERROR_MESSAGE);
             return false; // Las validaciones fallaron
         }
 
@@ -136,7 +138,7 @@ public class CtrlRegistrar implements ActionListener {
      */
     private boolean esCorreoValido(String correo) {
         // Expresión regular para validar el correo electrónico
-        String regex = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
+        String regex = "^[\\w-.]+@[\\w-]+(\\.[\\w-]+)+$";
         return Pattern.matches(regex, correo);
     }
 

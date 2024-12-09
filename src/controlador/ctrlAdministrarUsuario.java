@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import modelo.AdministrarUsuario;
 import vista.frmAdministrarUsuarios;
 
+//Los métodos vacíos no se ocuparán 
 public class CtrlAdministrarUsuario implements MouseListener, KeyListener {
 
     private static final String CONTRASENA_ADMINISTRADOR = "Contraseña Administrador";
@@ -31,9 +32,7 @@ public class CtrlAdministrarUsuario implements MouseListener, KeyListener {
         vista.btnAgregarAdmin.addMouseListener(this);
         vista.btnEditarAdmin.addMouseListener(this);
         vista.btnEliminarAdmin.addMouseListener(this);
-
         vista.txtBuscarUsuarios.addKeyListener(this);
-
         vista.jtbAdmin.addMouseListener(this); // Listener para la tabla
         modelo.Mostrar(vista.jtbAdmin);
     }
@@ -123,7 +122,7 @@ public class CtrlAdministrarUsuario implements MouseListener, KeyListener {
             mostrarError("El nombre no puede estar vacío.");
             return false;
         }
-        if (!correo.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")) {
+        if (!esCorreoValido(correo)) {
             mostrarError("El correo electrónico debe ser válido.");
             return false;
         }
@@ -132,6 +131,12 @@ public class CtrlAdministrarUsuario implements MouseListener, KeyListener {
             return false;
         }
         return true;
+    }
+
+    private boolean esCorreoValido(String correo) {
+        // Expresión regular para validar el correo electrónico
+            String regex = "^[\\w-.]+@[\\w-]+(\\.[\\w-]+)+$";
+        return correo.matches(regex);
     }
 
     private void mostrarError(String mensaje) {

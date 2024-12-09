@@ -1,4 +1,3 @@
-
 package custom;
 
 import java.awt.Color;
@@ -14,13 +13,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.basic.BasicTextFieldUI;
 import swing.shadow.ShadowRenderer;
 
-
 public class TextField extends JTextField {
-    
-    
-    
-    
-    
+
     public int getRound() {
         return round;
     }
@@ -114,50 +108,8 @@ public class TextField extends JTextField {
         //  Override this method to remove background or not paint background
         @Override
         protected void paintBackground(Graphics grphcs) {
+            //A saber por qué esto no tiene nada
 
         }
     }
 }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-

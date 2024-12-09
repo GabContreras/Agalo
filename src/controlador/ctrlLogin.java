@@ -30,6 +30,7 @@ public class CtrlLogin implements ActionListener, MouseListener {
 
     // Instancia de logger para sustituir los system out 
     private static final Logger logger = Logger.getLogger(CtrlLogin.class.getName());
+    private static final String TITULO_ERROR = "Error";
 
     private UsuarioEscritorio modelo;
     private frmLogin vista;
@@ -59,7 +60,6 @@ public class CtrlLogin implements ActionListener, MouseListener {
             // Encriptar la contraseña antes de comparar
             String contrasenaEncriptada = encriptarContrasena(contrasena);
 
-
             modelo.setCorreo(correo);
             modelo.setContrasena(contrasenaEncriptada);
 
@@ -72,7 +72,7 @@ public class CtrlLogin implements ActionListener, MouseListener {
                 frmMenu.initfrmMenu(modelo); // Pasa el modelo al controlador ctrlMenu
                 vista.dispose();
             } else {
-                JOptionPane.showMessageDialog(vista, "Usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(vista, "Usuario o contraseña incorrectos", TITULO_ERROR, JOptionPane.ERROR_MESSAGE);
             }
         } else if (e.getSource() == vista.btnRegister) {
 
@@ -98,7 +98,7 @@ public class CtrlLogin implements ActionListener, MouseListener {
         }
 
         if (errores.length() > 0) {
-            JOptionPane.showMessageDialog(vista, errores.toString(), "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(vista, errores.toString(), TITULO_ERROR, JOptionPane.ERROR_MESSAGE);
             return false;
         }
 
@@ -129,7 +129,7 @@ public class CtrlLogin implements ActionListener, MouseListener {
         } catch (NoSuchAlgorithmException e) {
             logger.log(Level.SEVERE, "Error en la encriptación de la contraseña", e);
             // Mostrar un mensaje genérico al usuario
-            JOptionPane.showMessageDialog(null, "Ocurrió un error al procesar la contraseña. Por favor, inténtelo de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Ocurrió un error al procesar la contraseña. Por favor, inténtelo de nuevo.", TITULO_ERROR, JOptionPane.ERROR_MESSAGE);
             return null;
         }
     }
@@ -147,22 +147,21 @@ public class CtrlLogin implements ActionListener, MouseListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-
+        // Considerar que los métodos vacíos están así porque no se utilizarán o por un futuro cambio
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-
+        // Considerar que los métodos vacíos están así porque no se utilizarán o por un futuro cambio
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-
+        // Considerar que los métodos vacíos están así porque no se utilizarán o por un futuro cambio
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-
+        // Considerar que los métodos vacíos están así porque no se utilizarán o por un futuro cambio
     }
-
 }

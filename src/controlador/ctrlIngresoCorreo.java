@@ -21,6 +21,8 @@ public class CtrlIngresoCorreo implements MouseListener {
     static int numeroAleatorio = 1000 + random.nextInt(9000);
     static String correoEnviado;
 
+    private static final String TITULO_ERROR = "Error";
+
     public CtrlIngresoCorreo(UsuarioEscritorio modelo, frmIngresoCorreo vista) {
         this.modelo = modelo;
         this.vista = vista;
@@ -35,8 +37,8 @@ public class CtrlIngresoCorreo implements MouseListener {
 
             // Validar el formato del correo
             if (!esCorreoValido(correoEnviado)) {
-                JOptionPane.showMessageDialog(vista, "Por favor ingrese un correo electrónico válido.", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
+                JOptionPane.showMessageDialog(vista, "Por favor ingrese un correo electrónico válido.",
+                        TITULO_ERROR, JOptionPane.ERROR_MESSAGE);
             }
 
             // Validar que el correo no esté vacío
@@ -46,7 +48,7 @@ public class CtrlIngresoCorreo implements MouseListener {
 
             // Verificar si el correo existe en la base de datos
             if (!modelo.verificarCorreoExistente(correoEnviado)) {
-                JOptionPane.showMessageDialog(vista, "El correo electrónico no está registrado en el sistema.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(vista, "El correo electrónico no está registrado en el sistema.", TITULO_ERROR, JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
@@ -68,7 +70,7 @@ public class CtrlIngresoCorreo implements MouseListener {
                 JOptionPane.showMessageDialog(vista, "Se ha enviado un código de recuperación a tu correo.");
             } else {
                 // Mostrar mensaje de error si no se pudo enviar el correo
-                JOptionPane.showMessageDialog(vista, "No se pudo enviar el correo. Por favor, inténtelo de nuevo más tarde.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(vista, "No se pudo enviar el correo. Por favor, inténtelo de nuevo más tarde.", TITULO_ERROR, JOptionPane.ERROR_MESSAGE);
             }
         }
     }
@@ -86,7 +88,7 @@ public class CtrlIngresoCorreo implements MouseListener {
         }
 
         if (errores.length() > 0) {
-            JOptionPane.showMessageDialog(vista, errores.toString(), "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(vista, errores.toString(), TITULO_ERROR, JOptionPane.ERROR_MESSAGE);
             return false;
         }
 
@@ -119,31 +121,29 @@ public class CtrlIngresoCorreo implements MouseListener {
                 + "</html>";
     }
 
-    /**
-     * Método para validar el formato de un correo electrónico.
-     *
-     * @param correo El correo a validar.
-     * @return true si el correo es válido, false en caso contrario.
-     */
     private boolean esCorreoValido(String correo) {
         // Expresión regular para validar el correo electrónico
-        String regex = "^[\\w.%+-]+@[\\w.-]+\\.[a-zA-Z]{2,}$";
+        String regex = "^[\\w-.]+@[\\w-]+(\\.[\\w-]+)+$";
         return Pattern.matches(regex, correo);
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
+        //No se utilizarán los métodos vacíos
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
+        //No se utilizarán los métodos vacíos
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
+        //No se utilizarán los métodos vacíos
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
+        //No se utilizarán los métodos vacíos
     }
 }

@@ -24,6 +24,7 @@ public class CtrlMenu implements MouseListener {
     frmSolicitantes frmSolicitantes;
     frmTrabajos frmTrabajos;
     frmAdministrarUsuarios frmAdministrarUsuarios;
+    private static final String TITULO_ERROR = "Error";
 
     private UsuarioEscritorio modelo;
 
@@ -105,17 +106,21 @@ public class CtrlMenu implements MouseListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
+        //No se utilizará, consultar con desarrolador encargado
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
+        //No se utilizará, consultar con desarrolador encargado
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
+        //No se utilizará, consultar con desarrolador encargado
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
+        //No se utilizará, consultar con desarrolador encargado
     }
 }

@@ -116,6 +116,7 @@ public class PasswordField extends JPasswordField{
         @Override
         protected void paintBackground(Graphics grphcs) {
 
+            //A saber por qué esto no tiene nada
         }
     }
 }
