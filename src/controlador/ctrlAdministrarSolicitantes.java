@@ -36,7 +36,6 @@ public class CtrlAdministrarSolicitantes implements MouseListener, KeyListener {
     @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getSource() == vista.btnRestringirSolicitante) {
-            System.err.println("Ddaasd");
             int filaSeleccionada = vista.jtSolicitantes.getSelectedRow();
             if (filaSeleccionada != -1) {
                 // Asumiendo que el ID del solicitante está en la primera columna (índice 0)

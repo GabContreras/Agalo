@@ -11,6 +11,7 @@ import java.awt.event.MouseListener;
 import javax.swing.JOptionPane;
 import modelo.AdministrarEmpleadores;
 import vista.frmEmpresa;
+   
 
 /**
  *
@@ -36,7 +37,6 @@ public class CtrlAdministrarEmpleadores implements MouseListener, KeyListener {
     @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getSource() == vista.btnRestringirEmpleador) {
-            System.err.println("Ddaasd");
             int filaSeleccionada = vista.jtEmpresa.getSelectedRow();
             if (filaSeleccionada != -1) {
                 // Asumiendo que el ID del solicitante está en la primera columna (índice 0)

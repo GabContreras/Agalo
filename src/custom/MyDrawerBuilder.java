@@ -20,7 +20,7 @@ public class MyDrawerBuilder extends SimpleDrawerBuilder{
 
     @Override
     public SimpleHeaderData getSimpleHeaderData() {
-         String correo = CtrlLogin.CorreoUsuario;
+         String correo = CtrlLogin.correoUsuario;
         return new SimpleHeaderData()
        .setIcon(new AvatarIcon(getClass().getResource("/raven/image/profile.png"), 60, 60, 999))
                 .setTitle("AGALO")

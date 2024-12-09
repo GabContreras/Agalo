@@ -6,9 +6,8 @@ package controlador;
 
 /**
  *
- * @author Jero
+ * @author Datum-Redsoft
  */
 public class CtrlAdministrarTrabajo {
-
-    //Controlador que no se utilizará, borrar en caso de ser necesario
+    //Vacío porque se descartó
 }

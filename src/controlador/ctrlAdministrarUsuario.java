@@ -54,7 +54,9 @@ public class CtrlAdministrarUsuario implements MouseListener, KeyListener {
         String nombre = vista.txtNombreAdmin.getText();
         String usuario = vista.txtUsuarioAdmin.getText();
         String correo = vista.txtCorreoAdmin.getText();
-        String contrasena = vista.txtContrasenaAdmin.getText();
+        // Obtener la contraseña de un JPasswordField
+        char[] contrasenaArray = vista.txtContrasenaAdmin.getPassword();
+        String contrasena = new String(contrasenaArray); // Convertir a String si es necesario
 
         String contrasenaEncriptada = encriptarContrasena(contrasena);
         if (contrasenaEncriptada == null) {
@@ -85,7 +87,8 @@ public class CtrlAdministrarUsuario implements MouseListener, KeyListener {
         String nombre = vista.txtNombreAdmin.getText();
         String usuario = vista.txtUsuarioAdmin.getText();
         String correo = vista.txtCorreoAdmin.getText();
-        String contrasena = vista.txtContrasenaAdmin.getText();
+        char[] contrasenaArray = vista.txtContrasenaAdmin.getPassword();
+        String contrasena = new String(contrasenaArray); // Convertir a String si es necesario
 
         if (!validarDatosUsuario(usuario, nombre, correo, contrasena, true)) {
             return;
@@ -135,7 +138,7 @@ public class CtrlAdministrarUsuario implements MouseListener, KeyListener {
 
     private boolean esCorreoValido(String correo) {
         // Expresión regular para validar el correo electrónico
-            String regex = "^[\\w-.]+@[\\w-]+(\\.[\\w-]+)+$";
+        String regex = "^[\\w-.]+@[\\w-]+(\\.[\\w-]+)+$";
         return correo.matches(regex);
     }
 

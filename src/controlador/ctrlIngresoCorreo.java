@@ -56,7 +56,7 @@ public class CtrlIngresoCorreo implements MouseListener {
             String subject = "Recuperación de contraseña";
             // HTML para el contenido del correo
             String contentHtml = getHtmlCorreo(numeroAleatorio);
-            System.out.println("El código es: " + numeroAleatorio);
+//            System.out.println("El código es: " + numeroAleatorio);
 
             // Envía el correo con el código de recuperación en formato HTML
             boolean correoEnviadoExitosamente = EnviarCorreo.enviarCorreo(correoEnviado, subject, contentHtml);
