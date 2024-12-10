@@ -53,13 +53,7 @@ public class frmAdministrarUsuarios extends javax.swing.JPanel {
 
     }
 
-    public static void initfrmADMIN() {
-        frmAdministrarUsuarios frmAdministrarUsuarios = new frmAdministrarUsuarios();
-        AdministrarUsuario modelo = new AdministrarUsuario();
-        CtrlAdministrarUsuario controlador = new CtrlAdministrarUsuario(modelo, frmAdministrarUsuarios);
-        //  frmAdministrarUsuarios.setVisible(true); 
-
-    }
+   
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

@@ -1,10 +1,11 @@
+
 package swing.shadow;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 
-public class ShadowRenderer {
 
+public class ShadowRenderer {
     private int size = 5;
     private float opacity = 0.5f;
     private Color color = Color.BLACK;
@@ -41,47 +42,33 @@ public class ShadowRenderer {
         int right = shadowSize - left;
         int yStop = dstHeight - right;
         int shadowRgb = color.getRGB() & 0x00FFFFFF;
-
-        BufferedImage dst = new BufferedImage(dstWidth, dstHeight, BufferedImage.TYPE_INT_ARGB);
+        int[] aHistory = new int[shadowSize];
+        int historyIdx;
+        int aSum;
+        BufferedImage dst = new BufferedImage(dstWidth, dstHeight,
+                BufferedImage.TYPE_INT_ARGB);
         int[] dstBuffer = new int[dstWidth * dstHeight];
         int[] srcBuffer = new int[srcWidth * srcHeight];
         GraphicsUtilities.getPixels(image, 0, 0, srcWidth, srcHeight, srcBuffer);
-
-        int[] hSumLookup = createSumLookup(shadowSize, 1.0f / shadowSize);
-        int[] vSumLookup = createSumLookup(shadowSize, opacity / shadowSize);
-        
-        createHorizontalShadow(srcBuffer, dstBuffer, srcWidth, srcHeight, left, right, hSumLookup);
-        createVerticalShadow(dstBuffer, dstWidth, dstHeight, left, right, yStop, shadowRgb, vSumLookup);
-
-        GraphicsUtilities.setPixels(dst, 0, 0, dstWidth, dstHeight, dstBuffer);
-        return dst;
-    }
-
-    private int[] createSumLookup(int size, float divider) {
-        int[] lookup = new int[256 * size];
-        for (int i = 0; i < lookup.length; i++) {
-            lookup[i] = (int) (i * divider);
+        int lastPixelOffset = right * dstWidth;
+        float hSumDivider = 1.0f / shadowSize;
+        float vSumDivider = opacity / shadowSize;
+        int[] hSumLookup = new int[256 * shadowSize];
+        for (int i = 0; i < hSumLookup.length; i++) {
+            hSumLookup[i] = (int) (i * hSumDivider);
         }
-        return lookup;
-    }
-
-    private void resetHistory(int[] history) {
-        for (int i = 0; i < history.length; i++) {
-            history[i] = 0;
+        int[] vSumLookup = new int[256 * shadowSize];
+        for (int i = 0; i < vSumLookup.length; i++) {
+            vSumLookup[i] = (int) (i * vSumDivider);
         }
-    }
-
-    private void createHorizontalShadow(int[] srcBuffer, int[] dstBuffer, int srcWidth, int srcHeight, int left, int right, int[] hSumLookup) {
-        int[] aHistory = new int[left + right];
-        int historyIdx;
-        int aSum;
-
-        for (int srcY = 0, dstOffset = left * (srcWidth + right); srcY < srcHeight; srcY++) {
-            resetHistory(aHistory);
+        int srcOffset;
+        for (int srcY = 0, dstOffset = left * dstWidth; srcY < srcHeight; srcY++) {
+            for (historyIdx = 0; historyIdx < shadowSize;) {
+                aHistory[historyIdx++] = 0;
+            }
             aSum = 0;
             historyIdx = 0;
-            int srcOffset = srcY * srcWidth;
-
+            srcOffset = srcY * srcWidth;
             for (int srcX = 0; srcX < srcWidth; srcX++) {
                 int a = hSumLookup[aSum];
                 dstBuffer[dstOffset++] = a << 24;
@@ -89,63 +76,53 @@ public class ShadowRenderer {
                 a = srcBuffer[srcOffset + srcX] >>> 24;
                 aHistory[historyIdx] = a;
                 aSum += a;
-
-                if (++historyIdx >= left + right) {
-                    historyIdx -= left + right;
+                if (++historyIdx >= shadowSize) {
+                    historyIdx -= shadowSize;
                 }
             }
-
-            fillRemainingHorizontalShadow(dstBuffer, dstOffset, hSumLookup, aSum, historyIdx, right);
+            for (int i = 0; i < shadowSize; i++) {
+                int a = hSumLookup[aSum];
+                dstBuffer[dstOffset++] = a << 24;
+                aSum -= aHistory[historyIdx];
+                if (++historyIdx >= shadowSize) {
+                    historyIdx -= shadowSize;
+                }
+            }
         }
-    }
 
-    private void fillRemainingHorizontalShadow(int[] dstBuffer, int dstOffset, int[] hSumLookup, int aSum, int historyIdx, int right) {
-        for (int i = 0; i < right; i++) {
-            int a = hSumLookup[aSum];
-            dstBuffer[dstOffset++] = a << 24;
-            aSum -= 0; // Placeholder for history management
-        }
-    }
-
-    private void createVerticalShadow(int[] dstBuffer, int dstWidth, int dstHeight, int left, int right, int yStop, int shadowRgb, int[] vSumLookup) {
-        int[] aHistory = new int[left + right];
-        int aSum;
-        int lastPixelOffset = right * dstWidth;
-
-        for (int x = 0; x < dstWidth; x++) {
-            resetHistory(aHistory);
+        for (int x = 0, bufferOffset = 0; x < dstWidth; x++, bufferOffset = x) {
             aSum = 0;
-
-            // Accumulate initial vertical shadow values
-            for (int y = 0; y < right; y++) {
-                int bufferOffset = x + y * dstWidth;
+            for (historyIdx = 0; historyIdx < left;) {
+                aHistory[historyIdx++] = 0;
+            }
+            for (int y = 0; y < right; y++, bufferOffset += dstWidth) {
                 int a = dstBuffer[bufferOffset] >>> 24;
-                aHistory[y] = a;
+                aHistory[historyIdx++] = a;
                 aSum += a;
             }
-
-            // Process main vertical shadow area
-            for (int y = 0; y < yStop; y++) {
-                int bufferOffset = x + y * dstWidth;
+            bufferOffset = x;
+            historyIdx = 0;
+            for (int y = 0; y < yStop; y++, bufferOffset += dstWidth) {
                 int a = vSumLookup[aSum];
                 dstBuffer[bufferOffset] = a << 24 | shadowRgb;
-                
-                aSum -= aHistory[y % (left + right)];
-                
-                int nextA = dstBuffer[bufferOffset + lastPixelOffset] >>> 24;
-                aHistory[y % (left + right)] = nextA;
-                
-                aSum += nextA;
+                aSum -= aHistory[historyIdx];
+                a = dstBuffer[bufferOffset + lastPixelOffset] >>> 24;
+                aHistory[historyIdx] = a;
+                aSum += a;
+                if (++historyIdx >= shadowSize) {
+                    historyIdx -= shadowSize;
+                }
             }
-
-            // Process remaining bottom area
-            for (int y = yStop; y < dstHeight; y++) {
-                int bufferOffset = x + y * dstWidth;
+            for (int y = yStop; y < dstHeight; y++, bufferOffset += dstWidth) {
                 int a = vSumLookup[aSum];
                 dstBuffer[bufferOffset] = a << 24 | shadowRgb;
-                
-                aSum -= aHistory[y % (left + right)];
+                aSum -= aHistory[historyIdx];
+                if (++historyIdx >= shadowSize) {
+                    historyIdx -= shadowSize;
+                }
             }
         }
+        GraphicsUtilities.setPixels(dst, 0, 0, dstWidth, dstHeight, dstBuffer);
+        return dst;
     }
 }
