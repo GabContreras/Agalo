@@ -10,11 +10,15 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import vista.frmAdministrarUsuarios;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class AdministrarUsuario {
 
-        private static final String ERROR_FILAS = "No se ha seleccionado ninguna fila.";
+    private static final Logger logger = Logger.getLogger(AdministrarEmpleadores.class.getName());
 
-    
+    private static final String ERROR_FILAS = "No se ha seleccionado ninguna fila.";
+
     //Constantes para los select
     private static final String ID_ADMIN = "IdAdmin";
     private static final String NOMBRE_ADMIN = "Nombre";
@@ -81,7 +85,7 @@ public class AdministrarUsuario {
 
             addAdmin.executeUpdate();
         } catch (SQLException ex) {
-            System.out.println("Error en el método Guardar: " + ex.getMessage());
+            logger.log(Level.SEVERE, "Error en el método Guardar: ", ex.getMessage());
         }
     }
 
@@ -119,7 +123,7 @@ public class AdministrarUsuario {
             // Asignamos el nuevo modelo lleno a la tabla
             jtbAdmin.setModel(modeloDeDatos);
         } catch (SQLException e) {
-            System.out.println("Error en el método Mostrar: " + e.getMessage());
+            logger.log(Level.SEVERE, "Error en el método Mostrar: ", e.getMessage());
         }
     }
 
@@ -150,12 +154,14 @@ public class AdministrarUsuario {
                 // Ejecutar la actualización
                 updateUser.executeUpdate();
 
-                System.out.println("Usuario actualizado correctamente.");
+                logger.log(Level.SEVERE, "Usuario actualizado correctamente.");
+
             } catch (SQLException e) {
-                System.out.println("Error al actualizar el usuario: " + e.getMessage());
+                logger.log(Level.SEVERE, "Error al actualizar el usuario: ", e.getMessage());
+
             }
         } else {
-            System.out.println("");
+            logger.log(Level.SEVERE, ERROR_FILAS);
         }
     }
 
@@ -185,12 +191,13 @@ public class AdministrarUsuario {
                 // Ejecutar la actualización
                 updateUser.executeUpdate();
 
-                System.out.println("Usuario actualizado correctamente.");
+                logger.log(Level.SEVERE, "Usuario actualizado correctamente.");
             } catch (SQLException e) {
-                System.out.println("Error al actualizar el usuario: " + e.getMessage());
+                logger.log(Level.SEVERE, "Error al actualizar el usuario: ", e.getMessage());
+
             }
         } else {
-            System.out.println(ERROR_FILAS);
+            logger.log(Level.SEVERE, ERROR_FILAS);
         }
     }
 
@@ -213,10 +220,10 @@ public class AdministrarUsuario {
                 deleteEstudiante.setString(1, miId);
                 deleteEstudiante.executeUpdate();
             } catch (Exception e) {
-                System.out.println("este es el error metodo de eliminar" + e);
+                logger.log(Level.SEVERE, "este es el error metodo de eliminar", e);
             }
         } else {
-            System.out.println(ERROR_FILAS);
+            logger.log(Level.SEVERE, ERROR_FILAS);
         }
 
     }
@@ -249,7 +256,7 @@ public class AdministrarUsuario {
             // Asignamos el nuevo modelo lleno a la tabla
             jtbAdmin.setModel(modelo);
         } catch (Exception e) {
-            System.out.println("Error en buscar Usuario: " + e);
+            logger.log(Level.SEVERE, "Error en buscar Usuario: ", e);
         }
     }
 
@@ -268,7 +275,7 @@ public class AdministrarUsuario {
             vista.txtUsuarioAdmin.setText(usuario);
             vista.txtCorreoAdmin.setText(correo);
         } else {
-            System.out.println(ERROR_FILAS);
+            logger.log(Level.SEVERE, ERROR_FILAS);
         }
 
     }

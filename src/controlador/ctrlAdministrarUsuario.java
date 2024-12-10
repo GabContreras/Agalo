@@ -21,8 +21,8 @@ public class CtrlAdministrarUsuario implements MouseListener, KeyListener {
     private static final Logger logger = Logger.getLogger(CtrlAdministrarUsuario.class.getName());
 
     // 1- Mandar a llamar a las otras capas (modelo y vista)
-    private AdministrarUsuario modelo;
-    private frmAdministrarUsuarios vista;
+    private final AdministrarUsuario modelo;
+    private final frmAdministrarUsuarios vista;
 
     // 2- Crear el constructor
     public CtrlAdministrarUsuario(AdministrarUsuario modelo, frmAdministrarUsuarios vista) {

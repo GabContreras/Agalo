@@ -55,7 +55,6 @@ public class CtrlMenu implements MouseListener {
                 // Inicialización perezosa (solo se crea la primera vez)
                 if (frmAdministrarUsuarios == null) {
                     frmAdministrarUsuarios = new frmAdministrarUsuarios();
-                  //  frmAdministrarUsuarios.initfrmADMIN();
                 }
                 // Cambiar el panel contenido
                 cambiarPanel(vista.jPContenedor, frmAdministrarUsuarios);

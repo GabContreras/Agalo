@@ -5,14 +5,12 @@
 package vista;
 
 import controlador.CtrlAdministrarEmpresas;
-import controlador.CtrlAdministrarUsuario;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableCellRenderer;
 import modelo.AdministrarEmpresas;
-import modelo.AdministrarUsuario;
 
 /**
  *
@@ -23,7 +21,10 @@ public class frmDashboard extends javax.swing.JPanel {
     /**
      * Creates new form Dashboard
      */
+    private static final String FUENTE = "Segoe UI";
+
     public frmDashboard() {
+
         initComponents();
 
         frmDashboard frmDashboard = this;
@@ -32,36 +33,35 @@ public class frmDashboard extends javax.swing.JPanel {
 
         UIManager.getSystemLookAndFeelClassName();
 
-         jtSolicitudEmpresa.setBackground(java.awt.Color.WHITE); // Cambia el fondo de las celdas de la tabla
+        jtSolicitudEmpresa.setBackground(java.awt.Color.WHITE); // Cambia el fondo de las celdas de la tabla
         jtSolicitudEmpresa.setFillsViewportHeight(true); // Asegura que el fondo cubra todo el área
         jtSolicitudEmpresa.getParent().setBackground(java.awt.Color.WHITE);
-        
-         jScrollPane3.setBorder(javax.swing.BorderFactory.createEmptyBorder()); // Establecer borde vacío
-        
+
+        jScrollPane3.setBorder(javax.swing.BorderFactory.createEmptyBorder()); // Establecer borde vacío
+
         // Personalizar el encabezado de la tabla
-        jtSolicitudEmpresa.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD,12));
+        jtSolicitudEmpresa.getTableHeader().setFont(new Font(FUENTE, Font.BOLD, 12));
         jtSolicitudEmpresa.getTableHeader().setBackground(java.awt.Color.WHITE);
         jtSolicitudEmpresa.setRowHeight(45);
-        
-        
+
         // Configurar las líneas horizontales de la tabla
         jtSolicitudEmpresa.setGridColor(new java.awt.Color(230, 230, 230)); // Líneas gris claro
         jtSolicitudEmpresa.setShowHorizontalLines(true); // Mostrar líneas horizontales
         jtSolicitudEmpresa.setShowVerticalLines(false); // Ocultar líneas verticales si lo deseas
-        
-         DefaultTableCellRenderer headerRenderer = new DefaultTableCellRenderer();
+
+        DefaultTableCellRenderer headerRenderer = new DefaultTableCellRenderer();
         headerRenderer.setBackground(java.awt.Color.WHITE); // Fondo blanco
         headerRenderer.setForeground(new Color(0, 0, 0)); // Texto en color negro
         headerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-        headerRenderer.setFont(new Font("Segoe UI", Font.BOLD, 12)); 
-        
+        headerRenderer.setFont(new Font(FUENTE, Font.BOLD, 12));
+
         for (int i = 0; i < jtSolicitudEmpresa.getColumnModel().getColumnCount(); i++) {
             jtSolicitudEmpresa.getColumnModel().getColumn(i).setHeaderRenderer(headerRenderer);
         }
 
         jtSolicitudEmpresa.setRowHeight(25);
         jtSolicitudEmpresa.setGridColor(new Color(230, 230, 230));
-        
+
     }
 
     public static void initDashboard() {

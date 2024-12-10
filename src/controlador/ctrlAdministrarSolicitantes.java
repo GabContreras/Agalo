@@ -18,8 +18,8 @@ import vista.frmSolicitantes;
  */
 public class CtrlAdministrarSolicitantes implements MouseListener, KeyListener {
 
-    private AdministrarSolicitantes modelo;
-    private frmSolicitantes vista;
+    private final AdministrarSolicitantes modelo;
+    private final frmSolicitantes vista;
 
     public CtrlAdministrarSolicitantes(AdministrarSolicitantes modelo, frmSolicitantes vista) {
         this.modelo = modelo;

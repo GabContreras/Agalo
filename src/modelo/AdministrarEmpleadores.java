@@ -12,14 +12,18 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Contr
  */
 public class AdministrarEmpleadores {
 
-    //Constantes para los select
-                  
+    private static final Logger logger = Logger.getLogger(AdministrarEmpleadores.class.getName());
+
+    //Constantes para los select               
     private static final String ID_EMPLEADOR = "Id";
     private static final String NOMBRE_EMPRESA = "Empresa";
     private static final String NOMBRE_REPRESENTANTE = "Representante";
@@ -62,10 +66,10 @@ public class AdministrarEmpleadores {
                 updateEmpleador.setString(1, IdEmpleador);
                 updateEmpleador.executeUpdate();
             } catch (Exception e) {
-                System.out.println("Este es el error en el método de restringir: " + e);
+                logger.log(Level.SEVERE, "Este es el error en el método de restringir: ", e);
             }
         } else {
-            System.out.println("No se ha seleccionado ningún Empleador.");
+            logger.log(Level.SEVERE, "No se ha seleccionado ningún Empleador.");
         }
     }
 
@@ -105,7 +109,7 @@ public class AdministrarEmpleadores {
             // Asignamos el nuevo modelo lleno a la tabla
             jtbAdmin.setModel(modelo);
         } catch (Exception e) {
-            System.out.println("Error en buscar Empleador: " + e);
+            logger.log(Level.SEVERE, "Error en buscar Empleador: ", e);
         }
     }
 
@@ -119,7 +123,7 @@ public class AdministrarEmpleadores {
         modeloDeDatos.setColumnIdentifiers(new Object[]{
             ID_EMPLEADOR, NOMBRE_EMPRESA, NOMBRE_REPRESENTANTE, CORREO_REPRESENTANTE, TELEFONO_REPRESENTANTE, DIRECCION_REPRESENTANTE, DEPARTAMENTO_REPRESENTANTE
         });
-        
+
         try {
             // Creamos un Statement
             Statement statement = conexion.createStatement();
@@ -132,7 +136,7 @@ public class AdministrarEmpleadores {
             while (rs.next()) {
                 // Llenamos el modelo por cada vez que recorremos el ResultSet
                 modeloDeDatos.addRow(new Object[]{
-                   rs.getString(ID_EMPLEADOR),
+                    rs.getString(ID_EMPLEADOR),
                     rs.getString(NOMBRE_EMPRESA),
                     rs.getString(NOMBRE_REPRESENTANTE),
                     rs.getString(CORREO_REPRESENTANTE),
@@ -144,7 +148,7 @@ public class AdministrarEmpleadores {
             // Asignamos el nuevo modelo lleno a la tabla
             jtSolicitudEmpleador.setModel(modeloDeDatos);
         } catch (Exception e) {
-            System.out.println("Este es el error en el modelo, método mostrar " + e);
+            logger.log(Level.SEVERE, "Este es el error en el modelo, método mostrar ", e);
         }
     }
 

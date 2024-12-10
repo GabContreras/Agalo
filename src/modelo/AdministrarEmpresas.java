@@ -12,11 +12,16 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Contr
  */
 public class AdministrarEmpresas {
+
+    private static final Logger logger = Logger.getLogger(AdministrarEmpleadores.class.getName());
 
     //Constantes para los select
     private static final String ID_EMPLEADOR = "Id";
@@ -80,7 +85,7 @@ public class AdministrarEmpresas {
             // Asignamos el nuevo modelo lleno a la tabla
             jtSolicitudEmpresa.setModel(modeloDeDatos);
         } catch (Exception e) {
-            System.out.println("Este es el error en el modelo, método mostrar " + e);
+            logger.log(Level.SEVERE, "Este es el error en el modelo, método mostrar ", e);
         }
     }
 
@@ -98,10 +103,11 @@ public class AdministrarEmpresas {
                 ps.setString(1, idEmpleador);
                 ps.executeUpdate();
             } catch (Exception e) {
-                System.out.println("Error al rechazar a la empresa: " + e);
+                logger.log(Level.SEVERE, "Error al rechazar a la empresa: ", e);
+
             }
         } else {
-            System.out.println("No se ha seleccionado ninguna empresa.");
+            logger.log(Level.SEVERE, "No se ha seleccionado ninguna empresa.");
         }
     }
 
@@ -120,10 +126,11 @@ public class AdministrarEmpresas {
                 updateEmpresa.setString(1, idEmpleador);
                 updateEmpresa.executeUpdate();
             } catch (Exception e) {
-                System.out.println("Este es el error en el método de actualizar: " + e);
+                logger.log(Level.SEVERE, "Este es el error en el método de actualizar: ", e);
             }
         } else {
-            System.out.println("No se ha seleccionado ninguna empresa.");
+            logger.log(Level.SEVERE, "No se ha seleccionado ninguna empresa.");
+
         }
     }
 
@@ -155,7 +162,7 @@ public class AdministrarEmpresas {
             // Asigna el modelo actualizado a la tabla
             jtSolicitudEmpresa.setModel(modelo);
         } catch (Exception e) {
-            System.out.println("Error en buscar empresa: " + e);
+            logger.log(Level.SEVERE, "Error en buscar empresa: ", e);
         }
     }
 }

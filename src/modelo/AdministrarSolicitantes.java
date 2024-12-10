@@ -12,13 +12,18 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Contr
  */
 public class AdministrarSolicitantes {
-    //Constantes para los select
 
+    private static final Logger logger = Logger.getLogger(AdministrarEmpleadores.class.getName());
+
+//Constantes para los select
     private static final String ID_SOLICITANTE = "Id";
     private static final String NOMBRE_SOLICITANTE = "NombreSolicitante";
     private static final String CORREO_SOLICITANTE = "Correo";
@@ -60,10 +65,10 @@ public class AdministrarSolicitantes {
                 updateSolicitante.setString(1, idSolicitante);
                 updateSolicitante.executeUpdate();
             } catch (Exception e) {
-                System.out.println("Este es el error en el método de restringir: " + e);
+                logger.log(Level.SEVERE, "Este es el error en el método de restringir: ", e);
             }
         } else {
-            System.out.println("No se ha seleccionado ningún solicitante.");
+            logger.log(Level.SEVERE, "No se ha seleccionado ningún solicitante.");
         }
     }
 
@@ -101,7 +106,7 @@ public class AdministrarSolicitantes {
             // Asignamos el nuevo modelo lleno a la tabla
             jtbAdmin.setModel(modelo);
         } catch (Exception e) {
-            System.out.println("Error en buscar Solicitante: " + e);
+            logger.log(Level.SEVERE, "Error en buscar Solicitante: ", e);
         }
     }
 
@@ -142,7 +147,7 @@ public class AdministrarSolicitantes {
             // Asignamos el nuevo modelo lleno a la tabla
             jtSolicitudSolicitante.setModel(modeloDeDatos);
         } catch (Exception e) {
-            System.out.println("Este es el error en el modelo, método mostrar " + e);
+            logger.log(Level.SEVERE, "Este es el error en el modelo, método mostrar ", e);
         }
     }
 }
