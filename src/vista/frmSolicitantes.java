@@ -65,36 +65,6 @@ public class frmSolicitantes extends javax.swing.JPanel {
 
         jtSolicitantes.setRowHeight(25);
         jtSolicitantes.setGridColor(new Color(230, 230, 230));
-
-//        // Personalizar el JComboBox
-//        jComboBoxUser.setBackground(new Color(255, 255, 255)); // Fondo blanco
-//        jComboBoxUser.setForeground(new Color(50, 50, 50)); // Texto gris oscuro
-//        jComboBoxUser.setFont(new Font("Segoe UI", Font.PLAIN, 14)); // Fuente minimalista
-//        
-//        // Crear un borde rectangular y aplicarlo al JComboBox
-//        jComboBoxUser.setBorder(BorderFactory.createLineBorder(new Color(200, 200, 200), 1)); // Borde rectangular de 1px
-//
-//        // Establecer el renderer personalizado para los items del JComboBox
-//        jComboBoxUser.setRenderer(new DefaultListCellRenderer() {
-//            @Override
-//            public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-//                JLabel renderer = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-//                
-//                // Colores minimalistas
-//                if (isSelected) {
-//                    renderer.setBackground(new Color(220, 220, 220)); // Color de selección minimalista
-//                    renderer.setForeground(new Color(0, 0, 0)); // Texto negro
-//                } else {
-//                    renderer.setBackground(Color.WHITE); // Fondo blanco
-//                    renderer.setForeground(new Color(50, 50, 50)); // Texto gris oscuro
-//                }
-//
-//                // Margen y alineación minimalista
-//                renderer.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10)); // Margen interno
-//                renderer.setHorizontalAlignment(SwingConstants.LEFT); // Alineación izquierda
-//                return renderer;
-//            }
-//        });
     }
 
     /**
@@ -190,9 +160,11 @@ public class frmSolicitantes extends javax.swing.JPanel {
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, 1010, 690));
     }// </editor-fold>//GEN-END:initComponents
+    //Constante
+    private static final String BUSQUEDA = "Buscar";
 
     private void txtBuscarSolicitanteFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBuscarSolicitanteFocusGained
-        if (txtBuscarSolicitante.getText().equals("Buscar")) {
+        if (txtBuscarSolicitante.getText().equals(BUSQUEDA)) {
             txtBuscarSolicitante.setText("");
         }
 
@@ -200,7 +172,7 @@ public class frmSolicitantes extends javax.swing.JPanel {
 
     private void txtBuscarSolicitanteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBuscarSolicitanteFocusLost
         if (txtBuscarSolicitante.getText().equals("")) {
-            txtBuscarSolicitante.setText("Buscar");
+            txtBuscarSolicitante.setText(BUSQUEDA);
         }
 
     }//GEN-LAST:event_txtBuscarSolicitanteFocusLost

@@ -99,9 +99,12 @@ public class frmCambiarContrasena extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    //Constantes    
+    private static final String CONTRA_NUEVA = "Escriba Su Nueva Contraseña";
+    private static final String REPETIR_CONTRA = "Repetir Contraseña";
 
     private void txtNuevaContrasenaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNuevaContrasenaFocusGained
-        if (txtNuevaContrasena.getText().equals("Escriba Su Nueva Contraseña")) {
+        if (txtNuevaContrasena.getText().equals(CONTRA_NUEVA)) {
          txtNuevaContrasena.setText("");
          txtNuevaContrasena.setForeground(new Color(153,153,153));
      }
@@ -109,13 +112,13 @@ public class frmCambiarContrasena extends javax.swing.JFrame {
 
     private void txtConfirmarContrasenaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtConfirmarContrasenaFocusLost
         if (txtConfirmarContrasena.getText().equals("")) {
-         txtConfirmarContrasena.setText("Repetir Contraseña");
+         txtConfirmarContrasena.setText(REPETIR_CONTRA);
          txtConfirmarContrasena.setForeground(new Color(153,153,153));
            }
     }//GEN-LAST:event_txtConfirmarContrasenaFocusLost
 
     private void txtConfirmarContrasenaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtConfirmarContrasenaFocusGained
-          if (txtConfirmarContrasena.getText().equals("Repetir Contraseña")) {
+          if (txtConfirmarContrasena.getText().equals(REPETIR_CONTRA)) {
          txtConfirmarContrasena.setText("");
          txtConfirmarContrasena.setForeground(new Color(153,153,153));
            }
@@ -123,7 +126,7 @@ public class frmCambiarContrasena extends javax.swing.JFrame {
 
     private void txtNuevaContrasenaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNuevaContrasenaFocusLost
          if (txtNuevaContrasena.getText().equals("")) {
-         txtNuevaContrasena.setText("Escriba Su Nueva Contraseña");
+         txtNuevaContrasena.setText(CONTRA_NUEVA);
          txtNuevaContrasena.setForeground(new Color(153,153,153));
            }
     }//GEN-LAST:event_txtNuevaContrasenaFocusLost

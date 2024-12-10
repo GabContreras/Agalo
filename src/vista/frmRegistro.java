@@ -207,6 +207,13 @@ public class frmRegistro extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    //Constantes
+        private static final String NOMBRE_REGISTRO = "Nombre";
+        private static final String CORREO_REGISTRO = "Correo Electrónico";
+        private static final String USUARIO_REGISTRO = "Usuario";
+        private static final String CONTRA_REGISTRO = "Contraseña";
+
+    
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreActionPerformed
@@ -216,24 +223,22 @@ public class frmRegistro extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCorreoElectronicoActionPerformed
 
     private void txtNombreFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreFocusGained
-    if (txtNombre.getText().equals("Nombre")) {
+    if (txtNombre.getText().equals(NOMBRE_REGISTRO)) {
          txtNombre.setText("");
          txtNombre.setForeground(new Color(153,153,153));
      }
-        
-        
     }//GEN-LAST:event_txtNombreFocusGained
 
     private void txtNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreFocusLost
         if (txtNombre.getText().equals("")) {
-         txtNombre.setText("Nombre");
+         txtNombre.setText(NOMBRE_REGISTRO);
          txtNombre.setForeground(new Color(153,153,153));
      }
            
     }//GEN-LAST:event_txtNombreFocusLost
 
     private void txtCorreoElectronicoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCorreoElectronicoFocusGained
-  if (txtCorreoElectronico.getText().equals("Correo Electrónico")) {
+  if (txtCorreoElectronico.getText().equals(CORREO_REGISTRO)) {
          txtCorreoElectronico.setText("");
          txtCorreoElectronico.setForeground(new Color(153,153,153));
      }
@@ -244,7 +249,7 @@ public class frmRegistro extends javax.swing.JFrame {
     private void txtCorreoElectronicoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCorreoElectronicoFocusLost
  
         if (txtCorreoElectronico.getText().equals("")) {
-         txtCorreoElectronico.setText("Correo Electrónico");
+         txtCorreoElectronico.setText(CORREO_REGISTRO);
          txtCorreoElectronico.setForeground(new Color(153,153,153));
      }
         
@@ -260,20 +265,17 @@ public class frmRegistro extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void txtUsuarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsuarioFocusGained
-     if (txtUsuario.getText().equals("Usuario")) {
+     if (txtUsuario.getText().equals(USUARIO_REGISTRO)) {
          txtUsuario.setText("");
          txtUsuario.setForeground(new Color(153,153,153));
      }
-  
     }//GEN-LAST:event_txtUsuarioFocusGained
 
     private void txtUsuarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsuarioFocusLost
        if (txtUsuario.getText().equals("")) {
-         txtUsuario.setText("Usuario");
+         txtUsuario.setText(USUARIO_REGISTRO);
          txtUsuario.setForeground(new Color(153,153,153));
      }
-        
-        
     }//GEN-LAST:event_txtUsuarioFocusLost
 
     private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
@@ -282,7 +284,7 @@ public class frmRegistro extends javax.swing.JFrame {
 
     private void txtContraFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtContraFocusGained
    
-        if (txtContra.getText().equals("Contraseña")) {
+        if (txtContra.getText().equals(CONTRA_REGISTRO)) {
          txtContra.setText("");
          txtContra.setForeground(new Color(153,153,153));
      }
@@ -291,7 +293,7 @@ public class frmRegistro extends javax.swing.JFrame {
 
     private void txtContraFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtContraFocusLost
        if (txtContra.getText().equals("")) {
-         txtContra.setText("Contraseña");
+         txtContra.setText(CONTRA_REGISTRO);
          txtContra.setForeground(new Color(153,153,153));
            }
        

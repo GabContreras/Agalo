@@ -103,19 +103,18 @@ public class frmValidarCodigo extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    private static final String INGRESO_CODIGO = "Ingrese el codigo";
 
     private void txtCodigoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCodigoFocusGained
         
-if (txtCodigo.getText().equals("Ingrese el codigo")) {
+if (txtCodigo.getText().equals(INGRESO_CODIGO)) {
          txtCodigo.setText("");
          txtCodigo.setForeground(new Color(153,153,153));
      }
-
-
     }//GEN-LAST:event_txtCodigoFocusGained
 
     private void txtCodigoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCodigoFocusLost
-if (txtCodigo.getText().equals("Ingrese el codigo")) {
+if (txtCodigo.getText().equals(INGRESO_CODIGO)) {
          txtCodigo.setText("");
          txtCodigo.setForeground(new Color(153,153,153));
      }

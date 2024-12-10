@@ -194,15 +194,16 @@ public class frmEmpresa extends javax.swing.JPanel {
     private void btnRestringirEmpleadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestringirEmpleadorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnRestringirEmpleadorActionPerformed
+    private static final String BUSQUEDA = "Buscar";
 
     private void txtBuscarEmpleadorFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBuscarEmpleadorFocusGained
-        if (txtBuscarEmpleador.getText().equals("Buscar")) {
+        if (txtBuscarEmpleador.getText().equals(BUSQUEDA)) {
             txtBuscarEmpleador.setText("");
         }    }//GEN-LAST:event_txtBuscarEmpleadorFocusGained
 
     private void txtBuscarEmpleadorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBuscarEmpleadorFocusLost
         if (txtBuscarEmpleador.getText().equals("")) {
-            txtBuscarEmpleador.setText("Buscar");
+            txtBuscarEmpleador.setText(BUSQUEDA);
         }    }//GEN-LAST:event_txtBuscarEmpleadorFocusLost
 
 
