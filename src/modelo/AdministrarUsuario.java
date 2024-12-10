@@ -12,6 +12,9 @@ import vista.frmAdministrarUsuarios;
 
 public class AdministrarUsuario {
 
+        private static final String ERROR_FILAS = "No se ha seleccionado ninguna fila.";
+
+    
     //Constantes para los select
     private static final String ID_ADMIN = "IdAdmin";
     private static final String NOMBRE_ADMIN = "Nombre";
@@ -152,7 +155,7 @@ public class AdministrarUsuario {
                 System.out.println("Error al actualizar el usuario: " + e.getMessage());
             }
         } else {
-            System.out.println("No se ha seleccionado ninguna fila.");
+            System.out.println("");
         }
     }
 
@@ -187,7 +190,7 @@ public class AdministrarUsuario {
                 System.out.println("Error al actualizar el usuario: " + e.getMessage());
             }
         } else {
-            System.out.println("No se ha seleccionado ninguna fila.");
+            System.out.println(ERROR_FILAS);
         }
     }
 
@@ -213,7 +216,7 @@ public class AdministrarUsuario {
                 System.out.println("este es el error metodo de eliminar" + e);
             }
         } else {
-            System.out.println("No se ha seleccionado ningun Usuario.");
+            System.out.println(ERROR_FILAS);
         }
 
     }
@@ -265,7 +268,7 @@ public class AdministrarUsuario {
             vista.txtUsuarioAdmin.setText(usuario);
             vista.txtCorreoAdmin.setText(correo);
         } else {
-            System.out.println("No se ha seleccionado ninguna fila.");
+            System.out.println(ERROR_FILAS);
         }
 
     }

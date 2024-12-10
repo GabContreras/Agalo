@@ -20,7 +20,7 @@ public class AdministrarEmpleadores {
 
     //Constantes para los select
                   
-    private static final String Id_Empleador = "Id";
+    private static final String ID_EMPLEADOR = "Id";
     private static final String NOMBRE_EMPRESA = "Empresa";
     private static final String NOMBRE_REPRESENTANTE = "Representante";
     private static final String CORREO_REPRESENTANTE = "Correo";
@@ -92,7 +92,7 @@ public class AdministrarEmpleadores {
             while (rs.next()) {
                 // Llenamos el modelo por cada vez que recorremos el ResultSet
                 modelo.addRow(new Object[]{
-                    rs.getString(Id_Empleador),
+                    rs.getString(ID_EMPLEADOR),
                     rs.getString(NOMBRE_EMPRESA),
                     rs.getString(NOMBRE_REPRESENTANTE),
                     rs.getString(CORREO_REPRESENTANTE),
@@ -117,7 +117,7 @@ public class AdministrarEmpleadores {
         DefaultTableModel modeloDeDatos = new DefaultTableModel();
 
         modeloDeDatos.setColumnIdentifiers(new Object[]{
-            Id_Empleador, NOMBRE_EMPRESA, NOMBRE_REPRESENTANTE, CORREO_REPRESENTANTE, TELEFONO_REPRESENTANTE, DIRECCION_REPRESENTANTE, DEPARTAMENTO_REPRESENTANTE
+            ID_EMPLEADOR, NOMBRE_EMPRESA, NOMBRE_REPRESENTANTE, CORREO_REPRESENTANTE, TELEFONO_REPRESENTANTE, DIRECCION_REPRESENTANTE, DEPARTAMENTO_REPRESENTANTE
         });
         
         try {
@@ -132,7 +132,7 @@ public class AdministrarEmpleadores {
             while (rs.next()) {
                 // Llenamos el modelo por cada vez que recorremos el ResultSet
                 modeloDeDatos.addRow(new Object[]{
-                   rs.getString(Id_Empleador),
+                   rs.getString(ID_EMPLEADOR),
                     rs.getString(NOMBRE_EMPRESA),
                     rs.getString(NOMBRE_REPRESENTANTE),
                     rs.getString(CORREO_REPRESENTANTE),
