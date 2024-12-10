@@ -114,8 +114,8 @@ if (txtCodigo.getText().equals(INGRESO_CODIGO)) {
     }//GEN-LAST:event_txtCodigoFocusGained
 
     private void txtCodigoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCodigoFocusLost
-if (txtCodigo.getText().equals(INGRESO_CODIGO)) {
-         txtCodigo.setText("");
+if (txtCodigo.getText().equals("")) {
+         txtCodigo.setText(INGRESO_CODIGO);
          txtCodigo.setForeground(new Color(153,153,153));
      }
     }//GEN-LAST:event_txtCodigoFocusLost
