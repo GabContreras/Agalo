@@ -18,6 +18,16 @@ import javax.swing.table.DefaultTableModel;
  */
 public class AdministrarEmpleadores {
 
+    //Constantes para los select
+                  
+    private static final String Id_Empleador = "Id";
+    private static final String NOMBRE_EMPRESA = "Empresa";
+    private static final String NOMBRE_REPRESENTANTE = "Representante";
+    private static final String CORREO_REPRESENTANTE = "Correo";
+    private static final String TELEFONO_REPRESENTANTE = "Teléfono";
+    private static final String DIRECCION_REPRESENTANTE = "Dirección";
+    private static final String DEPARTAMENTO_REPRESENTANTE = "Departamento";
+
     private String correoEmpleador;
     private String uuidEmpleador;
 
@@ -82,13 +92,13 @@ public class AdministrarEmpleadores {
             while (rs.next()) {
                 // Llenamos el modelo por cada vez que recorremos el ResultSet
                 modelo.addRow(new Object[]{
-                    rs.getString("Id"),
-                    rs.getString("Empresa"),
-                    rs.getString("Representante"),
-                    rs.getString("Correo"),
-                    rs.getString("Teléfono"),
-                    rs.getString("Dirección"),
-                    rs.getString("Departamento")
+                    rs.getString(Id_Empleador),
+                    rs.getString(NOMBRE_EMPRESA),
+                    rs.getString(NOMBRE_REPRESENTANTE),
+                    rs.getString(CORREO_REPRESENTANTE),
+                    rs.getString(TELEFONO_REPRESENTANTE),
+                    rs.getString(DIRECCION_REPRESENTANTE),
+                    rs.getString(DEPARTAMENTO_REPRESENTANTE)
                 });
             }
 
@@ -107,9 +117,9 @@ public class AdministrarEmpleadores {
         DefaultTableModel modeloDeDatos = new DefaultTableModel();
 
         modeloDeDatos.setColumnIdentifiers(new Object[]{
-            "Id", "Empresa", "Representante", "Correo Electrónico", "Teléfono", "Dirección", "Departamento"
+            Id_Empleador, NOMBRE_EMPRESA, NOMBRE_REPRESENTANTE, CORREO_REPRESENTANTE, TELEFONO_REPRESENTANTE, DIRECCION_REPRESENTANTE, DEPARTAMENTO_REPRESENTANTE
         });
-
+        
         try {
             // Creamos un Statement
             Statement statement = conexion.createStatement();
@@ -122,13 +132,13 @@ public class AdministrarEmpleadores {
             while (rs.next()) {
                 // Llenamos el modelo por cada vez que recorremos el ResultSet
                 modeloDeDatos.addRow(new Object[]{
-                    rs.getString("Id"),
-                    rs.getString("Empresa"),
-                    rs.getString("Representante"),
-                    rs.getString("Correo"),
-                    rs.getString("Teléfono"),
-                    rs.getString("Dirección"),
-                    rs.getString("Departamento")
+                   rs.getString(Id_Empleador),
+                    rs.getString(NOMBRE_EMPRESA),
+                    rs.getString(NOMBRE_REPRESENTANTE),
+                    rs.getString(CORREO_REPRESENTANTE),
+                    rs.getString(TELEFONO_REPRESENTANTE),
+                    rs.getString(DIRECCION_REPRESENTANTE),
+                    rs.getString(DEPARTAMENTO_REPRESENTANTE)
                 });
             }
             // Asignamos el nuevo modelo lleno a la tabla

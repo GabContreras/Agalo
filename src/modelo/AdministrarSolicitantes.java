@@ -17,6 +17,14 @@ import javax.swing.table.DefaultTableModel;
  * @author Contr
  */
 public class AdministrarSolicitantes {
+    //Constantes para los select
+
+    private static final String ID_SOLICITANTE = "Id";
+    private static final String NOMBRE_SOLICITANTE = "NombreSolicitante";
+    private static final String CORREO_SOLICITANTE = "Correo";
+    private static final String TELEFONO_SOLICITANTE = "Teléfono";
+    private static final String DIRECCION_SOLICITANTE = "Dirección";
+    private static final String DEPARTAMENTO_SOLICITANTE = "NombreDepartamento";
 
     public String getCorreoSolicitante() {
         return correoSolicitante;
@@ -81,12 +89,12 @@ public class AdministrarSolicitantes {
             while (rs.next()) {
                 // Llenamos el modelo por cada vez que recorremos el ResultSet
                 modelo.addRow(new Object[]{
-                    rs.getString("Id"),
-                    rs.getString("NombreSolicitante"), // Usar el alias para evitar ambigüedad
-                    rs.getString("Correo"),
-                    rs.getString("Teléfono"),
-                    rs.getString("Dirección"),
-                    rs.getString("NombreDepartamento") // Usar el alias para evitar ambigüedad
+                    rs.getString(ID_SOLICITANTE),
+                    rs.getString(NOMBRE_SOLICITANTE),
+                    rs.getString(CORREO_SOLICITANTE),
+                    rs.getString(TELEFONO_SOLICITANTE),
+                    rs.getString(DIRECCION_SOLICITANTE),
+                    rs.getString(DEPARTAMENTO_SOLICITANTE)
                 });
             }
 
@@ -104,7 +112,7 @@ public class AdministrarSolicitantes {
         DefaultTableModel modeloDeDatos = new DefaultTableModel();
 
         modeloDeDatos.setColumnIdentifiers(new Object[]{
-            "Id", "Nombre", "Correo Electrónico", "Teléfono", "Dirección", "Departamento"
+            ID_SOLICITANTE, NOMBRE_SOLICITANTE, CORREO_SOLICITANTE, TELEFONO_SOLICITANTE, DIRECCION_SOLICITANTE, DEPARTAMENTO_SOLICITANTE
         });
 
         try {
@@ -123,12 +131,12 @@ public class AdministrarSolicitantes {
             while (rs.next()) {
                 // Llenamos el modelo por cada vez que recorremos el ResultSet
                 modeloDeDatos.addRow(new Object[]{
-                    rs.getString("Id"),
-                    rs.getString("NombreSolicitante"), // Usar el alias para evitar ambigüedad
-                    rs.getString("Correo"),
-                    rs.getString("Teléfono"),
-                    rs.getString("Dirección"),
-                    rs.getString("NombreDepartamento") // Usar el alias para evitar ambigüedad
+                    rs.getString(ID_SOLICITANTE),
+                    rs.getString(NOMBRE_SOLICITANTE),
+                    rs.getString(CORREO_SOLICITANTE),
+                    rs.getString(TELEFONO_SOLICITANTE),
+                    rs.getString(DIRECCION_SOLICITANTE),
+                    rs.getString(DEPARTAMENTO_SOLICITANTE)
                 });
             }
             // Asignamos el nuevo modelo lleno a la tabla

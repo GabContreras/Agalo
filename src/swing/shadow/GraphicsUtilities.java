@@ -257,47 +257,5 @@ public class GraphicsUtilities {
             // Unmanages the image
             img.setRGB(x, y, w, h, pixels, 0, w);
         }
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    }  
 }

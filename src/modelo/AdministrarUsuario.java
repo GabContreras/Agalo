@@ -12,6 +12,12 @@ import vista.frmAdministrarUsuarios;
 
 public class AdministrarUsuario {
 
+    //Constantes para los select
+    private static final String ID_ADMIN = "IdAdmin";
+    private static final String NOMBRE_ADMIN = "Nombre";
+    private static final String USUARIO_ADMIN = "Usuario";
+    private static final String CORREO_ADMIN = "CorreoElectronico";
+
     public String getIDadmin() {
         return IDadmin;
     }
@@ -84,7 +90,7 @@ public class AdministrarUsuario {
         DefaultTableModel modeloDeDatos = new DefaultTableModel();
 
         modeloDeDatos.setColumnIdentifiers(new Object[]{
-            "IdAdmin", "Nombre", "Usuario", "CorreoElectronico"
+            ID_ADMIN, NOMBRE_ADMIN, USUARIO_ADMIN, CORREO_ADMIN
         });
 
         try {
@@ -96,14 +102,14 @@ public class AdministrarUsuario {
                     "select IdAdmin, Nombre, Usuario, CorreoElectronico from usuarioescritorio where idrol = 1"
             );
 
-              // Recorremos el ResultSet
+            // Recorremos el ResultSet
             while (rs.next()) {
                 // Llenamos el modelo por cada vez que recorremos el ResultSet
                 modeloDeDatos.addRow(new Object[]{
-                    rs.getInt("IdAdmin"),
-                    rs.getString("Nombre"),
-                    rs.getString("Usuario"),
-                    rs.getString("CorreoElectronico")
+                    rs.getInt(ID_ADMIN),
+                    rs.getString(NOMBRE_ADMIN),
+                    rs.getString(USUARIO_ADMIN),
+                    rs.getString(CORREO_ADMIN)
                 });
             }
 
@@ -211,6 +217,7 @@ public class AdministrarUsuario {
         }
 
     }
+
     public void buscarUsuario(JTable jtbAdmin, JTextField txtBuscarUsuario) {
         Connection conexion = ClaseConexion.getConexion();
         DefaultTableModel modelo = (DefaultTableModel) jtbAdmin.getModel(); // Reutiliza el modelo existente
@@ -225,14 +232,14 @@ public class AdministrarUsuario {
             ps.setString(1, txtBuscarUsuario.getText() + "%"); // Agregar el '%' aquí
             ResultSet rs = ps.executeQuery();
 
-             // Recorremos el ResultSet
+            // Recorremos el ResultSet
             while (rs.next()) {
                 // Llenamos el modelo por cada vez que recorremos el ResultSet
                 modelo.addRow(new Object[]{
-                    rs.getInt("IdAdmin"),
-                    rs.getString("Nombre"),
-                    rs.getString("Usuario"),
-                    rs.getString("CorreoElectronico")
+                    rs.getInt(ID_ADMIN),
+                    rs.getString(NOMBRE_ADMIN),
+                    rs.getString(USUARIO_ADMIN),
+                    rs.getString(CORREO_ADMIN)
                 });
             }
 
@@ -242,7 +249,6 @@ public class AdministrarUsuario {
             System.out.println("Error en buscar Usuario: " + e);
         }
     }
-    
 
     // Cargar los datos del usuario seleccionado desde la tabla
     public void cargarDatosTabla(frmAdministrarUsuarios vista) {
