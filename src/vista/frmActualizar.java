@@ -116,11 +116,11 @@ public class frmActualizar extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
-        // TODO add your handling code here:
+    private void button1ActionPerformed(java.awt.event.ActionEvent _evt) {//GEN-FIRST:event_button1ActionPerformed
+        // Your implementation here
     }//GEN-LAST:event_button1ActionPerformed
 
-    private void textField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField1ActionPerformed
+    private void textField1ActionPerformed(java.awt.event.ActionEvent _evt) {//GEN-FIRST:event_textField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textField1ActionPerformed
 

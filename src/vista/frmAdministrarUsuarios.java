@@ -83,9 +83,11 @@ public class frmAdministrarUsuarios extends javax.swing.JPanel {
         txtCorreoAdmin.setForeground(new java.awt.Color(153, 153, 153));
         txtCorreoAdmin.setText("Correo Electronico Administrador");
         txtCorreoAdmin.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtCorreoAdminFocusGained(evt);
             }
+            @Override
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtCorreoAdminFocusLost(evt);
             }
@@ -95,9 +97,11 @@ public class frmAdministrarUsuarios extends javax.swing.JPanel {
         txtContrasenaAdmin.setForeground(new java.awt.Color(153, 153, 153));
         txtContrasenaAdmin.setText("Contraseña Administrador");
         txtContrasenaAdmin.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtContrasenaAdminFocusGained(evt);
             }
+            @Override
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtContrasenaAdminFocusLost(evt);
             }
@@ -112,9 +116,11 @@ public class frmAdministrarUsuarios extends javax.swing.JPanel {
         txtUsuarioAdmin.setForeground(new java.awt.Color(153, 153, 153));
         txtUsuarioAdmin.setText("Usuario Administrador");
         txtUsuarioAdmin.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtUsuarioAdminFocusGained(evt);
             }
+            @Override
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtUsuarioAdminFocusLost(evt);
             }
@@ -124,9 +130,11 @@ public class frmAdministrarUsuarios extends javax.swing.JPanel {
         txtNombreAdmin.setForeground(new java.awt.Color(153, 153, 153));
         txtNombreAdmin.setText("Nombre Administrador");
         txtNombreAdmin.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtNombreAdminFocusGained(evt);
             }
+            @Override
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtNombreAdminFocusLost(evt);
             }
@@ -171,9 +179,11 @@ public class frmAdministrarUsuarios extends javax.swing.JPanel {
         txtBuscarUsuarios.setBackground(new java.awt.Color(255, 252, 250));
         txtBuscarUsuarios.setText("Buscar");
         txtBuscarUsuarios.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override 
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtBuscarUsuariosFocusGained(evt);
             }
+            @Override
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtBuscarUsuariosFocusLost(evt);
             }
@@ -195,11 +205,11 @@ public class frmAdministrarUsuarios extends javax.swing.JPanel {
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 20, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtContrasenaAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContrasenaAdminActionPerformed
+    private void txtContrasenaAdminActionPerformed(java.awt.event.ActionEvent _evt) {//GEN-FIRST:event_txtContrasenaAdminActionPerformed
 
     }//GEN-LAST:event_txtContrasenaAdminActionPerformed
 
-    private void txtNombreAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreAdminActionPerformed
+    private void txtNombreAdminActionPerformed(java.awt.event.ActionEvent _evt) {//GEN-FIRST:event_txtNombreAdminActionPerformed
 
     }//GEN-LAST:event_txtNombreAdminActionPerformed
 
