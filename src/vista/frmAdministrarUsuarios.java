@@ -1,13 +1,11 @@
 package vista;
 
 import controlador.CtrlAdministrarUsuario;
-import controlador.CtrlMenu;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.JTableHeader;
 import modelo.AdministrarUsuario;
 
 public class frmAdministrarUsuarios extends javax.swing.JPanel {
@@ -18,7 +16,7 @@ public class frmAdministrarUsuarios extends javax.swing.JPanel {
 
         frmAdministrarUsuarios frmAdministrarUsuarios = this;
         AdministrarUsuario modelo = new AdministrarUsuario();
-        CtrlAdministrarUsuario controlador = new CtrlAdministrarUsuario(modelo, frmAdministrarUsuarios);
+        new CtrlAdministrarUsuario(modelo, frmAdministrarUsuarios);
 
         UIManager.getSystemLookAndFeelClassName();
 
@@ -263,14 +261,14 @@ public class frmAdministrarUsuarios extends javax.swing.JPanel {
     }//GEN-LAST:event_txtCorreoAdminFocusLost
 
     private void txtContrasenaAdminFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtContrasenaAdminFocusGained
-        if (txtContrasenaAdmin.getText().equals(CONTRA_ADMIN)) {
+        if (txtContrasenaAdmin.getPassword().equals(CONTRA_ADMIN)) {
             txtContrasenaAdmin.setText("");
             txtContrasenaAdmin.setForeground(new Color(153, 153, 153));
         }
     }//GEN-LAST:event_txtContrasenaAdminFocusGained
 
     private void txtContrasenaAdminFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtContrasenaAdminFocusLost
-        if (txtContrasenaAdmin.getText().equals("")) {
+        if (txtContrasenaAdmin.getPassword().equals("")) {
             txtContrasenaAdmin.setText(CONTRA_ADMIN);
             txtContrasenaAdmin.setForeground(new Color(153, 153, 153));
         }

@@ -45,9 +45,8 @@ public class CtrlCambiarContrasena implements ActionListener {
                 modelo.actualizar_contra(CtrlIngresoCorreo.correoEnviado, contrasenaEncriptada);
                 JOptionPane.showMessageDialog(vista, "La contraseña se cambió correctamente.");
 
-                // Redirigir al login después del cambio de contraseña
-                frmLogin login = new frmLogin();
-                login.initFrmLogin();
+                new frmLogin();
+                frmLogin.initFrmLogin();
                 vista.dispose();
             } else {
                 JOptionPane.showMessageDialog(vista, "Error al encriptar la contraseña.", MENSAJE_ERROR, JOptionPane.ERROR_MESSAGE);

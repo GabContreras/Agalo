@@ -138,7 +138,7 @@ public class CtrlAdministrarUsuario implements MouseListener, KeyListener {
 
     private boolean esCorreoValido(String correo) {
         // Expresión regular para validar el correo electrónico
-        String regex = "([a-zA-Z0-9_.-]+)@([a-zA-Z]+)([\\.])([a-zA-Z]+)";
+        String regex = "([a-zA-Z0-9_.-]+)@([a-zA-Z]+)\\.([a-zA-Z]+)";
         return correo.matches(regex);
     }
 

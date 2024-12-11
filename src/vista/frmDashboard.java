@@ -29,7 +29,7 @@ public class frmDashboard extends javax.swing.JPanel {
 
         frmDashboard frmDashboard = this;
         AdministrarEmpresas modelo = new AdministrarEmpresas();
-        CtrlAdministrarEmpresas controlador = new CtrlAdministrarEmpresas(modelo, frmDashboard);
+        new CtrlAdministrarEmpresas(modelo, frmDashboard);
 
         UIManager.getSystemLookAndFeelClassName();
 
@@ -64,11 +64,10 @@ public class frmDashboard extends javax.swing.JPanel {
 
     }
 
-    public static void initDashboard() {
+    public void initDashboard() {
         frmDashboard frmDashboard = new frmDashboard();
         AdministrarEmpresas modelo = new AdministrarEmpresas();
-        CtrlAdministrarEmpresas controlador = new CtrlAdministrarEmpresas(modelo, frmDashboard);
-        //  frmAdministrarUsuarios.setVisible(true); 
+        new CtrlAdministrarEmpresas(modelo, frmDashboard);
 
     }
 

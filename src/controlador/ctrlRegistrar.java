@@ -10,7 +10,6 @@ import java.util.regex.Pattern;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.nio.charset.StandardCharsets;
-import vista.frmAdministrarUsuarios;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -135,7 +134,7 @@ public class CtrlRegistrar implements ActionListener {
      */
     private boolean esCorreoValido(String correo) {
         // Expresión regular para validar el correo electrónico
-        String regex = "^[\\w-.]+@[\\w-]+(\\.[\\w-]+)+$";
+        String regex = "([a-zA-Z0-9_.-]+)@([a-zA-Z]+)\\.([a-zA-Z]+)";
         return Pattern.matches(regex, correo);
     }
 

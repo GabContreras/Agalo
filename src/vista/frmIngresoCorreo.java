@@ -23,20 +23,10 @@ public class frmIngresoCorreo extends javax.swing.JFrame {
     public static void initFrmIngresoCorreo(){
         UsuarioEscritorio modelo = new UsuarioEscritorio();
         frmIngresoCorreo vista = new frmIngresoCorreo();
-        CtrlIngresoCorreo controlador = new CtrlIngresoCorreo(modelo, vista);
+        new CtrlIngresoCorreo(modelo, vista);
         
         vista.setVisible(true);
     }
-
-    
-    
-    
-    
-    
-    
-    
-    
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

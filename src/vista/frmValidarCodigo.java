@@ -4,11 +4,8 @@
  */
 package vista;
 
-import controlador.CtrlCambiarContrasena;
-import controlador.CtrlIngresoCorreo;
 import controlador.CtrlValidarCodigo;
 import java.awt.Color;
-import modelo.UsuarioEscritorio;
 
 /**
  *
@@ -25,7 +22,7 @@ public class frmValidarCodigo extends javax.swing.JFrame {
     
      public static void initFrmValidarCodigo(){
          frmValidarCodigo vista = new frmValidarCodigo();
-        CtrlValidarCodigo controlador = new CtrlValidarCodigo( vista);
+        new CtrlValidarCodigo( vista);
         
         vista.setVisible(true);
     }

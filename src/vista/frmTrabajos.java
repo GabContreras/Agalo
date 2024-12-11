@@ -4,9 +4,6 @@
  */
 package vista;
 
-import controlador.CtrlAdministrarSolicitantes;
-import controlador.CtrlAdministrarTrabajo;
-import controlador.CtrlAdministrarUsuario;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
@@ -18,7 +15,6 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableCellRenderer;
 import modelo.AdministrarTrabajos;
-import modelo.AdministrarUsuario;
 
 /**
  *
@@ -33,9 +29,7 @@ public class frmTrabajos extends javax.swing.JPanel {
      */
     public frmTrabajos() {
         initComponents();
-          frmTrabajos frmTrabajos = this;
-        AdministrarTrabajos modelo = new AdministrarTrabajos();
-         // Pasar el modelo y la vista al controlador
+          new AdministrarTrabajos();
  
         UIManager.getSystemLookAndFeelClassName();
          UIManager.put("ComboBox.border", BorderFactory.createEmptyBorder());

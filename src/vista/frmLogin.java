@@ -24,7 +24,7 @@ public class frmLogin extends javax.swing.JFrame {
     public static void initFrmLogin(){
         UsuarioEscritorio modelo = new UsuarioEscritorio();
         frmLogin vista = new frmLogin();
-        CtrlLogin controlador = new CtrlLogin (modelo,vista);
+        new CtrlLogin (modelo,vista);
         vista.setVisible(true);
     }
     

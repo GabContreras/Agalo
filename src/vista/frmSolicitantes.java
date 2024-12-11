@@ -6,12 +6,8 @@ package vista;
 
 import controlador.CtrlAdministrarSolicitantes;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Font;
 import javax.swing.BorderFactory;
-import javax.swing.DefaultListCellRenderer;
-import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -22,9 +18,6 @@ import modelo.AdministrarSolicitantes;
  * @author Gudelia
  */
 public class frmSolicitantes extends javax.swing.JPanel {
-
-    private CtrlAdministrarSolicitantes controlador; // Instancia del controlador
-
     /**
      * Creates new form frmUsers
      */
@@ -32,7 +25,7 @@ public class frmSolicitantes extends javax.swing.JPanel {
         initComponents();
         // Inicializar el modelo y el controlador
         AdministrarSolicitantes modelo = new AdministrarSolicitantes();
-        controlador = new CtrlAdministrarSolicitantes(modelo, this); // Pasar el modelo y la vista al controlador
+        new CtrlAdministrarSolicitantes(modelo, this);
 
         UIManager.getSystemLookAndFeelClassName();
         UIManager.put("ComboBox.border", BorderFactory.createEmptyBorder());

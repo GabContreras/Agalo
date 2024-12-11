@@ -12,7 +12,7 @@ import vista.frmValidarCodigo;
 
 public class CtrlValidarCodigo implements ActionListener {
 
-    private frmValidarCodigo vistaValidacion;
+    private final frmValidarCodigo vistaValidacion;
 
     public CtrlValidarCodigo(frmValidarCodigo vista) {
         this.vistaValidacion = vista;

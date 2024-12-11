@@ -21,7 +21,7 @@ public class frmMenu extends javax.swing.JFrame {
         frmSolicitantes frmSolicitantes = new frmSolicitantes();
         frmTrabajos frmTrabajos = new frmTrabajos();
 
-        CtrlMenu controlador = new CtrlMenu(vista, frmDashboard, frmAdministrarUsuarios, frmEmpresa, frmSolicitantes, frmTrabajos, modelo);
+        new CtrlMenu(vista, frmDashboard, frmAdministrarUsuarios, frmEmpresa, frmSolicitantes, frmTrabajos, modelo);
 
         vista.setVisible(true);
     }

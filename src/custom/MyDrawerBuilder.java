@@ -4,7 +4,6 @@
  */
 package custom;
 
-import controlador.CtrlAdministrarUsuario;
 import controlador.CtrlLogin;
 import raven.drawer.component.SimpleDrawerBuilder;
 import raven.drawer.component.footer.SimpleFooterData;
