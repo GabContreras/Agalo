@@ -85,7 +85,7 @@ public class AdministrarUsuario {
 
             addAdmin.executeUpdate();
         } catch (SQLException ex) {
-            logger.log(Level.SEVERE, "Error en el método Guardar: ", ex.getMessage());
+            logger.log(Level.SEVERE, "Error en el método Guardar: ", ex);
         }
     }
 
@@ -123,7 +123,7 @@ public class AdministrarUsuario {
             // Asignamos el nuevo modelo lleno a la tabla
             jtbAdmin.setModel(modeloDeDatos);
         } catch (SQLException e) {
-            logger.log(Level.SEVERE, "Error en el método Mostrar: ", e.getMessage());
+            logger.log(Level.SEVERE, "Error en el método Mostrar: ", e);
         }
     }
 
@@ -154,10 +154,9 @@ public class AdministrarUsuario {
                 // Ejecutar la actualización
                 updateUser.executeUpdate();
 
-                logger.log(Level.SEVERE, "Usuario actualizado correctamente.");
-
+                logger.log(Level.INFO, "Usuario actualizado correctamente.");
             } catch (SQLException e) {
-                logger.log(Level.SEVERE, "Error al actualizar el usuario: ", e.getMessage());
+                logger.log(Level.SEVERE, "Error al actualizar el usuario: ", e);
 
             }
         } else {
@@ -191,9 +190,9 @@ public class AdministrarUsuario {
                 // Ejecutar la actualización
                 updateUser.executeUpdate();
 
-                logger.log(Level.SEVERE, "Usuario actualizado correctamente.");
+                logger.log(Level.INFO, "Usuario actualizado correctamente.");
             } catch (SQLException e) {
-                logger.log(Level.SEVERE, "Error al actualizar el usuario: ", e.getMessage());
+                logger.log(Level.SEVERE, "Error al actualizar el usuario: ", e);
 
             }
         } else {

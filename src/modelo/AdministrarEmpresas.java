@@ -107,7 +107,7 @@ public class AdministrarEmpresas {
 
             }
         } else {
-            logger.log(Level.SEVERE, "No se ha seleccionado ninguna empresa.");
+            logger.log(Level.WARNING, "No se ha seleccionado ninguna empresa.");
         }
     }
 
@@ -129,7 +129,7 @@ public class AdministrarEmpresas {
                 logger.log(Level.SEVERE, "Este es el error en el método de actualizar: ", e);
             }
         } else {
-            logger.log(Level.SEVERE, "No se ha seleccionado ninguna empresa.");
+            logger.log(Level.WARNING, "No se ha seleccionado ninguna empresa.");
 
         }
     }

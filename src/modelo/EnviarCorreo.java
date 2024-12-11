@@ -25,7 +25,6 @@ import java.io.IOException;
  */
 public class EnviarCorreo {
 
-    
     // Constructor privado para evitar instanciación
     private EnviarCorreo() {
         // No se permite la instanciación
@@ -82,7 +81,7 @@ public class EnviarCorreo {
 
             // Enviar mensaje
             Transport.send(message);
-            System.out.println("Correo enviado con éxito");
+            logger.log(Level.INFO, "Correo enviado con éxito");
             return true;
         } catch (MessagingException e) {
             logger.log(Level.SEVERE, "Error al enviar correo: ", e);

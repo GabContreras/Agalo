@@ -7,12 +7,14 @@ import java.sql.SQLException;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 /**
  *
  * @author Jero
  */
 public class UsuarioEscritorio {
 // Instancia de logger para sustituir los system out 
+
     private static final Logger logger = Logger.getLogger(UsuarioEscritorio.class.getName());
 
     public int getIdRol() {
@@ -91,7 +93,7 @@ public class UsuarioEscritorio {
                 addUsuarioEscritorio.setString(4, getContrasena());
                 addUsuarioEscritorio.setInt(5, 2); // Asignar rol 2 (superadmin)
                 addUsuarioEscritorio.executeUpdate();
-                System.out.println("Usuario guardado correctamente.");
+                logger.log(Level.INFO, "Usuario guardado correctamente.");
             }
 
         } catch (SQLException ex) {
@@ -152,7 +154,7 @@ public class UsuarioEscritorio {
                     conexion.close();
                 }
             } catch (SQLException ex) {
-                System.out.println("Error al cerrar recursos: " + ex.getMessage());
+                logger.log(Level.SEVERE, "Error al cerrar recursos: ", ex);
             }
         }
 
@@ -183,19 +185,17 @@ public class UsuarioEscritorio {
 
                 int filasActualizadas = query.executeUpdate();
                 if (filasActualizadas > 0) {
-                    System.out.println("Contraseña actualizada correctamente.");
+                    logger.log(Level.INFO, "Contraseña actualizada correctamente.");
                 } else {
-                    System.out.println("Error al actualizar la contraseña.");
+                    logger.log(Level.SEVERE, "Error al actualizar la contraseña.");
                 }
             } else {
                 // No se encontró el correo
-                System.out.println("No se encontró el usuario con ese correo.");
+                logger.log(Level.WARNING, "No se encontró el usuario con ese correo.");
             }
 
         } catch (Exception e) {
-
             logger.log(Level.SEVERE, "Error al actualizar la contraseña:", e);
-
         }
     }
 
@@ -211,7 +211,7 @@ public class UsuarioEscritorio {
                 return rs.getInt(1) > 0; // Retorna true si existe al menos un registro
             }
         } catch (Exception e) {
-            System.out.println("Error al verificar el correo: " + e.getMessage());
+            logger.log(Level.SEVERE, "Error al verificar el correo: ", e);
         }
         return false; // Retorna false si no se encontró el correo
     }

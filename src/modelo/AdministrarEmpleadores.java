@@ -69,7 +69,7 @@ public class AdministrarEmpleadores {
                 logger.log(Level.SEVERE, "Este es el error en el método de restringir: ", e);
             }
         } else {
-            logger.log(Level.SEVERE, "No se ha seleccionado ningún Empleador.");
+            logger.log(Level.WARNING, "No se ha seleccionado ningún Empleador.");
         }
     }
 
