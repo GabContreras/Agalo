@@ -20,14 +20,14 @@ import modelo.AdministrarTrabajos;
  *
  * @author Gudelia
  */
-public class frmTrabajos extends javax.swing.JPanel {
+public class FrmTrabajos extends javax.swing.JPanel {
 
        // Instancia del controlador
  
     /**
      * Creates new form frmTrabajos
      */
-    public frmTrabajos() {
+    public FrmTrabajos() {
         initComponents();
           new AdministrarTrabajos();
  
@@ -192,7 +192,7 @@ public class frmTrabajos extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public custom.Button btnGenerarReporte;
-    private javax.swing.JComboBox<String> jComboBoxTrabajos;
+    public javax.swing.JComboBox<String> jComboBoxTrabajos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

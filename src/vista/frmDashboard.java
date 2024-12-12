@@ -16,18 +16,18 @@ import modelo.AdministrarEmpresas;
  *
  * @author Estudiante
  */
-public class frmDashboard extends javax.swing.JPanel {
+public class FrmDashboard extends javax.swing.JPanel {
 
     /**
      * Creates new form Dashboard
      */
     private static final String FUENTE = "Segoe UI";
 
-    public frmDashboard() {
+    public FrmDashboard() {
 
         initComponents();
 
-        frmDashboard frmDashboard = this;
+        FrmDashboard frmDashboard = this;
         AdministrarEmpresas modelo = new AdministrarEmpresas();
         new CtrlAdministrarEmpresas(modelo, frmDashboard);
 
@@ -65,7 +65,7 @@ public class frmDashboard extends javax.swing.JPanel {
     }
 
     public void initDashboard() {
-        frmDashboard frmDashboard = new frmDashboard();
+        FrmDashboard frmDashboard = new FrmDashboard();
         AdministrarEmpresas modelo = new AdministrarEmpresas();
         new CtrlAdministrarEmpresas(modelo, frmDashboard);
 

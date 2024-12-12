@@ -8,12 +8,12 @@ package vista;
  *
  * @author Gudelia
  */
-public class frmPerfil extends javax.swing.JPanel {
+public class FrmPerfil extends javax.swing.JPanel {
 
     /**
      * Creates new form perfil
      */
-    public frmPerfil() {
+    public FrmPerfil() {
         initComponents();
     }
 

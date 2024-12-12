@@ -6,13 +6,13 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JOptionPane;
 import modelo.UsuarioEscritorio;
-import vista.frmLogin;
-import vista.frmRegistro;
+import vista.FrmLogin;
+import vista.FrmRegistro;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.nio.charset.StandardCharsets;
-import vista.frmIngresoCorreo;
-import vista.frmMenu;
+import vista.FrmIngresoCorreo;
+import vista.FrmMenu;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -33,10 +33,10 @@ public class CtrlLogin implements ActionListener, MouseListener {
     private static final String TITULO_ERROR = "Error";
 
     private UsuarioEscritorio modelo;
-    private frmLogin vista;
+    private FrmLogin vista;
     public static String correoUsuario;
 
-    public CtrlLogin(UsuarioEscritorio modelo, frmLogin vista) {
+    public CtrlLogin(UsuarioEscritorio modelo, FrmLogin vista) {
         this.modelo = modelo;
         this.vista = vista;
 
@@ -68,14 +68,14 @@ public class CtrlLogin implements ActionListener, MouseListener {
 
             if (comprobar) {
                 JOptionPane.showMessageDialog(vista, "¡Bienvenido, usuario encontrado!");
-                frmMenu.initfrmMenu(modelo); // Pasa el modelo al controlador ctrlMenu
+                FrmMenu.initfrmMenu(modelo); // Pasa el modelo al controlador ctrlMenu
                 vista.dispose();
             } else {
                 JOptionPane.showMessageDialog(vista, "Usuario o contraseña incorrectos", TITULO_ERROR, JOptionPane.ERROR_MESSAGE);
             }
         } else if (e.getSource() == vista.btnRegister) {
 
-            frmRegistro.initFrmRegistro();
+            FrmRegistro.initFrmRegistro();
             vista.dispose();
         }
     }
@@ -137,7 +137,7 @@ public class CtrlLogin implements ActionListener, MouseListener {
     public void mouseClicked(MouseEvent e) {
 
         if (e.getSource() == vista.jOlvidarContrasena) {
-            frmIngresoCorreo.initFrmIngresoCorreo();
+            FrmIngresoCorreo.initFrmIngresoCorreo();
             vista.dispose();
 
         }

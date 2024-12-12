@@ -3,12 +3,12 @@ package controlador;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JOptionPane;
-import vista.frmAdministrarUsuarios;
-import vista.frmDashboard;
-import vista.frmEmpresa;
-import vista.frmMenu;
-import vista.frmSolicitantes;
-import vista.frmTrabajos;
+import vista.FrmAdministrarUsuarios;
+import vista.FrmDashboard;
+import vista.FrmEmpresa;
+import vista.FrmMenu;
+import vista.FrmSolicitantes;
+import vista.FrmTrabajos;
 import javax.swing.JPanel;
 import modelo.UsuarioEscritorio;
 
@@ -18,17 +18,17 @@ import modelo.UsuarioEscritorio;
  */
 public class CtrlMenu implements MouseListener {
 
-    frmMenu vista;
-    frmDashboard frmDashboard;
-    frmEmpresa frmEmpresa;
-    frmSolicitantes frmSolicitantes;
-    frmTrabajos frmTrabajos;
-    frmAdministrarUsuarios frmAdministrarUsuarios;
+    FrmMenu vista;
+    FrmDashboard frmDashboard;
+    FrmEmpresa frmEmpresa;
+    FrmSolicitantes frmSolicitantes;
+    FrmTrabajos frmTrabajos;
+    FrmAdministrarUsuarios frmAdministrarUsuarios;
 
     private UsuarioEscritorio modelo;
 
-    public CtrlMenu(frmMenu vista, frmDashboard frmDashboard, frmAdministrarUsuarios frmAdministrarUsuarios,
-            frmEmpresa frmEmpresa, frmSolicitantes frmSolicitantes, frmTrabajos frmTrabajos, UsuarioEscritorio modelo) {
+    public CtrlMenu(FrmMenu vista, FrmDashboard frmDashboard, FrmAdministrarUsuarios frmAdministrarUsuarios,
+            FrmEmpresa frmEmpresa, FrmSolicitantes frmSolicitantes, FrmTrabajos frmTrabajos, UsuarioEscritorio modelo) {
         this.vista = vista;
         this.frmDashboard = frmDashboard;
         this.frmAdministrarUsuarios = frmAdministrarUsuarios;
@@ -54,7 +54,7 @@ public class CtrlMenu implements MouseListener {
             if (vista.btnAdd.isEnabled()) {
                 // Inicialización perezosa (solo se crea la primera vez)
                 if (frmAdministrarUsuarios == null) {
-                    frmAdministrarUsuarios = new frmAdministrarUsuarios();
+                    frmAdministrarUsuarios = new FrmAdministrarUsuarios();
                 }
                 // Cambiar el panel contenido
                 cambiarPanel(vista.jPContenedor, frmAdministrarUsuarios);
@@ -65,7 +65,7 @@ public class CtrlMenu implements MouseListener {
 
         if (e.getSource() == vista.btnHome) {
             if (frmDashboard == null) {
-                frmDashboard = new frmDashboard();
+                frmDashboard = new FrmDashboard();
                 frmDashboard.initDashboard();
             }
             // Cambiar el panel contenido

@@ -17,11 +17,11 @@ import modelo.AdministrarSolicitantes;
  *
  * @author Gudelia
  */
-public class frmSolicitantes extends javax.swing.JPanel {
+public class FrmSolicitantes extends javax.swing.JPanel {
     /**
      * Creates new form frmUsers
      */
-    public frmSolicitantes() {
+    public FrmSolicitantes() {
         initComponents();
         // Inicializar el modelo y el controlador
         AdministrarSolicitantes modelo = new AdministrarSolicitantes();

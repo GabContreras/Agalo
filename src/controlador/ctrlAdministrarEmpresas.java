@@ -6,16 +6,16 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JOptionPane;
 import modelo.AdministrarEmpresas; // Asegúrate de tener este modelo
-import vista.frmDashboard; // Asegúrate de importar la vista correcta
+import vista.FrmDashboard; // Asegúrate de importar la vista correcta
 
 public class CtrlAdministrarEmpresas implements MouseListener, KeyListener {
 
     // 1- Mandar a llamar a las otras capas (modelo y vista)
     private AdministrarEmpresas modelo;
-    private frmDashboard vista;
+    private FrmDashboard vista;
 
     // 2- Crear el constructor
-    public CtrlAdministrarEmpresas(AdministrarEmpresas modelo, frmDashboard vista) {
+    public CtrlAdministrarEmpresas(AdministrarEmpresas modelo, FrmDashboard vista) {
         this.modelo = modelo;
         this.vista = vista;
 

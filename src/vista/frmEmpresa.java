@@ -9,9 +9,9 @@ import javax.swing.UIManager;
 import javax.swing.table.DefaultTableCellRenderer;
 import modelo.AdministrarEmpleadores;
 
-public class frmEmpresa extends javax.swing.JPanel {
+public class FrmEmpresa extends javax.swing.JPanel {
 
-    public frmEmpresa() {
+    public FrmEmpresa() {
 
         initComponents();
 

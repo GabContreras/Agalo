@@ -9,18 +9,18 @@ import javax.swing.JOptionPane;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.UsuarioEscritorio;
-import vista.frmCambiarContrasena;
-import vista.frmLogin;
+import vista.FrmCambiarContrasena;
+import vista.FrmLogin;
 
 public class CtrlCambiarContrasena implements ActionListener {
 
     private static final String MENSAJE_ERROR = "Error";
 
     private UsuarioEscritorio modelo;
-    private frmCambiarContrasena vista;
+    private FrmCambiarContrasena vista;
     private static final Logger logger = Logger.getLogger(CtrlCambiarContrasena.class.getName());
 
-    public CtrlCambiarContrasena(UsuarioEscritorio modelo, frmCambiarContrasena vista) {
+    public CtrlCambiarContrasena(UsuarioEscritorio modelo, FrmCambiarContrasena vista) {
         this.modelo = modelo;
         this.vista = vista;
         this.vista.btnCambiarContrasena.addActionListener(this);
@@ -45,8 +45,8 @@ public class CtrlCambiarContrasena implements ActionListener {
                 modelo.actualizar_contra(CtrlIngresoCorreo.correoEnviado, contrasenaEncriptada);
                 JOptionPane.showMessageDialog(vista, "La contraseña se cambió correctamente.");
 
-                new frmLogin();
-                frmLogin.initFrmLogin();
+                new FrmLogin();
+                FrmLogin.initFrmLogin();
                 vista.dispose();
             } else {
                 JOptionPane.showMessageDialog(vista, "Error al encriptar la contraseña.", MENSAJE_ERROR, JOptionPane.ERROR_MESSAGE);

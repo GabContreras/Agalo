@@ -8,7 +8,7 @@ import java.sql.Statement;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-import vista.frmAdministrarUsuarios;
+import vista.FrmAdministrarUsuarios;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -260,7 +260,7 @@ public class AdministrarUsuario {
     }
 
     // Cargar los datos del usuario seleccionado desde la tabla
-    public void cargarDatosTabla(frmAdministrarUsuarios vista) {
+    public void cargarDatosTabla(FrmAdministrarUsuarios vista) {
         int filaSeleccionada = vista.jtbAdmin.getSelectedRow();
 
         if (filaSeleccionada != -1) {

@@ -7,14 +7,14 @@ package controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
-import vista.frmCambiarContrasena;
-import vista.frmValidarCodigo;
+import vista.FrmCambiarContrasena;
+import vista.FrmValidarCodigo;
 
 public class CtrlValidarCodigo implements ActionListener {
 
-    private final frmValidarCodigo vistaValidacion;
+    private final FrmValidarCodigo vistaValidacion;
 
-    public CtrlValidarCodigo(frmValidarCodigo vista) {
+    public CtrlValidarCodigo(FrmValidarCodigo vista) {
         this.vistaValidacion = vista;
         this.vistaValidacion.btnValidar.addActionListener(this);
     }
@@ -25,7 +25,7 @@ public class CtrlValidarCodigo implements ActionListener {
             try {
                 int codigoIngresado = Integer.parseInt(this.vistaValidacion.txtCodigo.getText());
                 if (codigoIngresado == CtrlIngresoCorreo.numeroAleatorio) {
-                    frmCambiarContrasena.initFrmCambiarContrasena();
+                    FrmCambiarContrasena.initFrmCambiarContrasena();
                     this.vistaValidacion.dispose();
                 } else {
                     JOptionPane.showMessageDialog(vistaValidacion, "El código ingresado es incorrecto.", "Error", JOptionPane.ERROR_MESSAGE);

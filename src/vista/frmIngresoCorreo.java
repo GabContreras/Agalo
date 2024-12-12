@@ -11,18 +11,18 @@ import modelo.UsuarioEscritorio;
  *
  * @author Gudelia
  */
-public class frmIngresoCorreo extends javax.swing.JFrame {
+public class FrmIngresoCorreo extends javax.swing.JFrame {
 
     /**
      * Creates new form jfContrasena
      */
-    public frmIngresoCorreo() {
+    public FrmIngresoCorreo() {
         initComponents();
     }
     
     public static void initFrmIngresoCorreo(){
         UsuarioEscritorio modelo = new UsuarioEscritorio();
-        frmIngresoCorreo vista = new frmIngresoCorreo();
+        FrmIngresoCorreo vista = new FrmIngresoCorreo();
         new CtrlIngresoCorreo(modelo, vista);
         
         vista.setVisible(true);
@@ -125,14 +125,16 @@ public class frmIngresoCorreo extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmIngresoCorreo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmIngresoCorreo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmIngresoCorreo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmIngresoCorreo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmIngresoCorreo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmIngresoCorreo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmIngresoCorreo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmIngresoCorreo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 

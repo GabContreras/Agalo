@@ -8,12 +8,12 @@ package vista;
  *
  * @author Gudelia
  */
-public class frmActualizar extends javax.swing.JPanel {
+public class FrmActualizar extends javax.swing.JPanel {
 
     /**
      * Creates new form actualizarperfil
      */
-    public frmActualizar() {
+    public FrmActualizar() {
         initComponents();
     }
 

@@ -11,19 +11,19 @@ import modelo.UsuarioEscritorio;
  *
  * @author Gudelia
  */
-public class frmLogin extends javax.swing.JFrame {
+public class FrmLogin extends javax.swing.JFrame {
 
     /**
      * Creates new form jfRegistrarse
      */
-    public frmLogin() {
+    public FrmLogin() {
         initComponents();
         this.setLocationRelativeTo(this);
     }
     
     public static void initFrmLogin(){
         UsuarioEscritorio modelo = new UsuarioEscritorio();
-        frmLogin vista = new frmLogin();
+        FrmLogin vista = new FrmLogin();
         new CtrlLogin (modelo,vista);
         vista.setVisible(true);
     }
@@ -179,14 +179,18 @@ public class frmLogin extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>

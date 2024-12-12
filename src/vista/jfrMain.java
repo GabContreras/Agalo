@@ -17,14 +17,14 @@ import raven.popup.GlassPanePopup;
  *
  * @author informatica1
  */
-public class jfrMain extends javax.swing.JFrame {
+public class JfrMain extends javax.swing.JFrame {
 
    
     
     
     
     
-    public jfrMain() {
+    public JfrMain() {
         GlassPanePopup.install(this);
         MyDrawerBuilder myDrawerBuilder=new MyDrawerBuilder();
         Drawer.getInstance().setDrawerBuilder(myDrawerBuilder);
@@ -88,7 +88,7 @@ public class jfrMain extends javax.swing.JFrame {
         FlatMacDarkLaf.setup();
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new jfrMain().setVisible(true);
+                new JfrMain().setVisible(true);
             }
         });
     }

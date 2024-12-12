@@ -11,7 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import modelo.AdministrarUsuario;
-import vista.frmAdministrarUsuarios;
+import vista.FrmAdministrarUsuarios;
 
 //Los métodos vacíos no se ocuparán 
 public class CtrlAdministrarUsuario implements MouseListener, KeyListener {
@@ -22,10 +22,10 @@ public class CtrlAdministrarUsuario implements MouseListener, KeyListener {
 
     // 1- Mandar a llamar a las otras capas (modelo y vista)
     private final AdministrarUsuario modelo;
-    private final frmAdministrarUsuarios vista;
+    private final FrmAdministrarUsuarios vista;
 
     // 2- Crear el constructor
-    public CtrlAdministrarUsuario(AdministrarUsuario modelo, frmAdministrarUsuarios vista) {
+    public CtrlAdministrarUsuario(AdministrarUsuario modelo, FrmAdministrarUsuarios vista) {
         this.modelo = modelo;
         this.vista = vista;
 

@@ -11,17 +11,17 @@ import java.awt.Color;
  *
  * @author Jero
  */
-public class frmValidarCodigo extends javax.swing.JFrame {
+public class FrmValidarCodigo extends javax.swing.JFrame {
 
     /**
      * Creates new form frmValidarCodigo
      */
-    public frmValidarCodigo() {
+    public FrmValidarCodigo() {
         initComponents();
     }
     
      public static void initFrmValidarCodigo(){
-         frmValidarCodigo vista = new frmValidarCodigo();
+         FrmValidarCodigo vista = new FrmValidarCodigo();
         new CtrlValidarCodigo( vista);
         
         vista.setVisible(true);
@@ -134,20 +134,21 @@ if (txtCodigo.getText().equals("")) {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmValidarCodigo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmValidarCodigo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmValidarCodigo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmValidarCodigo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmValidarCodigo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmValidarCodigo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmValidarCodigo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmValidarCodigo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmValidarCodigo().setVisible(true);
+                new FrmValidarCodigo().setVisible(true);
             }
         });
     }

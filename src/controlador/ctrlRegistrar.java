@@ -4,8 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import modelo.UsuarioEscritorio;
-import vista.frmRegistro;
-import vista.frmLogin; // Importar el formulario de login
+import vista.FrmRegistro;
+import vista.FrmLogin; // Importar el formulario de login
 import java.util.regex.Pattern;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -26,10 +26,10 @@ public class CtrlRegistrar implements ActionListener {
         private static final String TITULO_ERROR = "Error";
 
     private UsuarioEscritorio modelo;
-    private frmRegistro vista;
+    private FrmRegistro vista;
 
     // Constructor 
-    public CtrlRegistrar(UsuarioEscritorio modelo, frmRegistro vista) {
+    public CtrlRegistrar(UsuarioEscritorio modelo, FrmRegistro vista) {
         this.modelo = modelo;
         this.vista = vista;
 
@@ -70,7 +70,7 @@ public class CtrlRegistrar implements ActionListener {
                 modelo.GuardarUsuario(); // Llamada para guardar el usuario
                 // Solo si no se lanza excepción mostramos el mensaje de éxito
                 JOptionPane.showMessageDialog(vista, "Usuario Guardado con éxito.");
-                frmLogin.initFrmLogin();
+                FrmLogin.initFrmLogin();
                 vista.dispose();
             } catch (Exception ex) {
                 logger.log(Level.SEVERE, "Error al guardar el usuario:", ex);
@@ -81,7 +81,7 @@ public class CtrlRegistrar implements ActionListener {
 
         } else if (e.getSource() == vista.btnLogear) {
             // Cambiar al formulario de login
-            frmLogin.initFrmLogin();
+            FrmLogin.initFrmLogin();
             vista.dispose(); // Cierra el formulario actual
         }
     }

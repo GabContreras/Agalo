@@ -6,8 +6,8 @@ import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import modelo.EnviarCorreo;
 import modelo.UsuarioEscritorio;
-import vista.frmIngresoCorreo;
-import vista.frmValidarCodigo;
+import vista.FrmIngresoCorreo;
+import vista.FrmValidarCodigo;
 
 /**
  *
@@ -16,14 +16,14 @@ import vista.frmValidarCodigo;
 public class CtrlIngresoCorreo implements MouseListener {
 
     private UsuarioEscritorio modelo;
-    private frmIngresoCorreo vista;
+    private FrmIngresoCorreo vista;
     static Random random = new Random();
     static int numeroAleatorio = 1000 + random.nextInt(9000);
     static String correoEnviado;
 
     private static final String TITULO_ERROR = "Error";
 
-    public CtrlIngresoCorreo(UsuarioEscritorio modelo, frmIngresoCorreo vista) {
+    public CtrlIngresoCorreo(UsuarioEscritorio modelo, FrmIngresoCorreo vista) {
         this.modelo = modelo;
         this.vista = vista;
 
@@ -62,7 +62,7 @@ public class CtrlIngresoCorreo implements MouseListener {
 
             if (correoEnviadoExitosamente) {
                 // Cambiar a la ventana de validación del código
-                frmValidarCodigo.initFrmValidarCodigo();
+                FrmValidarCodigo.initFrmValidarCodigo();
                 vista.dispose();
 
                 // Mostrar mensaje de éxito

@@ -10,7 +10,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JOptionPane;
 import modelo.AdministrarSolicitantes;
-import vista.frmSolicitantes;
+import vista.FrmSolicitantes;
 
 /**
  *
@@ -19,9 +19,9 @@ import vista.frmSolicitantes;
 public class CtrlAdministrarSolicitantes implements MouseListener, KeyListener {
 
     private final AdministrarSolicitantes modelo;
-    private final frmSolicitantes vista;
+    private final FrmSolicitantes vista;
 
-    public CtrlAdministrarSolicitantes(AdministrarSolicitantes modelo, frmSolicitantes vista) {
+    public CtrlAdministrarSolicitantes(AdministrarSolicitantes modelo, FrmSolicitantes vista) {
         this.modelo = modelo;
         this.vista = vista;
 

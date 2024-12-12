@@ -11,15 +11,15 @@ import modelo.UsuarioEscritorio;
  *
  * @author Gudelia
  */
-public class frmMenu extends javax.swing.JFrame {
+public class FrmMenu extends javax.swing.JFrame {
 
    public static void initfrmMenu(UsuarioEscritorio modelo) {
-        frmMenu vista = new frmMenu();
-        frmDashboard frmDashboard = new frmDashboard();
-        frmAdministrarUsuarios frmAdministrarUsuarios = new frmAdministrarUsuarios();
-        frmEmpresa frmEmpresa = new frmEmpresa();
-        frmSolicitantes frmSolicitantes = new frmSolicitantes();
-        frmTrabajos frmTrabajos = new frmTrabajos();
+        FrmMenu vista = new FrmMenu();
+        FrmDashboard frmDashboard = new FrmDashboard();
+        FrmAdministrarUsuarios frmAdministrarUsuarios = new FrmAdministrarUsuarios();
+        FrmEmpresa frmEmpresa = new FrmEmpresa();
+        FrmSolicitantes frmSolicitantes = new FrmSolicitantes();
+        FrmTrabajos frmTrabajos = new FrmTrabajos();
 
         new CtrlMenu(vista, frmDashboard, frmAdministrarUsuarios, frmEmpresa, frmSolicitantes, frmTrabajos, modelo);
 
@@ -29,7 +29,7 @@ public class frmMenu extends javax.swing.JFrame {
     /**
      * Creates new form menu
      */
-    public frmMenu() {
+    public FrmMenu() {
         initComponents();
     }
     
@@ -174,14 +174,16 @@ public class frmMenu extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
