@@ -25,7 +25,7 @@ public class CtrlAdministrarEmpresas implements MouseListener, KeyListener {
         vista.txtBuscarEmpresa.addKeyListener(this);
 
         // Cargar los datos al inicializar
-        modelo.MostrarEmpresas(vista.jtSolicitudEmpresa); // Asegúrate de que este método esté en tu modelo
+        modelo.mostrarEmpresas(vista.jtSolicitudEmpresa); // Asegúrate de que este método esté en tu modelo
     }
 
     @Override
@@ -35,12 +35,12 @@ public class CtrlAdministrarEmpresas implements MouseListener, KeyListener {
             if (filaSeleccionada != -1) {
                 // Asumiendo que el ID de la empresa está en la primera columna (índice 0)
                 modelo.actualizarEstadoActivo(vista.jtSolicitudEmpresa);
-                modelo.MostrarEmpresas(vista.jtSolicitudEmpresa); // Actualizar la tabla después de la modificación
+                modelo.mostrarEmpresas(vista.jtSolicitudEmpresa); // Actualizar la tabla después de la modificación
                 JOptionPane.showMessageDialog(vista, "Empresa aceptada exitosamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
             }
         } else if (e.getSource() == vista.btnRechazarSolicitud) {
             modelo.rechazarEmpresa(vista.jtSolicitudEmpresa);
-            modelo.MostrarEmpresas(vista.jtSolicitudEmpresa); // Actualizar la tabla después de la eliminación
+            modelo.mostrarEmpresas(vista.jtSolicitudEmpresa); // Actualizar la tabla después de la eliminación
             JOptionPane.showMessageDialog(vista, "Empresa rechazada exitosamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
         }
     }

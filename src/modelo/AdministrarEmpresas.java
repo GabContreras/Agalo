@@ -51,7 +51,7 @@ public class AdministrarEmpresas {
         this.nombreEmpresa = nombreEmpresa;
     }
 
-    public void MostrarEmpresas(JTable jtSolicitudEmpresa) {
+    public void mostrarEmpresas(JTable jtSolicitudEmpresa) {
         // Creamos una variable de la clase de conexión
         Connection conexion = ClaseConexion.getConexion();
         // Definimos el modelo de la tabla

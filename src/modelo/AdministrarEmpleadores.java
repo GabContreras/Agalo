@@ -59,11 +59,11 @@ public class AdministrarEmpleadores {
         int filaSeleccionada = tabla.getSelectedRow();
         if (filaSeleccionada != -1) {
             // Obtenemos el id de la fila seleccionada
-            String IdEmpleador = tabla.getValueAt(filaSeleccionada, 0).toString(); // El IdSolicitante está en la primera columna
+            String ID_EMPLEADOR = tabla.getValueAt(filaSeleccionada, 0).toString(); // El IdSolicitante está en la primera columna
             try {
                 // Ejecutamos la Query
                 PreparedStatement updateEmpleador = conexion.prepareStatement("UPDATE Empleador SET Estado = 'Restringido' WHERE IdEmpleador = ?");
-                updateEmpleador.setString(1, IdEmpleador);
+                updateEmpleador.setString(1, ID_EMPLEADOR);
                 updateEmpleador.executeUpdate();
             } catch (Exception e) {
                 logger.log(Level.SEVERE, "Este es el error en el método de restringir: ", e);
@@ -75,6 +75,7 @@ public class AdministrarEmpleadores {
 
     public void buscarEmpleador(JTable jtbAdmin, JTextField txtBuscarEmpleador) {
         Connection conexion = ClaseConexion.getConexion();
+
         DefaultTableModel modelo = (DefaultTableModel) jtbAdmin.getModel(); // Reutiliza el modelo existente
 
         // Limpia el modelo antes de llenarlo con los nuevos resultados
@@ -113,7 +114,7 @@ public class AdministrarEmpleadores {
         }
     }
 
-    public void MostrarEmpleadores(JTable jtSolicitudEmpleador) {
+    public void mostrarEmpleadores(JTable jtSolicitudEmpleador) {
 
         // Creamos una variable de la clase de conexión
         Connection conexion = ClaseConexion.getConexion();

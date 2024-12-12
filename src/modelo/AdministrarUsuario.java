@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 
 public class AdministrarUsuario {
 
-    private static final Logger logger = Logger.getLogger(AdministrarEmpleadores.class.getName());
+    private static final Logger logger = Logger.getLogger(AdministrarUsuario.class.getName());
 
     private static final String ERROR_FILAS = "No se ha seleccionado ninguna fila.";
 
@@ -26,53 +26,53 @@ public class AdministrarUsuario {
     private static final String CORREO_ADMIN = "CorreoElectronico";
 
     public String getIDadmin() {
-        return IDadmin;
+        return idAdmin;
     }
 
-    public void setIDadmin(String IDadmin) {
-        this.IDadmin = IDadmin;
+    public void setIDadmin(String idAdmin) {
+        this.idAdmin = idAdmin;
     }
-    private String IDadmin;
-    private String Nombre;
-    private String Usuario;
-    private String Contrasena;
-    private String CorreoElectronico;
+    private String idAdmin;
+    private String nombre;
+    private String usuario;
+    private String contrasena;
+    private String correoElectronico;
 
     // Getters y setters
     public String getNombre() {
-        return Nombre;
+        return nombre;
     }
 
-    public void setNombre(String Nombre) {
-        this.Nombre = Nombre;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getUsuario() {
-        return Usuario;
+        return usuario;
     }
 
-    public void setUsuario(String Usuario) {
-        this.Usuario = Usuario;
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
     public String getContrasena() {
-        return Contrasena;
+        return contrasena;
     }
 
-    public void setContrasena(String Contrasena) {
-        this.Contrasena = Contrasena;
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
 
     public String getCorreoElectronico() {
-        return CorreoElectronico;
+        return correoElectronico;
     }
 
-    public void setCorreoElectronico(String CorreoElectronico) {
-        this.CorreoElectronico = CorreoElectronico;
+    public void setCorreoElectronico(String correoElectronico) {
+        this.correoElectronico = correoElectronico;
     }
 
     // Guardar en la base de datos
-    public void Guardar() {
+    public void guardar() {
         try (Connection conexion = ClaseConexion.getConexion()) {
             PreparedStatement addAdmin = conexion.prepareStatement(
                     "INSERT INTO UsuarioEscritorio (Nombre, Usuario, Contrasena, CorreoElectronico, IdRol) VALUES (?, ?, ?, ?, ?)"
@@ -89,7 +89,7 @@ public class AdministrarUsuario {
         }
     }
 
-    public void Mostrar(JTable jtbAdmin) {
+    public void mostrar(JTable jtbAdmin) {
         // Creamos una variable de la clase de conexión
         Connection conexion = ClaseConexion.getConexion();
 
@@ -128,7 +128,7 @@ public class AdministrarUsuario {
     }
 
     // Actualizar usuario en la base de datos
-    public void Actualizar(JTable jtbAdmin) {
+    public void actualizar(JTable jtbAdmin) {
         // Código de actualización similar al de guardar
         Connection conexion = ClaseConexion.getConexion();
 
@@ -165,7 +165,7 @@ public class AdministrarUsuario {
     }
 
     // Actualizar usuario en la base de datos
-    public void ActualizarSinContrasena(JTable jtbAdmin) {
+    public void actualizarSinContrasena(JTable jtbAdmin) {
         // Código de actualización similar al de guardar
         Connection conexion = ClaseConexion.getConexion();
 
@@ -201,7 +201,7 @@ public class AdministrarUsuario {
     }
 
     // Eliminar usuario
-    public void Eliminar(JTable jtbAdmin) {
+    public void eliminar(JTable jtbAdmin) {
         Connection conexion = ClaseConexion.getConexion();
 
         //obtenemos que fila seleccionó el usuario

@@ -30,7 +30,7 @@ public class CtrlAdministrarSolicitantes implements MouseListener, KeyListener {
         vista.txtBuscarSolicitante.addKeyListener(this); // Campo de búsqueda
 
         // Cargar los datos al inicializar
-        modelo.MostrarSolicitantes(vista.jtSolicitantes); // Asegúrate de que este método esté en tu modelo
+        modelo.mostrarSolicitantes(vista.jtSolicitantes); // Asegúrate de que este método esté en tu modelo
     }
 
     @Override
@@ -40,7 +40,7 @@ public class CtrlAdministrarSolicitantes implements MouseListener, KeyListener {
             if (filaSeleccionada != -1) {
                 // Asumiendo que el ID del solicitante está en la primera columna (índice 0)
                 modelo.restringirSolicitante(vista.jtSolicitantes);
-                modelo.MostrarSolicitantes(vista.jtSolicitantes); // Actualizar la tabla después de la modificación
+                modelo.mostrarSolicitantes(vista.jtSolicitantes); // Actualizar la tabla después de la modificación
                 JOptionPane.showMessageDialog(vista, "Solicitante restringido exitosamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
             }
         }

@@ -110,7 +110,7 @@ public class AdministrarSolicitantes {
         }
     }
 
-    public void MostrarSolicitantes(JTable jtSolicitudSolicitante) {
+    public void mostrarSolicitantes(JTable jtSolicitudSolicitante) {
         // Creamos una variable de la clase de conexión
         Connection conexion = ClaseConexion.getConexion();
         // Definimos el modelo de la tabla

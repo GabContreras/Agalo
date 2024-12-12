@@ -42,7 +42,7 @@ public class CtrlCambiarContrasena implements ActionListener {
             String contrasenaEncriptada = encriptarContrasena(nuevaContrasena);
             if (contrasenaEncriptada != null) {
                 // Actualizar la contraseña en la base de datos
-                modelo.actualizar_contra(CtrlIngresoCorreo.correoEnviado, contrasenaEncriptada);
+                modelo.actualizarContra(CtrlIngresoCorreo.correoEnviado, contrasenaEncriptada);
                 JOptionPane.showMessageDialog(vista, "La contraseña se cambió correctamente.");
 
                 new FrmLogin();

@@ -10,9 +10,9 @@ import java.io.IOException;
 public class ClaseConexion {
 
     // Variables para la cadena de conexión
-    private static String Url;
-    private static String Usuario;
-    private static String Cont;
+    private static String url;
+    private static String usuario;
+    private static String cont;
 
     // Instancia de logger para sustituir los system out 
     private static final Logger logger = Logger.getLogger(ClaseConexion.class.getName());
@@ -26,9 +26,9 @@ public class ClaseConexion {
             }
             // Cargar las propiedades
             properties.load(input);
-            Url = properties.getProperty("db.url");
-            Usuario = properties.getProperty("db.user");
-            Cont = properties.getProperty("db.password");
+            url = properties.getProperty("db.url");
+            usuario = properties.getProperty("db.user");
+            cont = properties.getProperty("db.password");
         } catch (IOException ex) {
             logger.log(Level.SEVERE, "Error al cargar el archivo de propiedades: ", ex);
         }
@@ -43,7 +43,7 @@ public class ClaseConexion {
     public static Connection getConexion() {
         try {
             // Obtener la conexión en una variable
-            return DriverManager.getConnection(Url, Usuario, Cont);
+            return DriverManager.getConnection(url, usuario, cont);
         } catch (SQLException e) {
             logger.log(Level.SEVERE, "Error de SQL: ", e);
             return null;

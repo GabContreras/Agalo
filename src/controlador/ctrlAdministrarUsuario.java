@@ -34,7 +34,7 @@ public class CtrlAdministrarUsuario implements MouseListener, KeyListener {
         vista.btnEliminarAdmin.addMouseListener(this);
         vista.txtBuscarUsuarios.addKeyListener(this);
         vista.jtbAdmin.addMouseListener(this); // Listener para la tabla
-        modelo.Mostrar(vista.jtbAdmin);
+        modelo.mostrar(vista.jtbAdmin);
     }
 
     @Override
@@ -72,15 +72,15 @@ public class CtrlAdministrarUsuario implements MouseListener, KeyListener {
         modelo.setUsuario(usuario);
         modelo.setCorreoElectronico(correo);
         modelo.setContrasena(contrasenaEncriptada);
-        modelo.Guardar();
-        modelo.Mostrar(vista.jtbAdmin);
+        modelo.guardar();
+        modelo.mostrar(vista.jtbAdmin);
         limpiarCampos();
     }
 
     //Agregar Mensaje de error cuando no se ha seleccionado ningún usuario, agregar mensaje de éxito cuando se haya eliminado un usuario correctamente
     private void eliminarAdmin() {
-        modelo.Eliminar(vista.jtbAdmin);
-        modelo.Mostrar(vista.jtbAdmin);
+        modelo.eliminar(vista.jtbAdmin);
+        modelo.mostrar(vista.jtbAdmin);
     }
 
     private void editarAdmin() {
@@ -98,7 +98,7 @@ public class CtrlAdministrarUsuario implements MouseListener, KeyListener {
             modelo.setNombre(nombre);
             modelo.setUsuario(usuario);
             modelo.setCorreoElectronico(correo);
-            modelo.ActualizarSinContrasena(vista.jtbAdmin);
+            modelo.actualizarSinContrasena(vista.jtbAdmin);
         } else {
             String contrasenaEncriptada = encriptarContrasena(contrasena);
             if (contrasenaEncriptada == null) {
@@ -109,10 +109,10 @@ public class CtrlAdministrarUsuario implements MouseListener, KeyListener {
             modelo.setNombre(nombre);
             modelo.setUsuario(usuario);
             modelo.setCorreoElectronico(correo);
-            modelo.Actualizar(vista.jtbAdmin);
+            modelo.actualizar(vista.jtbAdmin);
         }
 
-        modelo.Mostrar(vista.jtbAdmin);
+        modelo.mostrar(vista.jtbAdmin);
         limpiarCampos();
     }
 

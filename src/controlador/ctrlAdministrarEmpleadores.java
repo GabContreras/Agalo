@@ -30,7 +30,7 @@ public class CtrlAdministrarEmpleadores implements MouseListener, KeyListener {
         vista.txtBuscarEmpleador.addKeyListener(this); // Campo de búsqueda
 
         // Cargar los datos al inicializar
-        modelo.MostrarEmpleadores(vista.jtEmpresa); // Asegúrate de que este método esté en tu modelo
+        modelo.mostrarEmpleadores(vista.jtEmpresa); // Asegúrate de que este método esté en tu modelo
     }
 
     @Override
@@ -40,7 +40,7 @@ public class CtrlAdministrarEmpleadores implements MouseListener, KeyListener {
             if (filaSeleccionada != -1) {
                 // Asumiendo que el ID del solicitante está en la primera columna (índice 0)
                 modelo.restringirEmpleador(vista.jtEmpresa);
-                modelo.MostrarEmpleadores(vista.jtEmpresa); // Actualizar la tabla después de la modificación
+                modelo.mostrarEmpleadores(vista.jtEmpresa); // Actualizar la tabla después de la modificación
                 JOptionPane.showMessageDialog(vista, "Empleador restringido exitosamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
             }
         }

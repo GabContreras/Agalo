@@ -18,50 +18,50 @@ public class UsuarioEscritorio {
     private static final Logger logger = Logger.getLogger(UsuarioEscritorio.class.getName());
 
     public int getIdRol() {
-        return IdRol;
+        return idRol;
     }
 
-    public void setIdRol(int IdRol) {
-        this.IdRol = IdRol;
+    public void setIdRol(int idRol) {
+        this.idRol = idRol;
     }
 
-    private String Nombre;
-    private String Usuario;
-    private String Correo;
-    private String Contrasena;
-    private int IdRol;  // Rol del usuario
+    private String nombre;
+    private String usuario;
+    private String correo;
+    private String contrasena;
+    private int idRol;  // Rol del usuario
 
     // Getters y Setters
     public String getNombre() {
-        return Nombre;
+        return nombre;
     }
 
-    public void setNombre(String Nombre) {
-        this.Nombre = Nombre;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getUsuario() {
-        return Usuario;
+        return usuario;
     }
 
-    public void setUsuario(String Usuario) {
-        this.Usuario = Usuario;
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
     public String getCorreo() {
-        return Correo;
+        return correo;
     }
 
-    public void setCorreo(String Correo) {
-        this.Correo = Correo;
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 
     public String getContrasena() {
-        return Contrasena;
+        return contrasena;
     }
 
-    public void setContrasena(String Contrasena) {
-        this.Contrasena = Contrasena;
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
 
     public void GuardarUsuario() throws SQLException {
@@ -126,7 +126,7 @@ public class UsuarioEscritorio {
         boolean resultado = false;
 
         try {
-            String sql = "SELECT * FROM UsuarioEscritorio WHERE CorreoElectronico = ? AND Contrasena = ?";
+            String sql = "SELECT idAdmin, idRol, Nombre, Usuario, Contrasena, correoelectronico FROM UsuarioEscritorio WHERE CorreoElectronico = ? AND Contrasena = ?";
             statement = conexion.prepareStatement(sql);
             statement.setString(1, getCorreo());
             statement.setString(2, getContrasena());
@@ -134,7 +134,7 @@ public class UsuarioEscritorio {
             resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
-                this.IdRol = resultSet.getInt("IdRol"); // Obtener el rol
+                this.idRol = resultSet.getInt("IdRol"); // Obtener el rol
                 resultado = true;
             }
 
@@ -161,7 +161,7 @@ public class UsuarioEscritorio {
         return resultado;
     }
 
-    public void actualizar_contra(String correo, String contrasena) {
+    public void actualizarContra(String correo, String contrasena) {
         Connection con = null;
         PreparedStatement query = null;
         ResultSet rs = null;

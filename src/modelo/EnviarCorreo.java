@@ -30,10 +30,10 @@ public class EnviarCorreo {
         // No se permite la instanciación
     }
     // Variables para la cadena de conexión
-    private static String MyAccEm;
-    private static String PassAcc;
+    private static String myAccEm;
+    private static String passAcc;
     // Instancia de logger para sustituir los system out 
-    private static final Logger logger = Logger.getLogger(ClaseConexion.class.getName());
+    private static final Logger logger = Logger.getLogger(EnviarCorreo.class.getName());
 
     // Cargar las propiedades desde el archivo
     static {
@@ -44,8 +44,8 @@ public class EnviarCorreo {
             }
             // Cargar las propiedades
             properties.load(input);
-            MyAccEm = properties.getProperty("gm.MyAccEm");
-            PassAcc = properties.getProperty("gm.PassAcc");
+            myAccEm = properties.getProperty("gm.MyAccEm");
+            passAcc = properties.getProperty("gm.PassAcc");
         } catch (IOException ex) {
             logger.log(Level.SEVERE, "Error al cargar el archivo de propiedades: ", ex);
         }
@@ -64,7 +64,7 @@ public class EnviarCorreo {
         Session session = Session.getInstance(properties, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(MyAccEm, PassAcc);
+                return new PasswordAuthentication(myAccEm, passAcc);
             }
         });
 
@@ -72,7 +72,7 @@ public class EnviarCorreo {
         try {
             // Crear mensaje
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(MyAccEm));
+            message.setFrom(new InternetAddress(myAccEm));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
             message.setSubject(subject);
 
