@@ -19,9 +19,8 @@ public class FrmMenu extends javax.swing.JFrame {
         FrmAdministrarUsuarios frmAdministrarUsuarios = new FrmAdministrarUsuarios();
         FrmEmpresa frmEmpresa = new FrmEmpresa();
         FrmSolicitantes frmSolicitantes = new FrmSolicitantes();
-        FrmTrabajos frmTrabajos = new FrmTrabajos();
 
-        new CtrlMenu(vista, frmDashboard, frmAdministrarUsuarios, frmEmpresa, frmSolicitantes, frmTrabajos, modelo);
+        new CtrlMenu(vista, frmDashboard, frmAdministrarUsuarios, frmEmpresa, frmSolicitantes, modelo);
 
         vista.setVisible(true);
     }
@@ -50,7 +49,6 @@ public class FrmMenu extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        btnTrabajos = new custom.Button();
         btnHome = new custom.Button();
         btnAdd = new custom.Button();
         btnEmpresa = new custom.Button();
@@ -71,12 +69,6 @@ public class FrmMenu extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(102, 102, 102));
         jLabel2.setText("Personalizar");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
-
-        btnTrabajos.setBackground(new java.awt.Color(0, 29, 63));
-        btnTrabajos.setForeground(new java.awt.Color(255, 255, 255));
-        btnTrabajos.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnTrabajos.setShadowColor(new java.awt.Color(0, 29, 63));
-        jPanel2.add(btnTrabajos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 660, 230, 60));
 
         btnHome.setBackground(new java.awt.Color(0, 29, 63));
         btnHome.setForeground(new java.awt.Color(255, 255, 255));
@@ -200,7 +192,6 @@ public class FrmMenu extends javax.swing.JFrame {
     public custom.Button btnAdd;
     public custom.Button btnEmpresa;
     public custom.Button btnHome;
-    public custom.Button btnTrabajos;
     public custom.Button btnsolicitantes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -21,7 +21,7 @@ import java.util.logging.Logger;
  */
 public class AdministrarSolicitantes {
 
-    private static final Logger logger = Logger.getLogger(AdministrarEmpleadores.class.getName());
+    private static final Logger logger = Logger.getLogger(AdministrarSolicitantes.class.getName());
 
 //Constantes para los select
     private static final String ID_SOLICITANTE = "Id";

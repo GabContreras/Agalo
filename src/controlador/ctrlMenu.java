@@ -8,7 +8,6 @@ import vista.FrmDashboard;
 import vista.FrmEmpresa;
 import vista.FrmMenu;
 import vista.FrmSolicitantes;
-import vista.FrmTrabajos;
 import javax.swing.JPanel;
 import modelo.UsuarioEscritorio;
 
@@ -22,19 +21,17 @@ public class CtrlMenu implements MouseListener {
     FrmDashboard frmDashboard;
     FrmEmpresa frmEmpresa;
     FrmSolicitantes frmSolicitantes;
-    FrmTrabajos frmTrabajos;
     FrmAdministrarUsuarios frmAdministrarUsuarios;
 
     private UsuarioEscritorio modelo;
 
     public CtrlMenu(FrmMenu vista, FrmDashboard frmDashboard, FrmAdministrarUsuarios frmAdministrarUsuarios,
-            FrmEmpresa frmEmpresa, FrmSolicitantes frmSolicitantes, FrmTrabajos frmTrabajos, UsuarioEscritorio modelo) {
+            FrmEmpresa frmEmpresa, FrmSolicitantes frmSolicitantes, UsuarioEscritorio modelo) {
         this.vista = vista;
         this.frmDashboard = frmDashboard;
         this.frmAdministrarUsuarios = frmAdministrarUsuarios;
         this.frmEmpresa = frmEmpresa;
         this.frmSolicitantes = frmSolicitantes;
-        this.frmTrabajos = frmTrabajos;
         this.modelo = modelo;
 
         // Agregar los listeners a los botones
@@ -42,7 +39,6 @@ public class CtrlMenu implements MouseListener {
         vista.btnAdd.addMouseListener(this);
         vista.btnEmpresa.addMouseListener(this);
         vista.btnsolicitantes.addMouseListener(this);
-        vista.btnTrabajos.addMouseListener(this);
 
         // Desactiva el botón "Administrador" si el rol del usuario no coincide con el rol permitido
         desactivarBotonAdministrar();
@@ -79,10 +75,6 @@ public class CtrlMenu implements MouseListener {
 
         if (e.getSource() == vista.btnsolicitantes) {
             cambiarPanel(vista.jPContenedor, frmSolicitantes);
-        }
-
-        if (e.getSource() == vista.btnTrabajos) {
-            cambiarPanel(vista.jPContenedor, frmTrabajos);
         }
     }
 
