@@ -1,19 +1,36 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package tests;
 
-import org.junit.Test;
-import java.sql.Connection;
-import static org.junit.Assert.*;
 import modelo.ClaseConexion;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
-/**
- *
- * @author Datum-Redsoft
- */
-public class ClaseConexiontest {
+import java.sql.Connection;
+import java.sql.SQLException;
 
-   //Investigar cómo realizar tests, las librerias de junit ya están descargadas
+import static org.junit.Assert.assertNotNull;
+
+public class ClaseConexionTest {
+
+    private Connection connection;
+
+    @Before
+    public void setUp() {
+        // Aquí puedes configurar cualquier cosa que necesites antes de cada prueba
+        connection = ClaseConexion.getConexion();
+    }
+
+    @After
+    public void tearDown() throws SQLException {
+        // Cerrar la conexión después de cada prueba
+        if (connection != null && !connection.isClosed()) {
+            connection.close();
+        }
+    }
+
+    @Test
+    public void testGetConexion() {
+        // Verificar que la conexión no sea nula
+        assertNotNull("La conexión no debe ser nula", connection);
+    }
 }

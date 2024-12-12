@@ -60,31 +60,31 @@ public class FrmCambiarContrasena extends javax.swing.JFrame {
         btnCambiarContrasena.setBackground(new java.awt.Color(0, 0, 0));
         btnCambiarContrasena.setForeground(new java.awt.Color(255, 255, 255));
         btnCambiarContrasena.setText("Cambiar Contraseña");
-        btnCambiarContrasena.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCambiarContrasenaActionPerformed(evt);
-            }
-        });
+        btnCambiarContrasena.addActionListener(this::btnCambiarContrasenaActionPerformed);
         getContentPane().add(btnCambiarContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 430, 210, 50));
 
-        txtConfirmarContrasena.setText("Repetir Contraseña");
+        txtConfirmarContrasena.setText(REPETIR_CONTRA);
         txtConfirmarContrasena.setToolTipText("");
         txtConfirmarContrasena.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtConfirmarContrasenaFocusGained(evt);
             }
+            @Override
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtConfirmarContrasenaFocusLost(evt);
             }
         });
         getContentPane().add(txtConfirmarContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 350, 510, 40));
 
-        txtNuevaContrasena.setText("Escriba Su Nueva Contraseña");
+        txtNuevaContrasena.setText(CONTRA_NUEVA);
         txtNuevaContrasena.setToolTipText("");
         txtNuevaContrasena.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtNuevaContrasenaFocusGained(evt);
             }
+            @Override
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtNuevaContrasenaFocusLost(evt);
             }
@@ -132,13 +132,13 @@ public class FrmCambiarContrasena extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNuevaContrasenaFocusLost
 
     private void btnCambiarContrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambiarContrasenaActionPerformed
-        // TODO add your handling code here:
+        //Add your handling code here:
     }//GEN-LAST:event_btnCambiarContrasenaActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -151,24 +151,14 @@ public class FrmCambiarContrasena extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(FrmCambiarContrasena.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmCambiarContrasena.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmCambiarContrasena.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmCambiarContrasena.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+        }   
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                initFrmCambiarContrasena();
-            }
-        });
+        java.awt.EventQueue.invokeLater(FrmCambiarContrasena::initFrmCambiarContrasena);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

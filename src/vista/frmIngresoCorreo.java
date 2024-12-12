@@ -63,21 +63,13 @@ public class FrmIngresoCorreo extends javax.swing.JFrame {
         jLabel3.setText("enviaremos un correo con instrucciones para recuperar tu contraseña");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 330, -1, -1));
 
-        txtRecuperarContrasena.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtRecuperarContrasenaActionPerformed(evt);
-            }
-        });
+        txtRecuperarContrasena.addActionListener(this::txtRecuperarContrasenaActionPerformed);
         jPanel1.add(txtRecuperarContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 360, 520, 50));
 
         btnRecuperarContrasena.setBackground(new java.awt.Color(0, 0, 0));
         btnRecuperarContrasena.setForeground(new java.awt.Color(255, 255, 255));
         btnRecuperarContrasena.setText("Recuperar Contraseña");
-        btnRecuperarContrasena.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRecuperarContrasenaActionPerformed(evt);
-            }
-        });
+        btnRecuperarContrasena.addActionListener(this::btnRecuperarContrasenaActionPerformed);
         jPanel1.add(btnRecuperarContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 430, 160, -1));
 
         button1.setBackground(new java.awt.Color(6, 6, 20));
@@ -101,17 +93,17 @@ public class FrmIngresoCorreo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRecuperarContrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecuperarContrasenaActionPerformed
-        // TODO add your handling code here:
+        //Add your handling code here:
     }//GEN-LAST:event_btnRecuperarContrasenaActionPerformed
 
     private void txtRecuperarContrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRecuperarContrasenaActionPerformed
-        // TODO add your handling code here:
+        //Add your handling code here:
     }//GEN-LAST:event_txtRecuperarContrasenaActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -124,26 +116,16 @@ public class FrmIngresoCorreo extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(FrmIngresoCorreo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmIngresoCorreo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmIngresoCorreo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmIngresoCorreo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+        }   
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                initFrmIngresoCorreo();
-            }
-        });
+        java.awt.EventQueue.invokeLater(FrmIngresoCorreo::initFrmIngresoCorreo);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

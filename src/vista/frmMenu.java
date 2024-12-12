@@ -31,10 +31,6 @@ public class FrmMenu extends javax.swing.JFrame {
     public FrmMenu() {
         initComponents();
     }
-    
-  
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -76,11 +72,7 @@ public class FrmMenu extends javax.swing.JFrame {
         btnHome.setText("Dashboard");
         btnHome.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnHome.setShadowColor(new java.awt.Color(0, 29, 63));
-        btnHome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHomeActionPerformed(evt);
-            }
-        });
+        btnHome.addActionListener(this::btnHomeActionPerformed);
         jPanel2.add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 230, 60));
 
         btnAdd.setBackground(new java.awt.Color(0, 29, 63));
@@ -89,11 +81,7 @@ public class FrmMenu extends javax.swing.JFrame {
         btnAdd.setText("Administrador");
         btnAdd.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnAdd.setShadowColor(new java.awt.Color(0, 29, 63));
-        btnAdd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddActionPerformed(evt);
-            }
-        });
+        btnAdd.addActionListener(this::btnAddActionPerformed);
         jPanel2.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 230, 60));
 
         btnEmpresa.setBackground(new java.awt.Color(0, 29, 63));
@@ -102,11 +90,7 @@ public class FrmMenu extends javax.swing.JFrame {
         btnEmpresa.setText("Empresa");
         btnEmpresa.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnEmpresa.setShadowColor(new java.awt.Color(0, 29, 63));
-        btnEmpresa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEmpresaActionPerformed(evt);
-            }
-        });
+        btnEmpresa.addActionListener(this::btnEmpresaActionPerformed);
         jPanel2.add(btnEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 230, 60));
 
         btnsolicitantes.setBackground(new java.awt.Color(0, 29, 63));
@@ -152,7 +136,7 @@ public class FrmMenu extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -165,27 +149,19 @@ public class FrmMenu extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(FrmMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+        }   
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-             public void run() {
-            UsuarioEscritorio modelo = new UsuarioEscritorio(); // Crea un objeto UsuarioEscritorio
-            initfrmMenu(modelo); // Pasa el objeto al método initfrmMenu
-        }
-        });
+        java.awt.EventQueue.invokeLater(() -> {
+        UsuarioEscritorio modelo = new UsuarioEscritorio(); // Crea un objeto UsuarioEscritorio
+        initfrmMenu(modelo); // Pasa el objeto al método initfrmMenu
+      });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

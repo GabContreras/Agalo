@@ -37,11 +37,7 @@ public class FrmActualizar extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
 
         textField1.setText("Nombre");
-        textField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField1ActionPerformed(evt);
-            }
-        });
+        textField1.addActionListener(this::textField1ActionPerformed);
 
         textField2.setText("Usuario");
 
@@ -53,11 +49,7 @@ public class FrmActualizar extends javax.swing.JPanel {
 
         button1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img/config.png"))); // NOI18N
         button1.setShadowColor(new java.awt.Color(255, 255, 255));
-        button1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button1ActionPerformed(evt);
-            }
-        });
+        button1.addActionListener(this::button1ActionPerformed);
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 3, 30)); // NOI18N
         jLabel2.setText("********");
@@ -121,7 +113,7 @@ public class FrmActualizar extends javax.swing.JPanel {
     }//GEN-LAST:event_button1ActionPerformed
 
     private void textField1ActionPerformed(java.awt.event.ActionEvent _evt) {//GEN-FIRST:event_textField1ActionPerformed
-        // TODO add your handling code here:
+        //Add your handling code here:
     }//GEN-LAST:event_textField1ActionPerformed
 
 

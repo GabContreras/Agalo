@@ -75,38 +75,34 @@ public class FrmRegistro extends javax.swing.JFrame {
 
         txtNombre.setBackground(new java.awt.Color(6, 6, 20));
         txtNombre.setForeground(new java.awt.Color(255, 255, 255));
-        txtNombre.setText("Nombre");
+        txtNombre.setText(NOMBRE_REGISTRO);
         txtNombre.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtNombreFocusGained(evt);
             }
+            @Override
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtNombreFocusLost(evt);
             }
         });
-        txtNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombreActionPerformed(evt);
-            }
-        });
+        txtNombre.addActionListener(this::txtNombreActionPerformed);
         jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 260, 340, 50));
 
         txtCorreoElectronico.setBackground(new java.awt.Color(6, 6, 20));
         txtCorreoElectronico.setForeground(new java.awt.Color(255, 255, 255));
-        txtCorreoElectronico.setText("Correo Electrónico");
+        txtCorreoElectronico.setText(CORREO_REGISTRO);
         txtCorreoElectronico.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtCorreoElectronicoFocusGained(evt);
             }
+            @Override
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtCorreoElectronicoFocusLost(evt);
             }
         });
-        txtCorreoElectronico.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCorreoElectronicoActionPerformed(evt);
-            }
-        });
+        txtCorreoElectronico.addActionListener(this::txtCorreoElectronicoActionPerformed);
         jPanel1.add(txtCorreoElectronico, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, 570, 50));
 
         jLabel2.setForeground(new java.awt.Color(102, 102, 102));
@@ -123,11 +119,7 @@ public class FrmRegistro extends javax.swing.JFrame {
         btnRegistrar.setForeground(new java.awt.Color(255, 255, 255));
         btnRegistrar.setText("REGISTRAR");
         btnRegistrar.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistrarActionPerformed(evt);
-            }
-        });
+        btnRegistrar.addActionListener(this::btnRegistrarActionPerformed);
         jPanel1.add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 480, 570, 60));
 
         jCondiciones.setBackground(new java.awt.Color(6, 6, 20));
@@ -135,48 +127,40 @@ public class FrmRegistro extends javax.swing.JFrame {
         jCondiciones.setForeground(new java.awt.Color(255, 255, 255));
         jCondiciones.setText("Acepto las Condiciones del servicio y la Política de privacidad de Agalo");
         jCondiciones.setToolTipText("");
-        jCondiciones.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCondicionesActionPerformed(evt);
-            }
-        });
+        jCondiciones.addActionListener(this::jCondicionesActionPerformed);
         jPanel1.add(jCondiciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 420, 390, 30));
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 410, -1, -1));
 
         txtUsuario.setBackground(new java.awt.Color(6, 6, 20));
         txtUsuario.setForeground(new java.awt.Color(255, 255, 255));
-        txtUsuario.setText("Usuario");
+        txtUsuario.setText(USUARIO_REGISTRO);
         txtUsuario.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtUsuarioFocusGained(evt);
             }
+            @Override
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtUsuarioFocusLost(evt);
             }
         });
-        txtUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUsuarioActionPerformed(evt);
-            }
-        });
+        txtUsuario.addActionListener(this::txtUsuarioActionPerformed);
         jPanel1.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, 220, 50));
 
         txtContra.setBackground(new java.awt.Color(6, 6, 20));
         txtContra.setForeground(new java.awt.Color(255, 255, 255));
-        txtContra.setText("Contraseña");
+        txtContra.setText(CONTRA_REGISTRO);
         txtContra.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtContraFocusGained(evt);
             }
+            @Override
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtContraFocusLost(evt);
             }
         });
-        txtContra.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtContraActionPerformed(evt);
-            }
-        });
+        txtContra.addActionListener(this::txtContraActionPerformed);
         jPanel1.add(txtContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 370, 570, 50));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
@@ -214,11 +198,11 @@ public class FrmRegistro extends javax.swing.JFrame {
 
     
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
-        // TODO add your handling code here:
+        //Add your handling code here:
     }//GEN-LAST:event_txtNombreActionPerformed
 
     private void txtCorreoElectronicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoElectronicoActionPerformed
-        // TODO add your handling code here:
+        //Add your handling code here:
     }//GEN-LAST:event_txtCorreoElectronicoActionPerformed
 
     private void txtNombreFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreFocusGained
@@ -256,11 +240,11 @@ public class FrmRegistro extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCorreoElectronicoFocusLost
 
     private void jCondicionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCondicionesActionPerformed
-        // TODO add your handling code here:
+        //Add your handling code here:
     }//GEN-LAST:event_jCondicionesActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        // TODO add your handling code here:
+        //Add your handling code here:
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void txtUsuarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsuarioFocusGained
@@ -278,7 +262,7 @@ public class FrmRegistro extends javax.swing.JFrame {
     }//GEN-LAST:event_txtUsuarioFocusLost
 
     private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
-        // TODO add your handling code here:
+        //Add your handling code here:
     }//GEN-LAST:event_txtUsuarioActionPerformed
 
     private void txtContraFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtContraFocusGained
@@ -318,15 +302,9 @@ public class FrmRegistro extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(FrmRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+        }   
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -393,11 +371,7 @@ public class FrmRegistro extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-             initFrmRegistro();
-            }
-        });
+        java.awt.EventQueue.invokeLater(FrmRegistro::initFrmRegistro);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

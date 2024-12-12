@@ -22,7 +22,7 @@ public class FrmAdministrarUsuarios extends javax.swing.JPanel {
         UIManager.getSystemLookAndFeelClassName();
 
         jtbAdmin.setBackground(java.awt.Color.WHITE); // Cambia el fondo de las celdas de la tabla
-        jtbAdmin.setFillsViewportHeight(true); // Asegura que el fondo cubra todo el área
+        jtbAdmin.setFillsViewportHeight(true);  // Asegura que el fondo cubra toda el área
         jtbAdmin.getParent().setBackground(java.awt.Color.WHITE);
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createEmptyBorder()); // Establecer borde vacío
@@ -78,11 +78,13 @@ public class FrmAdministrarUsuarios extends javax.swing.JPanel {
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, -1, -1));
 
         txtCorreoAdmin.setForeground(new java.awt.Color(153, 153, 153));
-        txtCorreoAdmin.setText("Correo Electronico Administrador");
+        txtCorreoAdmin.setText(CORREO_ADMIN);
         txtCorreoAdmin.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtCorreoAdminFocusGained(evt);
             }
+            @Override
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtCorreoAdminFocusLost(evt);
             }
@@ -90,28 +92,28 @@ public class FrmAdministrarUsuarios extends javax.swing.JPanel {
         add(txtCorreoAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 650, 50));
 
         txtContrasenaAdmin.setForeground(new java.awt.Color(153, 153, 153));
-        txtContrasenaAdmin.setText("Contraseña Administrador");
+        txtContrasenaAdmin.setText(CONTRA_ADMIN);
         txtContrasenaAdmin.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtContrasenaAdminFocusGained(evt);
             }
+            @Override
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtContrasenaAdminFocusLost(evt);
             }
         });
-        txtContrasenaAdmin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtContrasenaAdminActionPerformed(evt);
-            }
-        });
+        txtContrasenaAdmin.addActionListener(this::txtContrasenaAdminActionPerformed);
         add(txtContrasenaAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 450, 50));
 
         txtUsuarioAdmin.setForeground(new java.awt.Color(153, 153, 153));
-        txtUsuarioAdmin.setText("Usuario Administrador");
+        txtUsuarioAdmin.setText(USUARIO_ADMIN);
         txtUsuarioAdmin.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtUsuarioAdminFocusGained(evt);
             }
+            @Override
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtUsuarioAdminFocusLost(evt);
             }
@@ -119,20 +121,18 @@ public class FrmAdministrarUsuarios extends javax.swing.JPanel {
         add(txtUsuarioAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 360, 50));
 
         txtNombreAdmin.setForeground(new java.awt.Color(153, 153, 153));
-        txtNombreAdmin.setText("Nombre Administrador");
+        txtNombreAdmin.setText(NOMBRE_ADMIN);
         txtNombreAdmin.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtNombreAdminFocusGained(evt);
             }
+            @Override
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtNombreAdminFocusLost(evt);
             }
         });
-        txtNombreAdmin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombreAdminActionPerformed(evt);
-            }
-        });
+        txtNombreAdmin.addActionListener(this::txtNombreAdminActionPerformed);
         add(txtNombreAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 90, 290, 50));
 
         btnAgregarAdmin.setBackground(new java.awt.Color(0, 0, 0));
@@ -166,11 +166,13 @@ public class FrmAdministrarUsuarios extends javax.swing.JPanel {
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 1010, 410));
 
         txtBuscarUsuarios.setBackground(new java.awt.Color(255, 252, 250));
-        txtBuscarUsuarios.setText("Buscar");
+        txtBuscarUsuarios.setText(BUSQUEDA);
         txtBuscarUsuarios.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtBuscarUsuariosFocusGained(evt);
             }
+            @Override
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtBuscarUsuariosFocusLost(evt);
             }

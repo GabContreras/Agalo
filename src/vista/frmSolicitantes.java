@@ -31,7 +31,7 @@ public class FrmSolicitantes extends javax.swing.JPanel {
         UIManager.put("ComboBox.border", BorderFactory.createEmptyBorder());
 
         jtSolicitantes.setBackground(java.awt.Color.WHITE); // Cambia el fondo de las celdas de la tabla
-        jtSolicitantes.setFillsViewportHeight(true); // Asegura que el fondo cubra todo el área
+        jtSolicitantes.setFillsViewportHeight(true); // Asegura que el fondo cubra toda el área
         jtSolicitantes.getParent().setBackground(java.awt.Color.WHITE);
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createEmptyBorder()); // Establecer borde vacío
@@ -105,9 +105,11 @@ public class FrmSolicitantes extends javax.swing.JPanel {
 
         txtBuscarSolicitante.setText("Buscar");
         txtBuscarSolicitante.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtBuscarSolicitanteFocusGained(evt);
             }
+            @Override
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtBuscarSolicitanteFocusLost(evt);
             }

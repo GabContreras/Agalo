@@ -22,7 +22,7 @@ public class FrmEmpresa extends javax.swing.JPanel {
         UIManager.put("ComboBox.border", BorderFactory.createEmptyBorder());
 
         jtEmpresa.setBackground(java.awt.Color.WHITE); // Cambia el fondo de las celdas de la tabla
-        jtEmpresa.setFillsViewportHeight(true); // Asegura que el fondo cubra todo el área
+        jtEmpresa.setFillsViewportHeight(true); // Asegura que el fondo cubra toda el área
         jtEmpresa.getParent().setBackground(java.awt.Color.WHITE);
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createEmptyBorder()); // Establecer borde vacío
@@ -49,36 +49,6 @@ public class FrmEmpresa extends javax.swing.JPanel {
 
         jtEmpresa.setRowHeight(25);
         jtEmpresa.setGridColor(new Color(230, 230, 230));
-
-        // Personalizar el JComboBox
-//        jComboBox1.setBackground(new Color(255, 255, 255)); // Fondo blanco
-//        jComboBox1.setForeground(new Color(50, 50, 50)); // Texto gris oscuro
-//        jComboBox1.setFont(new Font("Segoe UI", Font.PLAIN, 14)); // Fuente minimalista
-//        
-//        // Crear un borde rectangular y aplicarlo al JComboBox
-//        jComboBox1.setBorder(BorderFactory.createLineBorder(new Color(200, 200, 200), 1)); // Borde rectangular de 1px
-//
-//        // Establecer el renderer personalizado para los items del JComboBox
-//        jComboBox1.setRenderer(new DefaultListCellRenderer() {
-//            @Override
-//            public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-//                JLabel renderer = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-//                
-//                // Colores minimalistas
-//                if (isSelected) {
-//                    renderer.setBackground(new Color(220, 220, 220)); // Color de selección minimalista
-//                    renderer.setForeground(new Color(0, 0, 0)); // Texto negro
-//                } else {
-//                    renderer.setBackground(Color.WHITE); // Fondo blanco
-//                    renderer.setForeground(new Color(50, 50, 50)); // Texto gris oscuro
-//                }
-//
-//                // Margen y alineación minimalista
-//                renderer.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10)); // Margen interno
-//                renderer.setHorizontalAlignment(SwingConstants.LEFT); // Alineación izquierda
-//                return renderer;
-//            }
-//        });
     }
 
     /**
@@ -108,11 +78,13 @@ public class FrmEmpresa extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
         jLabel2.setText("Gestion de Empleadores");
 
-        txtBuscarEmpleador.setText("Buscar");
+        txtBuscarEmpleador.setText(BUSQUEDA);
         txtBuscarEmpleador.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtBuscarEmpleadorFocusGained(evt);
             }
+            @Override
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtBuscarEmpleadorFocusLost(evt);
             }
@@ -133,11 +105,7 @@ public class FrmEmpresa extends javax.swing.JPanel {
 
         btnRestringirEmpleador.setForeground(new java.awt.Color(255, 0, 0));
         btnRestringirEmpleador.setText("Restringir Empleador");
-        btnRestringirEmpleador.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRestringirEmpleadorActionPerformed(evt);
-            }
-        });
+        btnRestringirEmpleador.addActionListener(this::btnRestringirEmpleadorActionPerformed);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -183,7 +151,7 @@ public class FrmEmpresa extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRestringirEmpleadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestringirEmpleadorActionPerformed
-        // TODO add your handling code here:
+        //Add your handling code here:
     }//GEN-LAST:event_btnRestringirEmpleadorActionPerformed
     private static final String BUSQUEDA = "Buscar";
 

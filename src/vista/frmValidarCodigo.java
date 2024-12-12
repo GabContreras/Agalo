@@ -26,12 +26,7 @@ public class FrmValidarCodigo extends javax.swing.JFrame {
         
         vista.setVisible(true);
     }
-    
-    
-    
-    
-    
-
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -69,11 +64,13 @@ public class FrmValidarCodigo extends javax.swing.JFrame {
         btnValidar.setText("Enviar");
         jPanel1.add(btnValidar, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 430, 240, 35));
 
-        txtCodigo.setText("Ingrese el codigo");
+        txtCodigo.setText(INGRESO_CODIGO);
         txtCodigo.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtCodigoFocusGained(evt);
             }
+            @Override
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtCodigoFocusLost(evt);
             }
@@ -133,24 +130,14 @@ if (txtCodigo.getText().equals("")) {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(FrmValidarCodigo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmValidarCodigo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmValidarCodigo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmValidarCodigo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+        }   
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmValidarCodigo().setVisible(true);
-            }
-        });
+        java.awt.EventQueue.invokeLater(() -> new FrmValidarCodigo().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -11,7 +11,9 @@ import modelo.UsuarioEscritorio;
  *
  * @author Gudelia
  */
+
 public class FrmLogin extends javax.swing.JFrame {
+    private static final String FUENTE_CALIBRI = "Calibri Light";
 
     /**
      * Creates new form jfRegistrarse
@@ -62,19 +64,19 @@ public class FrmLogin extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel3.setFont(new java.awt.Font("Calibri Light", 0, 36)); // NOI18N
+        jLabel3.setFont(new java.awt.Font(FUENTE_CALIBRI, 0, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(51, 51, 51));
         jLabel3.setText("INICIAR SESIÓN");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 290, 50));
 
         jLabel5.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel5.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font(FUENTE_CALIBRI, 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(51, 51, 51));
         jLabel5.setText("Email");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 250, 120, 50));
 
         jLabel6.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel6.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
+        jLabel6.setFont(new java.awt.Font(FUENTE_CALIBRI, 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(51, 51, 51));
         jLabel6.setText("Contraseña");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 340, 120, 50));
@@ -84,11 +86,7 @@ public class FrmLogin extends javax.swing.JFrame {
         btnRegister.setText("Registrar");
         btnRegister.setToolTipText("");
         btnRegister.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btnRegister.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegisterActionPerformed(evt);
-            }
-        });
+        btnRegister.addActionListener(this::btnRegisterActionPerformed);
         jPanel1.add(btnRegister, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 1020, 140, 30));
 
         btnIngresar.setBackground(new java.awt.Color(0, 0, 0));
@@ -96,29 +94,17 @@ public class FrmLogin extends javax.swing.JFrame {
         btnIngresar.setText("INGRESAR");
         btnIngresar.setToolTipText("");
         btnIngresar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btnIngresar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIngresarActionPerformed(evt);
-            }
-        });
+        btnIngresar.addActionListener(this::btnIngresarActionPerformed);
         jPanel1.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 470, 410, 60));
 
-        txtContrasena.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtContrasenaActionPerformed(evt);
-            }
-        });
+        txtContrasena.addActionListener(this::txtContrasenaActionPerformed);
         jPanel1.add(txtContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 390, 390, -1));
 
-        txtCorreo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCorreoActionPerformed(evt);
-            }
-        });
+        txtCorreo.addActionListener(this::txtCorreoActionPerformed);
         jPanel1.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 290, 380, 40));
 
         jLabel7.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel7.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
+        jLabel7.setFont(new java.awt.Font(FUENTE_CALIBRI, 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(153, 153, 153));
         jLabel7.setText("¡Bienvenido de nuevo! Accede a tu cuenta para continuar.");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, 450, 50));
@@ -147,25 +133,25 @@ public class FrmLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
-        // TODO add your handling code here:
+        //Add your handling code here:
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        // TODO add your handling code here:
+        //Add your handling code here:
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
-        // TODO add your handling code here:
+        //Add your handling code here:
     }//GEN-LAST:event_txtCorreoActionPerformed
 
     private void txtContrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContrasenaActionPerformed
-        // TODO add your handling code here:
+        //Add your handling code here:
     }//GEN-LAST:event_txtContrasenaActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -178,15 +164,9 @@ public class FrmLogin extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(FrmLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+        }   
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -197,11 +177,7 @@ public class FrmLogin extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                initFrmLogin();
-            }
-        });
+        java.awt.EventQueue.invokeLater(FrmLogin::initFrmLogin);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

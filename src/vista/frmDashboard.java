@@ -21,7 +21,10 @@ public class FrmDashboard extends javax.swing.JPanel {
     /**
      * Creates new form Dashboard
      */
-    private static final String FUENTE = "Segoe UI";
+    private static final String FUENTE_SEGOE = "Segoe UI";
+    private static final String FUENTE_SANSS = "SansSerif";
+
+    private static final String BUSQUEDA = "Buscar";
 
     public FrmDashboard() {
 
@@ -34,13 +37,13 @@ public class FrmDashboard extends javax.swing.JPanel {
         UIManager.getSystemLookAndFeelClassName();
 
         jtSolicitudEmpresa.setBackground(java.awt.Color.WHITE); // Cambia el fondo de las celdas de la tabla
-        jtSolicitudEmpresa.setFillsViewportHeight(true); // Asegura que el fondo cubra todo el área
+        jtSolicitudEmpresa.setFillsViewportHeight(true); // Asegura que el fondo cubra toda el área
         jtSolicitudEmpresa.getParent().setBackground(java.awt.Color.WHITE);
 
         jScrollPane3.setBorder(javax.swing.BorderFactory.createEmptyBorder()); // Establecer borde vacío
 
         // Personalizar el encabezado de la tabla
-        jtSolicitudEmpresa.getTableHeader().setFont(new Font(FUENTE, Font.BOLD, 12));
+        jtSolicitudEmpresa.getTableHeader().setFont(new Font(FUENTE_SEGOE, Font.BOLD, 12));
         jtSolicitudEmpresa.getTableHeader().setBackground(java.awt.Color.WHITE);
         jtSolicitudEmpresa.setRowHeight(45);
 
@@ -53,7 +56,7 @@ public class FrmDashboard extends javax.swing.JPanel {
         headerRenderer.setBackground(java.awt.Color.WHITE); // Fondo blanco
         headerRenderer.setForeground(new Color(0, 0, 0)); // Texto en color negro
         headerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-        headerRenderer.setFont(new Font(FUENTE, Font.BOLD, 12));
+        headerRenderer.setFont(new Font(FUENTE_SEGOE, Font.BOLD, 12));
 
         for (int i = 0; i < jtSolicitudEmpresa.getColumnModel().getColumnCount(); i++) {
             jtSolicitudEmpresa.getColumnModel().getColumn(i).setHeaderRenderer(headerRenderer);
@@ -128,50 +131,50 @@ public class FrmDashboard extends javax.swing.JPanel {
         jPanel3.setPreferredSize(new java.awt.Dimension(1120, 780));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel16.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jLabel16.setFont(new java.awt.Font(FUENTE_SANSS, 0, 12)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(204, 204, 204));
         jLabel16.setText("Usuarios ");
         jLabel16.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel3.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 220, 60, -1));
 
         jLabel17.setBackground(new java.awt.Color(204, 204, 204));
-        jLabel17.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jLabel17.setFont(new java.awt.Font(FUENTE_SANSS, 0, 12)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(204, 204, 204));
         jLabel17.setText("Registrados");
         jPanel3.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 230, 70, -1));
 
-        jLabel18.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jLabel18.setFont(new java.awt.Font(FUENTE_SANSS, 0, 12)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(204, 204, 204));
         jLabel18.setText("Empresas");
         jPanel3.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 220, -1, -1));
 
-        jLabel19.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jLabel19.setFont(new java.awt.Font(FUENTE_SANSS, 0, 12)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(204, 204, 204));
         jLabel19.setText("Asociadas");
         jPanel3.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 230, -1, -1));
 
-        jLabel20.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jLabel20.setFont(new java.awt.Font(FUENTE_SANSS, 0, 12)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(204, 204, 204));
         jLabel20.setText("Trabajos");
         jPanel3.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 220, -1, -1));
 
-        jLabel21.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jLabel21.setFont(new java.awt.Font(FUENTE_SANSS, 0, 12)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(204, 204, 204));
         jLabel21.setText("Publicados");
         jPanel3.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 230, -1, -1));
 
-        txtEmpresas.setFont(new java.awt.Font("Segoe UI", 1, 33)); // NOI18N
+        txtEmpresas.setFont(new java.awt.Font(FUENTE_SEGOE, 1, 33)); // NOI18N
         txtEmpresas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txtEmpresas.setText("4567");
         jPanel3.add(txtEmpresas, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 180, 100, -1));
 
-        txtUsers.setFont(new java.awt.Font("Segoe UI", 1, 33)); // NOI18N
+        txtUsers.setFont(new java.awt.Font(FUENTE_SEGOE, 1, 33)); // NOI18N
         txtUsers.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txtUsers.setText("1233");
         txtUsers.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel3.add(txtUsers, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 180, 90, -1));
 
-        txtWorks.setFont(new java.awt.Font("Segoe UI", 1, 33)); // NOI18N
+        txtWorks.setFont(new java.awt.Font(FUENTE_SEGOE, 1, 33)); // NOI18N
         txtWorks.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txtWorks.setText("7865");
         jPanel3.add(txtWorks, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 180, 100, -1));
@@ -180,11 +183,7 @@ public class FrmDashboard extends javax.swing.JPanel {
 
         btnAceptarSolicitud.setForeground(new java.awt.Color(51, 102, 0));
         btnAceptarSolicitud.setText("ACEPTAR SOLICITUD");
-        btnAceptarSolicitud.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAceptarSolicitudActionPerformed(evt);
-            }
-        });
+        btnAceptarSolicitud.addActionListener(this::btnAceptarSolicitudActionPerformed);
 
         jtSolicitudEmpresa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -199,20 +198,18 @@ public class FrmDashboard extends javax.swing.JPanel {
         ));
         jScrollPane3.setViewportView(jtSolicitudEmpresa);
 
-        txtBuscarEmpresa.setText("Buscar");
+        txtBuscarEmpresa.setText(BUSQUEDA);
         txtBuscarEmpresa.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtBuscarEmpresaFocusGained(evt);
             }
+            @Override
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtBuscarEmpresaFocusLost(evt);
             }
         });
-        txtBuscarEmpresa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBuscarEmpresaActionPerformed(evt);
-            }
-        });
+        txtBuscarEmpresa.addActionListener(this::txtBuscarEmpresaActionPerformed);
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -225,18 +222,14 @@ public class FrmDashboard extends javax.swing.JPanel {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLabel14.setFont(new java.awt.Font("SansSerif", 1, 16)); // NOI18N
+        jLabel14.setFont(new java.awt.Font(FUENTE_SANSS, 1, 16)); // NOI18N
         jLabel14.setText("EVALUACIÓN DE SOLICITUDES");
 
         jLabel25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img/request.png"))); // NOI18N
 
         btnRechazarSolicitud.setForeground(new java.awt.Color(150, 9, 9));
         btnRechazarSolicitud.setText("RECHAZAR SOLICITUD");
-        btnRechazarSolicitud.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRechazarSolicitudActionPerformed(evt);
-            }
-        });
+        btnRechazarSolicitud.addActionListener(this::btnRechazarSolicitudActionPerformed);
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -295,22 +288,18 @@ public class FrmDashboard extends javax.swing.JPanel {
 
         btnActu.setBackground(new java.awt.Color(103, 70, 136));
         btnActu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img/config.png"))); // NOI18N
-        btnActu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActuActionPerformed(evt);
-            }
-        });
+        btnActu.addActionListener(this::btnActuActionPerformed);
         jPanel3.add(btnActu, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 40, 30));
 
-        txtCorreo.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        txtCorreo.setFont(new java.awt.Font(FUENTE_SANSS, 0, 14)); // NOI18N
         txtCorreo.setForeground(new java.awt.Color(102, 102, 102));
         txtCorreo.setText("¡Bienvenido al panel de control! Aquí encontrarás un resumen general del estado actual de la plataforma, permitiéndote administrar y monitorear las actividades clave de manera rápida y eficiente.");
         jPanel3.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 90, 210, 70));
 
-        txtNombre.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        txtNombre.setFont(new java.awt.Font(FUENTE_SANSS, 1, 18)); // NOI18N
         jPanel3.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 80, -1, -1));
 
-        jLabel12.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jLabel12.setFont(new java.awt.Font(FUENTE_SANSS, 1, 18)); // NOI18N
         jLabel12.setText("Bienvenid@!");
         jPanel3.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 80, -1, -1));
 
@@ -321,11 +310,7 @@ public class FrmDashboard extends javax.swing.JPanel {
         jPanel3.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 40, -1, -1));
 
         button2.setText("button2");
-        button2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button2ActionPerformed(evt);
-            }
-        });
+        button2.addActionListener(this::button2ActionPerformed);
         jPanel3.add(button2, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 200, 130, 40));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -343,12 +328,12 @@ public class FrmDashboard extends javax.swing.JPanel {
 
         add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 780));
 
-        jLabel5.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font(FUENTE_SANSS, 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(102, 102, 102));
         jLabel5.setText("gbsss_16");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 130, -1, -1));
 
-        jLabel7.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font(FUENTE_SANSS, 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
         jLabel7.setText("gbsss@gmail.com");
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 150, -1, -1));
@@ -370,18 +355,18 @@ public class FrmDashboard extends javax.swing.JPanel {
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 800, 280));
 
-        jLabel2.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font(FUENTE_SANSS, 1, 18)); // NOI18N
         jLabel2.setText("Gabriela");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 80, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font(FUENTE_SANSS, 1, 18)); // NOI18N
         jLabel3.setText("Bienvenid@!");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 80, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img/perfil.png"))); // NOI18N
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 830, -1));
 
-        jLabel4.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font(FUENTE_SANSS, 1, 18)); // NOI18N
         jLabel4.setText("Bienvenida");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 60, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
@@ -399,22 +384,22 @@ public class FrmDashboard extends javax.swing.JPanel {
     }//GEN-LAST:event_btnAceptarSolicitudActionPerformed
 
     private void btnRechazarSolicitudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRechazarSolicitudActionPerformed
-        // TODO add your handling code here:
+        //Add your handling code here:
     }//GEN-LAST:event_btnRechazarSolicitudActionPerformed
 
     private void txtBuscarEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarEmpresaActionPerformed
-        // TODO add your handling code here:
+        //Add your handling code here:
     }//GEN-LAST:event_txtBuscarEmpresaActionPerformed
 
     private void txtBuscarEmpresaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBuscarEmpresaFocusGained
-        if (txtBuscarEmpresa.getText().equals("Buscar")) {
+        if (txtBuscarEmpresa.getText().equals(BUSQUEDA)) {
             txtBuscarEmpresa.setText("");
         }
     }//GEN-LAST:event_txtBuscarEmpresaFocusGained
 
     private void txtBuscarEmpresaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBuscarEmpresaFocusLost
         if (txtBuscarEmpresa.getText().equals("")) {
-            txtBuscarEmpresa.setText("Buscar");
+            txtBuscarEmpresa.setText(BUSQUEDA);
         }
     }//GEN-LAST:event_txtBuscarEmpresaFocusLost
 

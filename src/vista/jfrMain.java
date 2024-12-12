@@ -19,12 +19,8 @@ import raven.popup.GlassPanePopup;
  */
 public class JfrMain extends javax.swing.JFrame {
 
-   
-    
-    
-    
-    
-    public JfrMain() {
+
+public JfrMain() {
         GlassPanePopup.install(this);
         MyDrawerBuilder myDrawerBuilder=new MyDrawerBuilder();
         Drawer.getInstance().setDrawerBuilder(myDrawerBuilder);
@@ -46,11 +42,7 @@ public class JfrMain extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         button1.setText("☰");
-        button1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button1ActionPerformed(evt);
-            }
-        });
+        button1.addActionListener(this::button1ActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -80,17 +72,13 @@ public class JfrMain extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String[] args) {
 
         FlatRobotoFont.install();
         FlatLaf.registerCustomDefaultsSource("custom");
         UIManager.put("defaultFont", new Font(FlatRobotoFont.FAMILY, Font.PLAIN, 13));
         FlatMacDarkLaf.setup();
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new JfrMain().setVisible(true);
-            }
-        });
+        java.awt.EventQueue.invokeLater(() -> new JfrMain().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
