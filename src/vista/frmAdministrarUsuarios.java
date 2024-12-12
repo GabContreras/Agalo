@@ -3,6 +3,7 @@ package vista;
 import controlador.CtrlAdministrarUsuario;
 import java.awt.Color;
 import java.awt.Font;
+import java.util.Arrays;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -50,8 +51,6 @@ public class FrmAdministrarUsuarios extends javax.swing.JPanel {
         jtbAdmin.setGridColor(new Color(230, 230, 230));
 
     }
-
-   
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -202,11 +201,11 @@ public class FrmAdministrarUsuarios extends javax.swing.JPanel {
     }//GEN-LAST:event_txtNombreAdminActionPerformed
 
     //Constantes para los focus 
-        private static final String USUARIO_ADMIN = "Usuario Administrador";
-        private static final String NOMBRE_ADMIN = "Nombre Administrador";
-        private static final String CORREO_ADMIN = "Correo Electronico Administrador";
-        private static final String CONTRA_ADMIN = "Contraseña Administrador";
-        private static final String BUSQUEDA = "Buscar";
+    private static final String USUARIO_ADMIN = "Usuario Administrador";
+    private static final String NOMBRE_ADMIN = "Nombre Administrador";
+    private static final String CORREO_ADMIN = "Correo Electronico Administrador";
+    private static final String CONTRA_ADMIN = "Contraseña Administrador";
+    private static final String BUSQUEDA = "Buscar";
 
     private void txtUsuarioAdminFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsuarioAdminFocusGained
         if (txtUsuarioAdmin.getText().equals(USUARIO_ADMIN)) {
@@ -251,14 +250,14 @@ public class FrmAdministrarUsuarios extends javax.swing.JPanel {
     }//GEN-LAST:event_txtCorreoAdminFocusLost
 
     private void txtContrasenaAdminFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtContrasenaAdminFocusGained
-        if (txtContrasenaAdmin.getPassword().equals(CONTRA_ADMIN)) {
+        if (Arrays.equals(txtContrasenaAdmin.getPassword(), CONTRA_ADMIN.toCharArray())) {
             txtContrasenaAdmin.setText("");
             txtContrasenaAdmin.setForeground(new Color(153, 153, 153));
         }
     }//GEN-LAST:event_txtContrasenaAdminFocusGained
 
     private void txtContrasenaAdminFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtContrasenaAdminFocusLost
-        if (txtContrasenaAdmin.getPassword().equals("")) {
+        if (txtContrasenaAdmin.getPassword().length == 0) {
             txtContrasenaAdmin.setText(CONTRA_ADMIN);
             txtContrasenaAdmin.setForeground(new Color(153, 153, 153));
         }
