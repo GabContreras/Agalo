@@ -405,9 +405,9 @@ public class FrmDashboard extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public custom.Button btnAceptarSolicitud;
-    public custom.Button btnActu;
-    public custom.Button btnRechazarSolicitud;
+    public static custom.Button btnAceptarSolicitud;
+    public static custom.Button btnActu;
+    public static custom.Button btnRechazarSolicitud;
     private custom.Button button2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
@@ -433,12 +433,12 @@ public class FrmDashboard extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane3;
-    public javax.swing.JTable jtSolicitudEmpresa;
-    public custom.TextField txtBuscarEmpresa;
-    public javax.swing.JLabel txtCorreo;
-    public javax.swing.JLabel txtEmpresas;
-    public javax.swing.JLabel txtNombre;
-    public javax.swing.JLabel txtUsers;
-    public javax.swing.JLabel txtWorks;
+    public static javax.swing.JTable jtSolicitudEmpresa;
+    public static custom.TextField txtBuscarEmpresa;
+    public static javax.swing.JLabel txtCorreo;
+    public static javax.swing.JLabel txtEmpresas;
+    public static javax.swing.JLabel txtNombre;
+    public static javax.swing.JLabel txtUsers;
+    public static javax.swing.JLabel txtWorks;
     // End of variables declaration//GEN-END:variables
 }
