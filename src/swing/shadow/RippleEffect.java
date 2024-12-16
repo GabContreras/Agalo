@@ -28,9 +28,8 @@ import org.jdesktop.animation.timing.TimingTargetAdapter;
  * @author Jero
  */
 public class RippleEffect {
-    
-    
-     private final Component component;
+
+    private final Component component;
     private Color rippleColor = new Color(255, 255, 255);
     private List<Effect> effects;
 
@@ -114,8 +113,7 @@ public class RippleEffect {
             double s = size * animate;
             double x = location.getX();
             double y = location.getY();
-            Shape shape = new Ellipse2D.Double(x - s, y - s, s * 2, s * 2);
-            return shape;
+            return new Ellipse2D.Double(x - s, y - s, s * 2, s * 2);
         }
 
         private double getSize(Rectangle2D rec) {
@@ -144,53 +142,5 @@ public class RippleEffect {
     public Color getRippleColor() {
         return rippleColor;
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
 }

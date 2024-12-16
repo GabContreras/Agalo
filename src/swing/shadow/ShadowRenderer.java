@@ -1,11 +1,10 @@
-
 package swing.shadow;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 
-
 public class ShadowRenderer {
+
     private int size = 5;
     private float opacity = 0.5f;
     private Color color = Color.BLACK;
@@ -43,10 +42,8 @@ public class ShadowRenderer {
         int yStop = dstHeight - right;
         int shadowRgb = color.getRGB() & 0x00FFFFFF;
         int[] aHistory = new int[shadowSize];
-        int historyIdx;
         int aSum;
-        BufferedImage dst = new BufferedImage(dstWidth, dstHeight,
-                BufferedImage.TYPE_INT_ARGB);
+        BufferedImage dst = new BufferedImage(dstWidth, dstHeight, BufferedImage.TYPE_INT_ARGB);
         int[] dstBuffer = new int[dstWidth * dstHeight];
         int[] srcBuffer = new int[srcWidth * srcHeight];
         GraphicsUtilities.getPixels(image, 0, 0, srcWidth, srcHeight, srcBuffer);
@@ -54,74 +51,106 @@ public class ShadowRenderer {
         float hSumDivider = 1.0f / shadowSize;
         float vSumDivider = opacity / shadowSize;
         int[] hSumLookup = new int[256 * shadowSize];
+        int[] vSumLookup = new int[256 * shadowSize];
+
+        // Precompute the lookup tables
         for (int i = 0; i < hSumLookup.length; i++) {
             hSumLookup[i] = (int) (i * hSumDivider);
         }
-        int[] vSumLookup = new int[256 * shadowSize];
         for (int i = 0; i < vSumLookup.length; i++) {
             vSumLookup[i] = (int) (i * vSumDivider);
         }
-        int srcOffset;
+
+        // Horizontal pass
         for (int srcY = 0, dstOffset = left * dstWidth; srcY < srcHeight; srcY++) {
-            for (historyIdx = 0; historyIdx < shadowSize;) {
-                aHistory[historyIdx++] = 0;
-            }
             aSum = 0;
-            historyIdx = 0;
-            srcOffset = srcY * srcWidth;
+            int historyIdx = 0;
+
+            // Initialize history
+            for (int i = 0; i < shadowSize; i++) {
+                aHistory[i] = 0;
+            }
+
             for (int srcX = 0; srcX < srcWidth; srcX++) {
-                int a = hSumLookup[aSum];
-                dstBuffer[dstOffset++] = a << 24;
+                int a = srcBuffer[srcY * srcWidth + srcX] >>> 24;
                 aSum -= aHistory[historyIdx];
-                a = srcBuffer[srcOffset + srcX] >>> 24;
                 aHistory[historyIdx] = a;
                 aSum += a;
-                if (++historyIdx >= shadowSize) {
-                    historyIdx -= shadowSize;
+
+                // Ensure aSum is within bounds
+                if (aSum < 0) {
+                    aSum = 0;
+                } else if (aSum >= hSumLookup.length) {
+                    aSum = hSumLookup.length - 1;
                 }
+
+                dstBuffer[dstOffset++] = hSumLookup[aSum] << 24;
+
+                historyIdx = (historyIdx + 1) % shadowSize; // Update history index
             }
+
+            // Fill remaining shadow pixels
             for (int i = 0; i < shadowSize; i++) {
-                int a = hSumLookup[aSum];
-                dstBuffer[dstOffset++] = a << 24;
                 aSum -= aHistory[historyIdx];
-                if (++historyIdx >= shadowSize) {
-                    historyIdx -= shadowSize;
+                // Ensure aSum is within bounds
+                if (aSum < 0) {
+                    aSum = 0;
+                } else if (aSum >= hSumLookup.length) {
+                    aSum = hSumLookup.length - 1;
                 }
+
+                dstBuffer[dstOffset++] = hSumLookup[aSum] << 24;
+                historyIdx = (historyIdx + 1) % shadowSize; // Update history index
             }
         }
 
-        for (int x = 0, bufferOffset = 0; x < dstWidth; x++, bufferOffset = x) {
+        // Vertical pass
+        for (int x = 0; x < dstWidth; x++) {
             aSum = 0;
-            for (historyIdx = 0; historyIdx < left;) {
-                aHistory[historyIdx++] = 0;
+            int historyIdx = 0;
+
+            // Initialize history
+            for (int i = 0; i < left; i++) {
+                aHistory[i] = 0;
             }
-            for (int y = 0; y < right; y++, bufferOffset += dstWidth) {
-                int a = dstBuffer[bufferOffset] >>> 24;
+
+            for (int y = 0; y < right; y++) {
+                int a = dstBuffer[y * dstWidth + x] >>> 24;
                 aHistory[historyIdx++] = a;
                 aSum += a;
             }
-            bufferOffset = x;
+
             historyIdx = 0;
-            for (int y = 0; y < yStop; y++, bufferOffset += dstWidth) {
-                int a = vSumLookup[aSum];
-                dstBuffer[bufferOffset] = a << 24 | shadowRgb;
+            for (int y = 0; y < yStop; y++) {
+                // Ensure aSum is within bounds
+                if (aSum < 0) {
+                    aSum = 0;
+                } else if (aSum >= vSumLookup.length) {
+                    aSum = vSumLookup.length - 1;
+                }
+
+                dstBuffer[y * dstWidth + x] = (vSumLookup[aSum] << 24) | shadowRgb;
                 aSum -= aHistory[historyIdx];
-                a = dstBuffer[bufferOffset + lastPixelOffset] >>> 24;
+                int a = dstBuffer[(y + right) * dstWidth + x] >>> 24;
                 aHistory[historyIdx] = a;
                 aSum += a;
-                if (++historyIdx >= shadowSize) {
-                    historyIdx -= shadowSize;
-                }
+                historyIdx = (historyIdx + 1) % shadowSize; // Update history index
             }
-            for (int y = yStop; y < dstHeight; y++, bufferOffset += dstWidth) {
-                int a = vSumLookup[aSum];
-                dstBuffer[bufferOffset] = a << 24 | shadowRgb;
-                aSum -= aHistory[historyIdx];
-                if (++historyIdx >= shadowSize) {
-                    historyIdx -= shadowSize;
+
+            for (int y = yStop; y < dstHeight; y++) {
+                // Ensure aSum is within bounds
+                if (aSum < 0) {
+                    aSum = 0;
+                } else if (aSum >= vSumLookup.length) {
+                    aSum = vSumLookup.length - 1;
                 }
+
+                dstBuffer[y * dstWidth + x] = (vSumLookup[aSum] << 24) | shadowRgb;
+                aSum -= aHistory[historyIdx];
+                historyIdx = (historyIdx + 1) % shadowSize; // Update history index
             }
         }
+
         GraphicsUtilities.setPixels(dst, 0, 0, dstWidth, dstHeight, dstBuffer);
         return dst;
     }
