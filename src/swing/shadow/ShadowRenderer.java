@@ -47,7 +47,6 @@ public class ShadowRenderer {
         int[] dstBuffer = new int[dstWidth * dstHeight];
         int[] srcBuffer = new int[srcWidth * srcHeight];
         GraphicsUtilities.getPixels(image, 0, 0, srcWidth, srcHeight, srcBuffer);
-        int lastPixelOffset = right * dstWidth;
         float hSumDivider = 1.0f / shadowSize;
         float vSumDivider = opacity / shadowSize;
         int[] hSumLookup = new int[256 * shadowSize];
