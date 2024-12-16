@@ -77,29 +77,25 @@ public class ShadowRenderer {
                 aSum += a;
 
                 // Ensure aSum is within bounds
-                if (aSum < 0) {
-                    aSum = 0;
-                } else if (aSum >= hSumLookup.length) {
-                    aSum = hSumLookup.length - 1;
-                }
+                aSum = Math.max(0, Math.min(aSum, hSumLookup.length - 1));
 
                 dstBuffer[dstOffset++] = hSumLookup[aSum] << 24;
 
-                historyIdx = (historyIdx + 1) % shadowSize; // Update history index
+                // Update history index
+                historyIdx = (historyIdx + 1) % shadowSize;
             }
 
             // Fill remaining shadow pixels
             for (int i = 0; i < shadowSize; i++) {
                 aSum -= aHistory[historyIdx];
+
                 // Ensure aSum is within bounds
-                if (aSum < 0) {
-                    aSum = 0;
-                } else if (aSum >= hSumLookup.length) {
-                    aSum = hSumLookup.length - 1;
-                }
+                aSum = Math.max(0, Math.min(aSum, hSumLookup.length - 1));
 
                 dstBuffer[dstOffset++] = hSumLookup[aSum] << 24;
-                historyIdx = (historyIdx + 1) % shadowSize; // Update history index
+
+                // Update history index
+                historyIdx = (historyIdx + 1) % shadowSize;
             }
         }
 
@@ -122,31 +118,27 @@ public class ShadowRenderer {
             historyIdx = 0;
             for (int y = 0; y < yStop; y++) {
                 // Ensure aSum is within bounds
-                if (aSum < 0) {
-                    aSum = 0;
-                } else if (aSum >= vSumLookup.length) {
-                    aSum = vSumLookup.length - 1;
-                }
+                aSum = Math.max(0, Math.min(aSum, vSumLookup.length - 1));
 
                 dstBuffer[y * dstWidth + x] = (vSumLookup[aSum] << 24) | shadowRgb;
                 aSum -= aHistory[historyIdx];
                 int a = dstBuffer[(y + right) * dstWidth + x] >>> 24;
                 aHistory[historyIdx] = a;
                 aSum += a;
-                historyIdx = (historyIdx + 1) % shadowSize; // Update history index
+
+                // Update history index
+                historyIdx = (historyIdx + 1) % shadowSize;
             }
 
             for (int y = yStop; y < dstHeight; y++) {
                 // Ensure aSum is within bounds
-                if (aSum < 0) {
-                    aSum = 0;
-                } else if (aSum >= vSumLookup.length) {
-                    aSum = vSumLookup.length - 1;
-                }
+                aSum = Math.max(0, Math.min(aSum, vSumLookup.length - 1));
 
                 dstBuffer[y * dstWidth + x] = (vSumLookup[aSum] << 24) | shadowRgb;
                 aSum -= aHistory[historyIdx];
-                historyIdx = (historyIdx + 1) % shadowSize; // Update history index
+
+                // Update history index
+                historyIdx = (historyIdx + 1) % shadowSize;
             }
         }
 
