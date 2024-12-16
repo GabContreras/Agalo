@@ -23,6 +23,7 @@ import java.util.logging.Logger;
 public class AdministrarSolicitantes {
 
     private static final Logger logger = Logger.getLogger(AdministrarSolicitantes.class.getName());
+    private static final String ERR_CONEX = "Error al cerrar la conexión: ";
 
 //Constantes para los select
     private static final String ID_SOLICITANTE = "Id";
@@ -87,7 +88,7 @@ public class AdministrarSolicitantes {
                 try {
                     conexion.close();
                 } catch (SQLException e) {
-                    logger.log(Level.SEVERE, "Error al cerrar la conexión: ", e);
+                    logger.log(Level.SEVERE, ERR_CONEX, e);
                 }
             }
         }
@@ -153,7 +154,7 @@ public class AdministrarSolicitantes {
                 try {
                     conexion.close();
                 } catch (SQLException e) {
-                    logger.log(Level.SEVERE, "Error al cerrar la conexión: ", e);
+                    logger.log(Level.SEVERE, ERR_CONEX, e);
                 }
             }
         }
@@ -224,7 +225,7 @@ public class AdministrarSolicitantes {
                 try {
                     conexion.close();
                 } catch (SQLException e) {
-                    logger.log(Level.SEVERE, "Error al cerrar la conexión: ", e);
+                    logger.log(Level.SEVERE, ERR_CONEX, e);
                 }
             }
         }

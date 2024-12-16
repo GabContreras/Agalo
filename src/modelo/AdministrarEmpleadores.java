@@ -24,6 +24,8 @@ public class AdministrarEmpleadores {
 
     private static final Logger logger = Logger.getLogger(AdministrarEmpleadores.class.getName());
 
+    private static final String ERR_CONEX = "Error al cerrar la conexión: ";
+
     //Constantes para los select               
     private static final String ID_EMPLEADOR = "Id";
     private static final String NOMBRE_EMPRESA = "Empresa";
@@ -32,6 +34,8 @@ public class AdministrarEmpleadores {
     private static final String TELEFONO_REPRESENTANTE = "Teléfono";
     private static final String DIRECCION_REPRESENTANTE = "Dirección";
     private static final String DEPARTAMENTO_REPRESENTANTE = "Departamento";
+
+    
 
     private String correoEmpleador;
     private String uuidEmpleador;
@@ -90,7 +94,7 @@ public class AdministrarEmpleadores {
                 try {
                     conexion.close();
                 } catch (SQLException e) {
-                    logger.log(Level.SEVERE, "Error al cerrar la conexión: ", e);
+                    logger.log(Level.SEVERE,ERR_CONEX, e);
                 }
             }
         }
@@ -123,19 +127,19 @@ public class AdministrarEmpleadores {
             while (rs.next()) {
                 // Llenamos el modelo por cada vez que recorremos el ResultSet
                 modelo.addRow(new Object[]{
-                    rs.getString("Id"), // Asegúrate de usar el nombre correcto de la columna
-                    rs.getString("Empresa"),
-                    rs.getString("Representante"),
-                    rs.getString("Correo"),
-                    rs.getString("Teléfono"),
-                    rs.getString("Dirección"),
-                    rs.getString("Departamento")
+                    rs.getString(ID_EMPLEADOR), // Asegúrate de usar el nombre correcto de la columna
+                    rs.getString(NOMBRE_EMPRESA),
+                    rs.getString(NOMBRE_REPRESENTANTE),
+                    rs.getString(CORREO_REPRESENTANTE),
+                    rs.getString(TELEFONO_REPRESENTANTE),
+                    rs.getString(DIRECCION_REPRESENTANTE),
+                    rs.getString(DEPARTAMENTO_REPRESENTANTE)
                 });
             }
 
             // Asignamos el nuevo modelo lleno a la tabla
             jtbAdmin.setModel(modelo);
-        } catch (Exception e) {
+        } catch (SQLException e) {
             logger.log(Level.SEVERE, "Error en buscar Empleador: ", e);
         } finally {
             // Cerrar el ResultSet
@@ -159,7 +163,7 @@ public class AdministrarEmpleadores {
                 try {
                     conexion.close();
                 } catch (SQLException e) {
-                    logger.log(Level.SEVERE, "Error al cerrar la conexión: ", e);
+                    logger.log(Level.SEVERE, ERR_CONEX, e);
                 }
             }
         }
@@ -208,7 +212,7 @@ public class AdministrarEmpleadores {
 
             // Asignamos el nuevo modelo lleno a la tabla
             jtSolicitudEmpleador.setModel(modeloDeDatos);
-        } catch (Exception e) {
+        } catch (SQLException e) {
             logger.log(Level.SEVERE, "Este es el error en el modelo, método mostrar ", e);
         } finally {
             // Cerrar el ResultSet
@@ -232,7 +236,7 @@ public class AdministrarEmpleadores {
                 try {
                     conexion.close();
                 } catch (SQLException e) {
-                    logger.log(Level.SEVERE, "Error al cerrar la conexión: ", e);
+                    logger.log(Level.SEVERE, ERR_CONEX, e);
                 }
             }
         }

@@ -16,6 +16,7 @@ public class UsuarioEscritorio {
 // Instancia de logger para sustituir los system out 
 
     private static final Logger logger = Logger.getLogger(UsuarioEscritorio.class.getName());
+    private static final String ERR_REC = "Error al cerrar recursos: ";
 
     public int getIdRol() {
         return idRol;
@@ -66,70 +67,72 @@ public class UsuarioEscritorio {
 
     public void GuardarUsuario() throws SQLException {
         Connection conexion = null;
-        PreparedStatement addUsuarioEscritorio = null;
         PreparedStatement checkSuperAdmin = null;
         ResultSet rs = null;
 
         try {
             conexion = ClaseConexion.getConexion();
-            if (conexion == null) {
-                throw new SQLException("No se pudo establecer conexión con la base de datos.");
-            }
+            verificarConexion(conexion);
 
-            // Verificar si ya existe un superadmin
-            String sqlCheckSuperAdmin = "SELECT COUNT(*) FROM UsuarioEscritorio WHERE idrol = 2";
-            checkSuperAdmin = conexion.prepareStatement(sqlCheckSuperAdmin);
-            rs = checkSuperAdmin.executeQuery();
-            rs.next();
-
-            if (rs.getInt(1) > 0) {
-                // Si ya existe un superadmin, lanzar una excepción
+            if (existeSuperAdmin(conexion)) {
                 throw new SQLException("Ya existe un Super Admin registrado, para poder tener una cuenta con los privilegios necesarios, comunicarse con la empresa.");
-            } else {
-                // Si no existe, insertar el nuevo usuario
-                String sqlInsert = "INSERT INTO UsuarioEscritorio (Nombre, Usuario, CorreoElectronico, Contrasena, idrol) VALUES (?, ?, ?, ?, ?)";
-                addUsuarioEscritorio = conexion.prepareStatement(sqlInsert);
-                addUsuarioEscritorio.setString(1, getNombre());
-                addUsuarioEscritorio.setString(2, getUsuario());
-                addUsuarioEscritorio.setString(3, getCorreo());
-                addUsuarioEscritorio.setString(4, getContrasena());
-                addUsuarioEscritorio.setInt(5, 2); // Asignar rol 2 (superadmin)
-                addUsuarioEscritorio.executeUpdate();
-                logger.log(Level.INFO, "Usuario guardado correctamente.");
             }
 
+            insertarUsuario(conexion);
         } catch (SQLException ex) {
-            // Manejo de errores de la base de datos
             throw new SQLException(ex.getMessage());
         } finally {
-            // Cerrar recursos
-            if (rs != null) {
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    logger.log(Level.SEVERE, "Error al cerrar el ResultSet: ", e);
-                }
+            cerrarRecursos(rs, checkSuperAdmin, conexion);
+        }
+    }
+
+    private void verificarConexion(Connection conexion) throws SQLException {
+        if (conexion == null) {
+            throw new SQLException("No se pudo establecer conexión con la base de datos.");
+        }
+    }
+
+    private boolean existeSuperAdmin(Connection conexion) throws SQLException {
+        String sqlCheckSuperAdmin = "SELECT COUNT(*) FROM UsuarioEscritorio WHERE idrol = 2";
+        try (PreparedStatement checkSuperAdmin = conexion.prepareStatement(sqlCheckSuperAdmin); ResultSet rs = checkSuperAdmin.executeQuery()) {
+            rs.next();
+            return rs.getInt(1) > 0;
+        }
+    }
+
+    private void insertarUsuario(Connection conexion) throws SQLException {
+        String sqlInsert = "INSERT INTO UsuarioEscritorio (Nombre, Usuario, CorreoElectronico, Contrasena, idrol) VALUES (?, ?, ?, ?, ?)";
+        try (PreparedStatement addUsuarioEscritorio = conexion.prepareStatement(sqlInsert)) {
+            addUsuarioEscritorio.setString(1, getNombre());
+            addUsuarioEscritorio.setString(2, getUsuario());
+            addUsuarioEscritorio.setString(3, getCorreo());
+            addUsuarioEscritorio.setString(4, getContrasena());
+            addUsuarioEscritorio.setInt(5, 2); // Asignar rol 2 (superadmin)
+            addUsuarioEscritorio.executeUpdate();
+            logger.log(Level.INFO, "Usuario guardado correctamente.");
+        }
+    }
+
+    private void cerrarRecursos(ResultSet rs, PreparedStatement ps, Connection conexion) {
+        if (rs != null) {
+            try {
+                rs.close();
+            } catch (SQLException e) {
+                logger.log(Level.SEVERE, "Error al cerrar el ResultSet: ", e);
             }
-            if (checkSuperAdmin != null) {
-                try {
-                    checkSuperAdmin.close();
-                } catch (SQLException e) {
-                    logger.log(Level.SEVERE, "Error al cerrar el PreparedStatement: ", e);
-                }
+        }
+        if (ps != null) {
+            try {
+                ps.close();
+            } catch (SQLException e) {
+                logger.log(Level.SEVERE, "Error al cerrar el PreparedStatement: ", e);
             }
-            if (addUsuarioEscritorio != null) {
-                try {
-                    addUsuarioEscritorio.close();
-                } catch (SQLException e) {
-                    logger.log(Level.SEVERE, "Error al cerrar el PreparedStatement: ", e);
-                }
-            }
-            if (conexion != null) {
-                try {
-                    conexion.close();
-                } catch (SQLException e) {
-                    logger.log(Level.SEVERE, "Error al cerrar la conexión: ", e);
-                }
+        }
+        if (conexion != null) {
+            try {
+                conexion.close();
+            } catch (SQLException e) {
+                logger.log(Level.SEVERE, "Error al cerrar la conexión: ", e);
             }
         }
     }
@@ -186,7 +189,7 @@ public class UsuarioEscritorio {
                     conexion.close();
                 }
             } catch (SQLException ex) {
-                logger.log(Level.SEVERE, "Error al cerrar recursos: ", ex);
+                logger.log(Level.SEVERE, ERR_REC, ex);
             }
         }
 
@@ -241,7 +244,7 @@ public class UsuarioEscritorio {
                     con.close();
                 }
             } catch (SQLException ex) {
-                logger.log(Level.SEVERE, "Error al cerrar recursos: ", ex);
+                logger.log(Level.SEVERE, ERR_REC, ex);
             }
         }
     }
@@ -276,7 +279,7 @@ public class UsuarioEscritorio {
                     con.close();
                 }
             } catch (SQLException ex) {
-                logger.log(Level.SEVERE, "Error al cerrar recursos: ", ex);
+                logger.log(Level.SEVERE, ERR_REC, ex);
             }
         }
         return false; // Retorna false si no se encontró el correo

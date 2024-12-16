@@ -24,6 +24,9 @@ public class AdministrarEmpresas {
 
     private static final Logger logger = Logger.getLogger(AdministrarEmpresas.class.getName());
 
+    private static final String ERR_CONEX = "Error al cerrar la conexión: ";
+    private static final String ERR_PREP = "Error al cerrar el PreparedStatement: ";
+    
     //Constantes para los select
     private static final String ID_EMPLEADOR = "Id";
     private static final String NOMBRE_EMPRESA = "Empresa";
@@ -83,13 +86,13 @@ public class AdministrarEmpresas {
             while (rs.next()) {
                 // Llenamos el modelo por cada vez que recorremos el ResultSet
                 modeloDeDatos.addRow(new Object[]{
-                    rs.getString("Id"),
-                    rs.getString("Empresa"),
-                    rs.getString("Representante"),
-                    rs.getString("Correo"),
-                    rs.getString("Teléfono"),
-                    rs.getString("Dirección"),
-                    rs.getString("Departamento")
+                    rs.getString(ID_EMPLEADOR),
+                    rs.getString(NOMBRE_EMPRESA),
+                    rs.getString(NOMBRE_REPRESENTANTE),
+                    rs.getString(CORREO_REPRESENTANTE),
+                    rs.getString(TELEFONO_REPRESENTANTE),
+                    rs.getString(DIRECCION_REPRESENTANTE),
+                    rs.getString(DEPARTAMENTO_REPRESENTANTE)
                 });
             }
 
@@ -119,7 +122,7 @@ public class AdministrarEmpresas {
                 try {
                     conexion.close();
                 } catch (SQLException e) {
-                    logger.log(Level.SEVERE, "Error al cerrar la conexión: ", e);
+                    logger.log(Level.SEVERE, ERR_CONEX, e);
                 }
             }
         }
@@ -152,7 +155,7 @@ public class AdministrarEmpresas {
                 try {
                     ps.close();
                 } catch (SQLException e) {
-                    logger.log(Level.SEVERE, "Error al cerrar el PreparedStatement: ", e);
+                    logger.log(Level.SEVERE, ERR_PREP, e);
                 }
             }
             // Cerrar la conexión
@@ -160,7 +163,7 @@ public class AdministrarEmpresas {
                 try {
                     conexion.close();
                 } catch (SQLException e) {
-                    logger.log(Level.SEVERE, "Error al cerrar la conexión: ", e);
+                    logger.log(Level.SEVERE, ERR_CONEX, e);
                 }
             }
         }
@@ -193,7 +196,7 @@ public class AdministrarEmpresas {
                 try {
                     updateEmpresa.close();
                 } catch (SQLException e) {
-                    logger.log(Level.SEVERE, "Error al cerrar el PreparedStatement: ", e);
+                    logger.log(Level.SEVERE, ERR_PREP, e);
                 }
             }
             // Cerrar la conexión
@@ -201,7 +204,7 @@ public class AdministrarEmpresas {
                 try {
                     conexion.close();
                 } catch (SQLException e) {
-                    logger.log(Level.SEVERE, "Error al cerrar la conexión: ", e);
+                    logger.log(Level.SEVERE, ERR_CONEX, e);
                 }
             }
         }
@@ -258,7 +261,7 @@ public class AdministrarEmpresas {
                 try {
                     ps.close();
                 } catch (SQLException e) {
-                    logger.log(Level.SEVERE, "Error al cerrar el PreparedStatement: ", e);
+                    logger.log(Level.SEVERE, ERR_PREP, e);
                 }
             }
             // Cerrar la conexión
@@ -266,7 +269,7 @@ public class AdministrarEmpresas {
                 try {
                     conexion.close();
                 } catch (SQLException e) {
-                    logger.log(Level.SEVERE, "Error al cerrar la conexión: ", e);
+                    logger.log(Level.SEVERE, ERR_CONEX, e);
                 }
             }
         }

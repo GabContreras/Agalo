@@ -18,6 +18,8 @@ public class AdministrarUsuario {
     private static final Logger logger = Logger.getLogger(AdministrarUsuario.class.getName());
 
     private static final String ERROR_FILAS = "No se ha seleccionado ninguna fila.";
+    private static final String ERR_PREP = "Error al cerrar el PreparedStatement: ";
+    private static final String ERR_CONEX = "Error al cerrar la conexión: ";
 
     //Constantes para los select
     private static final String ID_ADMIN = "IdAdmin";
@@ -96,7 +98,7 @@ public class AdministrarUsuario {
                 try {
                     addAdmin.close();
                 } catch (SQLException e) {
-                    logger.log(Level.SEVERE, "Error al cerrar el PreparedStatement: ", e);
+                    logger.log(Level.SEVERE, ERR_PREP, e);
                 }
             }
             // Cerrar la conexión
@@ -104,7 +106,7 @@ public class AdministrarUsuario {
                 try {
                     conexion.close();
                 } catch (SQLException e) {
-                    logger.log(Level.SEVERE, "Error al cerrar la conexión: ", e);
+                    logger.log(Level.SEVERE, ERR_CONEX, e);
                 }
             }
         }
@@ -165,7 +167,7 @@ public class AdministrarUsuario {
                 try {
                     conexion.close();
                 } catch (SQLException e) {
-                    logger.log(Level.SEVERE, "Error al cerrar la conexión: ", e);
+                    logger.log(Level.SEVERE, ERR_CONEX, e);
                 }
             }
         }
@@ -208,7 +210,7 @@ public class AdministrarUsuario {
                     try {
                         updateUser.close();
                     } catch (SQLException e) {
-                        logger.log(Level.SEVERE, "Error al cerrar el PreparedStatement: ", e);
+                        logger.log(Level.SEVERE, ERR_PREP, e);
                     }
                 }
                 // Cerrar la conexión
@@ -216,7 +218,7 @@ public class AdministrarUsuario {
                     try {
                         conexion.close();
                     } catch (SQLException e) {
-                        logger.log(Level.SEVERE, "Error al cerrar la conexión: ", e);
+                        logger.log(Level.SEVERE, ERR_CONEX, e);
                     }
                 }
             }
@@ -261,7 +263,7 @@ public class AdministrarUsuario {
                     try {
                         updateUser.close();
                     } catch (SQLException e) {
-                        logger.log(Level.SEVERE, "Error al cerrar el PreparedStatement: ", e);
+                        logger.log(Level.SEVERE, ERR_PREP, e);
                     }
                 }
                 // Cerrar la conexión
@@ -269,7 +271,7 @@ public class AdministrarUsuario {
                     try {
                         conexion.close();
                     } catch (SQLException e) {
-                        logger.log(Level.SEVERE, "Error al cerrar la conexión: ", e);
+                        logger.log(Level.SEVERE, ERR_CONEX, e);
                     }
                 }
             }
@@ -304,7 +306,7 @@ public class AdministrarUsuario {
                     try {
                         deleteEstudiante.close();
                     } catch (SQLException e) {
-                        logger.log(Level.SEVERE, "Error al cerrar el PreparedStatement: ", e);
+                        logger.log(Level.SEVERE, ERR_PREP, e);
                     }
                 }
                 // Cerrar la conexión
@@ -312,7 +314,7 @@ public class AdministrarUsuario {
                     try {
                         conexion.close();
                     } catch (SQLException e) {
-                        logger.log(Level.SEVERE, "Error al cerrar la conexión: ", e);
+                        logger.log(Level.SEVERE, ERR_CONEX, e);
                     }
                 }
             }
@@ -367,7 +369,7 @@ public class AdministrarUsuario {
                 try {
                     ps.close();
                 } catch (SQLException e) {
-                    logger.log(Level.SEVERE, "Error al cerrar el PreparedStatement: ", e);
+                    logger.log(Level.SEVERE, ERR_PREP, e);
                 }
             }
             // Cerrar la conexión
@@ -375,7 +377,7 @@ public class AdministrarUsuario {
                 try {
                     conexion.close();
                 } catch (SQLException e) {
-                    logger.log(Level.SEVERE, "Error al cerrar la conexión: ", e);
+                    logger.log(Level.SEVERE, ERR_CONEX, e);
                 }
             }
         }
