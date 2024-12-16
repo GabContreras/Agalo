@@ -200,13 +200,13 @@ public class AdministrarEmpleadores {
             while (rs.next()) {
                 // Llenamos el modelo por cada vez que recorremos el ResultSet
                 modeloDeDatos.addRow(new Object[]{
-                    rs.getString("Id"), // Asegúrate de usar el nombre correcto de la columna
-                    rs.getString("Empresa"),
-                    rs.getString("Representante"),
-                    rs.getString("Correo"),
-                    rs.getString("Teléfono"),
-                    rs.getString("Dirección"),
-                    rs.getString("Departamento")
+                    rs.getString(ID_EMPLEADOR), // Asegúrate de usar el nombre correcto de la columna
+                    rs.getString(NOMBRE_EMPRESA),
+                    rs.getString(NOMBRE_REPRESENTANTE),
+                    rs.getString(CORREO_REPRESENTANTE),
+                    rs.getString(TELEFONO_REPRESENTANTE),
+                    rs.getString(DIRECCION_REPRESENTANTE),
+                    rs.getString(DEPARTAMENTO_REPRESENTANTE)
                 });
             }
 
