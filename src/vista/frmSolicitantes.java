@@ -18,6 +18,7 @@ import modelo.AdministrarSolicitantes;
  * @author Gudelia
  */
 public class FrmSolicitantes extends javax.swing.JPanel {
+
     /**
      * Creates new form frmUsers
      */
@@ -107,11 +108,11 @@ public class FrmSolicitantes extends javax.swing.JPanel {
         txtBuscarSolicitante.addFocusListener(new java.awt.event.FocusAdapter() {
             @Override
             public void focusGained(java.awt.event.FocusEvent evt) {
-                txtBuscarSolicitanteFocusGained(evt);
+                txtBuscarSolicitanteFocusGained();
             }
             @Override
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtBuscarSolicitanteFocusLost(evt);
+                txtBuscarSolicitanteFocusLost();
             }
         });
 
@@ -158,14 +159,14 @@ public class FrmSolicitantes extends javax.swing.JPanel {
     //Constante
     private static final String BUSQUEDA = "Buscar";
 
-    private void txtBuscarSolicitanteFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBuscarSolicitanteFocusGained
+    private void txtBuscarSolicitanteFocusGained() {//GEN-FIRST:event_txtBuscarSolicitanteFocusGained
         if (txtBuscarSolicitante.getText().equals(BUSQUEDA)) {
             txtBuscarSolicitante.setText("");
         }
 
     }//GEN-LAST:event_txtBuscarSolicitanteFocusGained
 
-    private void txtBuscarSolicitanteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBuscarSolicitanteFocusLost
+    private void txtBuscarSolicitanteFocusLost() {//GEN-FIRST:event_txtBuscarSolicitanteFocusLost
         if (txtBuscarSolicitante.getText().equals("")) {
             txtBuscarSolicitante.setText(BUSQUEDA);
         }

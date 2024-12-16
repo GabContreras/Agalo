@@ -13,7 +13,7 @@ import modelo.UsuarioEscritorio;
  */
 public class FrmMenu extends javax.swing.JFrame {
 
-   public static void initfrmMenu(UsuarioEscritorio modelo) {
+    public static void initfrmMenu(UsuarioEscritorio modelo) {
         FrmMenu vista = new FrmMenu();
         FrmDashboard frmDashboard = new FrmDashboard();
         FrmAdministrarUsuarios frmAdministrarUsuarios = new FrmAdministrarUsuarios();
@@ -122,15 +122,15 @@ public class FrmMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-     
+
     }//GEN-LAST:event_btnHomeActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-     
+
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpresaActionPerformed
-  
+
     }//GEN-LAST:event_btnEmpresaActionPerformed
 
     /**
@@ -151,7 +151,7 @@ public class FrmMenu extends javax.swing.JFrame {
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(FrmMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }   
+        }
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -159,9 +159,9 @@ public class FrmMenu extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-        UsuarioEscritorio modelo = new UsuarioEscritorio(); // Crea un objeto UsuarioEscritorio
-        initfrmMenu(modelo); // Pasa el objeto al método initfrmMenu
-      });
+            UsuarioEscritorio modelo = new UsuarioEscritorio(); // Crea un objeto UsuarioEscritorio
+            initfrmMenu(modelo); // Pasa el objeto al método initfrmMenu
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

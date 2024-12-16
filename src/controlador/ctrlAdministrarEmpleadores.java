@@ -20,7 +20,7 @@ public class CtrlAdministrarEmpleadores implements MouseListener, KeyListener {
 
     private AdministrarEmpleadores modelo;
     private FrmEmpresa vista;
-    
+
     public CtrlAdministrarEmpleadores(AdministrarEmpleadores modelo, FrmEmpresa vista) {
         this.modelo = modelo;
         this.vista = vista;

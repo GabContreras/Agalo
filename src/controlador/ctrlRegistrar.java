@@ -23,7 +23,7 @@ public class CtrlRegistrar implements ActionListener {
     // Instancia de logger para sustituir los system out 
     private static final Logger logger = Logger.getLogger(CtrlRegistrar.class.getName());
 
-        private static final String TITULO_ERROR = "Error";
+    private static final String TITULO_ERROR = "Error";
 
     private UsuarioEscritorio modelo;
     private FrmRegistro vista;

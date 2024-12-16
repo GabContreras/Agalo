@@ -19,12 +19,11 @@ import raven.popup.GlassPanePopup;
  */
 public class JfrMain extends javax.swing.JFrame {
 
-
-public JfrMain() {
+    public JfrMain() {
         GlassPanePopup.install(this);
-        MyDrawerBuilder myDrawerBuilder=new MyDrawerBuilder();
+        MyDrawerBuilder myDrawerBuilder = new MyDrawerBuilder();
         Drawer.getInstance().setDrawerBuilder(myDrawerBuilder);
-        
+
         initComponents();
     }
 

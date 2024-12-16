@@ -22,17 +22,14 @@ public class FrmRegistro extends javax.swing.JFrame {
         this.setLocationRelativeTo(this);
     }
 
-    public static void initFrmRegistro(){
+    public static void initFrmRegistro() {
         UsuarioEscritorio modelo = new UsuarioEscritorio();
         FrmRegistro vista = new FrmRegistro();
-        new CtrlRegistrar (modelo,vista);
+        new CtrlRegistrar(modelo, vista);
         vista.setVisible(true);
-        
+
     }
-    
-    
-    
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -79,11 +76,11 @@ public class FrmRegistro extends javax.swing.JFrame {
         txtNombre.addFocusListener(new java.awt.event.FocusAdapter() {
             @Override
             public void focusGained(java.awt.event.FocusEvent evt) {
-                txtNombreFocusGained(evt);
+                txtNombreFocusGained();
             }
             @Override
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtNombreFocusLost(evt);
+                txtNombreFocusLost();
             }
         });
         txtNombre.addActionListener(this::txtNombreActionPerformed);
@@ -95,11 +92,11 @@ public class FrmRegistro extends javax.swing.JFrame {
         txtCorreoElectronico.addFocusListener(new java.awt.event.FocusAdapter() {
             @Override
             public void focusGained(java.awt.event.FocusEvent evt) {
-                txtCorreoElectronicoFocusGained(evt);
+                txtCorreoElectronicoFocusGained();
             }
             @Override
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtCorreoElectronicoFocusLost(evt);
+                txtCorreoElectronicoFocusLost();
             }
         });
         txtCorreoElectronico.addActionListener(this::txtCorreoElectronicoActionPerformed);
@@ -137,11 +134,11 @@ public class FrmRegistro extends javax.swing.JFrame {
         txtUsuario.addFocusListener(new java.awt.event.FocusAdapter() {
             @Override
             public void focusGained(java.awt.event.FocusEvent evt) {
-                txtUsuarioFocusGained(evt);
+                txtUsuarioFocusGained();
             }
             @Override
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtUsuarioFocusLost(evt);
+                txtUsuarioFocusLost();
             }
         });
         txtUsuario.addActionListener(this::txtUsuarioActionPerformed);
@@ -153,11 +150,11 @@ public class FrmRegistro extends javax.swing.JFrame {
         txtContra.addFocusListener(new java.awt.event.FocusAdapter() {
             @Override
             public void focusGained(java.awt.event.FocusEvent evt) {
-                txtContraFocusGained(evt);
+                txtContraFocusGained();
             }
             @Override
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtContraFocusLost(evt);
+                txtContraFocusLost();
             }
         });
         txtContra.addActionListener(this::txtContraActionPerformed);
@@ -191,12 +188,12 @@ public class FrmRegistro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     //Constantes
-        private static final String NOMBRE_REGISTRO = "Nombre";
-        private static final String CORREO_REGISTRO = "Correo Electrónico";
-        private static final String USUARIO_REGISTRO = "Usuario";
-        private static final String CONTRA_REGISTRO = "Contraseña";
+    private static final String NOMBRE_REGISTRO = "Nombre";
+    private static final String CORREO_REGISTRO = "Correo Electrónico";
+    private static final String USUARIO_REGISTRO = "Usuario";
+    private static final String CONTRA_REGISTRO = "Contraseña";
 
-    
+
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
         //Add your handling code here:
     }//GEN-LAST:event_txtNombreActionPerformed
@@ -205,37 +202,37 @@ public class FrmRegistro extends javax.swing.JFrame {
         //Add your handling code here:
     }//GEN-LAST:event_txtCorreoElectronicoActionPerformed
 
-    private void txtNombreFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreFocusGained
-    if (txtNombre.getText().equals(NOMBRE_REGISTRO)) {
-         txtNombre.setText("");
-         txtNombre.setForeground(new Color(153,153,153));
-     }
+    private void txtNombreFocusGained() {//GEN-FIRST:event_txtNombreFocusGained
+        if (txtNombre.getText().equals(NOMBRE_REGISTRO)) {
+            txtNombre.setText("");
+            txtNombre.setForeground(new Color(153, 153, 153));
+        }
     }//GEN-LAST:event_txtNombreFocusGained
 
-    private void txtNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreFocusLost
+    private void txtNombreFocusLost() {//GEN-FIRST:event_txtNombreFocusLost
         if (txtNombre.getText().equals("")) {
-         txtNombre.setText(NOMBRE_REGISTRO);
-         txtNombre.setForeground(new Color(153,153,153));
-     }
-           
+            txtNombre.setText(NOMBRE_REGISTRO);
+            txtNombre.setForeground(new Color(153, 153, 153));
+        }
+
     }//GEN-LAST:event_txtNombreFocusLost
 
-    private void txtCorreoElectronicoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCorreoElectronicoFocusGained
-  if (txtCorreoElectronico.getText().equals(CORREO_REGISTRO)) {
-         txtCorreoElectronico.setText("");
-         txtCorreoElectronico.setForeground(new Color(153,153,153));
-     }
-        
-        
+    private void txtCorreoElectronicoFocusGained() {//GEN-FIRST:event_txtCorreoElectronicoFocusGained
+        if (txtCorreoElectronico.getText().equals(CORREO_REGISTRO)) {
+            txtCorreoElectronico.setText("");
+            txtCorreoElectronico.setForeground(new Color(153, 153, 153));
+        }
+
+
     }//GEN-LAST:event_txtCorreoElectronicoFocusGained
 
-    private void txtCorreoElectronicoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCorreoElectronicoFocusLost
- 
+    private void txtCorreoElectronicoFocusLost() {//GEN-FIRST:event_txtCorreoElectronicoFocusLost
+
         if (txtCorreoElectronico.getText().equals("")) {
-         txtCorreoElectronico.setText(CORREO_REGISTRO);
-         txtCorreoElectronico.setForeground(new Color(153,153,153));
-     }
-        
+            txtCorreoElectronico.setText(CORREO_REGISTRO);
+            txtCorreoElectronico.setForeground(new Color(153, 153, 153));
+        }
+
 
     }//GEN-LAST:event_txtCorreoElectronicoFocusLost
 
@@ -247,43 +244,43 @@ public class FrmRegistro extends javax.swing.JFrame {
         //Add your handling code here:
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
-    private void txtUsuarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsuarioFocusGained
-     if (txtUsuario.getText().equals(USUARIO_REGISTRO)) {
-         txtUsuario.setText("");
-         txtUsuario.setForeground(new Color(153,153,153));
-     }
+    private void txtUsuarioFocusGained() {//GEN-FIRST:event_txtUsuarioFocusGained
+        if (txtUsuario.getText().equals(USUARIO_REGISTRO)) {
+            txtUsuario.setText("");
+            txtUsuario.setForeground(new Color(153, 153, 153));
+        }
     }//GEN-LAST:event_txtUsuarioFocusGained
 
-    private void txtUsuarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsuarioFocusLost
-       if (txtUsuario.getText().equals("")) {
-         txtUsuario.setText(USUARIO_REGISTRO);
-         txtUsuario.setForeground(new Color(153,153,153));
-     }
+    private void txtUsuarioFocusLost() {//GEN-FIRST:event_txtUsuarioFocusLost
+        if (txtUsuario.getText().equals("")) {
+            txtUsuario.setText(USUARIO_REGISTRO);
+            txtUsuario.setForeground(new Color(153, 153, 153));
+        }
     }//GEN-LAST:event_txtUsuarioFocusLost
 
     private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
         //Add your handling code here:
     }//GEN-LAST:event_txtUsuarioActionPerformed
 
-    private void txtContraFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtContraFocusGained
-   
+    private void txtContraFocusGained() {//GEN-FIRST:event_txtContraFocusGained
+
         if (txtContra.getText().equals(CONTRA_REGISTRO)) {
-         txtContra.setText("");
-         txtContra.setForeground(new Color(153,153,153));
-     }
- 
+            txtContra.setText("");
+            txtContra.setForeground(new Color(153, 153, 153));
+        }
+
     }//GEN-LAST:event_txtContraFocusGained
 
-    private void txtContraFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtContraFocusLost
-       if (txtContra.getText().equals("")) {
-         txtContra.setText(CONTRA_REGISTRO);
-         txtContra.setForeground(new Color(153,153,153));
-           }
-       
+    private void txtContraFocusLost() {//GEN-FIRST:event_txtContraFocusLost
+        if (txtContra.getText().equals("")) {
+            txtContra.setText(CONTRA_REGISTRO);
+            txtContra.setForeground(new Color(153, 153, 153));
+        }
+
     }//GEN-LAST:event_txtContraFocusLost
 
     private void txtContraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContraActionPerformed
-      
+
     }//GEN-LAST:event_txtContraActionPerformed
 
     /**
@@ -304,7 +301,7 @@ public class FrmRegistro extends javax.swing.JFrame {
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(FrmRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }   
+        }
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>

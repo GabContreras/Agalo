@@ -9,6 +9,7 @@ package vista;
  * @author Gudelia
  */
 public class FrmPerfil extends javax.swing.JPanel {
+
     private static final String FUENTE_SANSS = "SansSerif";
 
     /**

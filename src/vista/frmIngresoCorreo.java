@@ -19,14 +19,15 @@ public class FrmIngresoCorreo extends javax.swing.JFrame {
     public FrmIngresoCorreo() {
         initComponents();
     }
-    
-    public static void initFrmIngresoCorreo(){
+
+    public static void initFrmIngresoCorreo() {
         UsuarioEscritorio modelo = new UsuarioEscritorio();
         FrmIngresoCorreo vista = new FrmIngresoCorreo();
         new CtrlIngresoCorreo(modelo, vista);
-        
+
         vista.setVisible(true);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -118,7 +119,7 @@ public class FrmIngresoCorreo extends javax.swing.JFrame {
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(FrmIngresoCorreo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }   
+        }
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>

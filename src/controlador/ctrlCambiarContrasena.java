@@ -72,7 +72,7 @@ public class CtrlCambiarContrasena implements ActionListener {
         } catch (NoSuchAlgorithmException e) {
             logger.log(Level.SEVERE, "Error en la encriptación de la contraseña", e);
             // Mostrar un mensaje genérico al usuario
-            JOptionPane.showMessageDialog(null, "Ocurrió un error al procesar la contraseña. Por favor, inténtelo de nuevo.", MENSAJE_ERROR , JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Ocurrió un error al procesar la contraseña. Por favor, inténtelo de nuevo.", MENSAJE_ERROR, JOptionPane.ERROR_MESSAGE);
             return null;
         }
     }

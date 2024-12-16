@@ -19,14 +19,14 @@ public class FrmValidarCodigo extends javax.swing.JFrame {
     public FrmValidarCodigo() {
         initComponents();
     }
-    
-     public static void initFrmValidarCodigo(){
-         FrmValidarCodigo vista = new FrmValidarCodigo();
-        new CtrlValidarCodigo( vista);
-        
+
+    public static void initFrmValidarCodigo() {
+        FrmValidarCodigo vista = new FrmValidarCodigo();
+        new CtrlValidarCodigo(vista);
+
         vista.setVisible(true);
     }
-   
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -68,11 +68,11 @@ public class FrmValidarCodigo extends javax.swing.JFrame {
         txtCodigo.addFocusListener(new java.awt.event.FocusAdapter() {
             @Override
             public void focusGained(java.awt.event.FocusEvent evt) {
-                txtCodigoFocusGained(evt);
+                txtCodigoFocusGained();
             }
             @Override
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtCodigoFocusLost(evt);
+                txtCodigoFocusLost();
             }
         });
         jPanel1.add(txtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 380, 491, -1));
@@ -99,19 +99,19 @@ public class FrmValidarCodigo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     private static final String INGRESO_CODIGO = "Ingrese el codigo";
 
-    private void txtCodigoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCodigoFocusGained
-        
-if (txtCodigo.getText().equals(INGRESO_CODIGO)) {
-         txtCodigo.setText("");
-         txtCodigo.setForeground(new Color(153,153,153));
-     }
+    private void txtCodigoFocusGained() {//GEN-FIRST:event_txtCodigoFocusGained
+
+        if (txtCodigo.getText().equals(INGRESO_CODIGO)) {
+            txtCodigo.setText("");
+            txtCodigo.setForeground(new Color(153, 153, 153));
+        }
     }//GEN-LAST:event_txtCodigoFocusGained
 
-    private void txtCodigoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCodigoFocusLost
-if (txtCodigo.getText().equals("")) {
-         txtCodigo.setText(INGRESO_CODIGO);
-         txtCodigo.setForeground(new Color(153,153,153));
-     }
+    private void txtCodigoFocusLost() {//GEN-FIRST:event_txtCodigoFocusLost
+        if (txtCodigo.getText().equals("")) {
+            txtCodigo.setText(INGRESO_CODIGO);
+            txtCodigo.setForeground(new Color(153, 153, 153));
+        }
     }//GEN-LAST:event_txtCodigoFocusLost
 
     /**
@@ -132,7 +132,7 @@ if (txtCodigo.getText().equals("")) {
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(FrmValidarCodigo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }   
+        }
         //</editor-fold>
         //</editor-fold>
 

@@ -20,23 +20,14 @@ public class FrmCambiarContrasena extends javax.swing.JFrame {
     public FrmCambiarContrasena() {
         initComponents();
     }
-    
-     public static void initFrmCambiarContrasena(){
-        UsuarioEscritorio modelo = new UsuarioEscritorio();
-         FrmCambiarContrasena vista = new FrmCambiarContrasena();
-        new CtrlCambiarContrasena(modelo, vista);
-    
 
-        
+    public static void initFrmCambiarContrasena() {
+        UsuarioEscritorio modelo = new UsuarioEscritorio();
+        FrmCambiarContrasena vista = new FrmCambiarContrasena();
+        new CtrlCambiarContrasena(modelo, vista);
+
         vista.setVisible(true);
     }
-    
-    
-    
-    
-    
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -105,30 +96,30 @@ public class FrmCambiarContrasena extends javax.swing.JFrame {
 
     private void txtNuevaContrasenaFocusGained() {//GEN-FIRST:event_txtNuevaContrasenaFocusGained
         if (txtNuevaContrasena.getText().equals(CONTRA_NUEVA)) {
-         txtNuevaContrasena.setText("");
-         txtNuevaContrasena.setForeground(new Color(153,153,153));
-     }
+            txtNuevaContrasena.setText("");
+            txtNuevaContrasena.setForeground(new Color(153, 153, 153));
+        }
     }//GEN-LAST:event_txtNuevaContrasenaFocusGained
 
     private void txtConfirmarContrasenaFocusLost() {//GEN-FIRST:event_txtConfirmarContrasenaFocusLost
         if (txtConfirmarContrasena.getText().equals("")) {
-         txtConfirmarContrasena.setText(REPETIR_CONTRA);
-         txtConfirmarContrasena.setForeground(new Color(153,153,153));
-           }
+            txtConfirmarContrasena.setText(REPETIR_CONTRA);
+            txtConfirmarContrasena.setForeground(new Color(153, 153, 153));
+        }
     }//GEN-LAST:event_txtConfirmarContrasenaFocusLost
 
     private void txtConfirmarContrasenaFocusGained() {//GEN-FIRST:event_txtConfirmarContrasenaFocusGained
-          if (txtConfirmarContrasena.getText().equals(REPETIR_CONTRA)) {
-         txtConfirmarContrasena.setText("");
-         txtConfirmarContrasena.setForeground(new Color(153,153,153));
-           }
+        if (txtConfirmarContrasena.getText().equals(REPETIR_CONTRA)) {
+            txtConfirmarContrasena.setText("");
+            txtConfirmarContrasena.setForeground(new Color(153, 153, 153));
+        }
     }//GEN-LAST:event_txtConfirmarContrasenaFocusGained
 
     private void txtNuevaContrasenaFocusLost() {//GEN-FIRST:event_txtNuevaContrasenaFocusLost
-         if (txtNuevaContrasena.getText().equals("")) {
-         txtNuevaContrasena.setText(CONTRA_NUEVA);
-         txtNuevaContrasena.setForeground(new Color(153,153,153));
-           }
+        if (txtNuevaContrasena.getText().equals("")) {
+            txtNuevaContrasena.setText(CONTRA_NUEVA);
+            txtNuevaContrasena.setForeground(new Color(153, 153, 153));
+        }
     }//GEN-LAST:event_txtNuevaContrasenaFocusLost
 
     private void btnCambiarContrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambiarContrasenaActionPerformed
@@ -153,7 +144,7 @@ public class FrmCambiarContrasena extends javax.swing.JFrame {
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(FrmCambiarContrasena.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }   
+        }
         //</editor-fold>
         //</editor-fold>
 
