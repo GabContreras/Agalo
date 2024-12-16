@@ -296,7 +296,7 @@ public class AdministrarUsuario {
                 deleteEstudiante = conexion.prepareStatement(sql);
                 deleteEstudiante.setString(1, miId);
                 deleteEstudiante.executeUpdate();
-            } catch (Exception e) {
+            } catch (SQLException e) {
                 logger.log(Level.SEVERE, "Este es el error en el método de eliminar: ", e);
             } finally {
                 // Cerrar el PreparedStatement
@@ -351,7 +351,7 @@ public class AdministrarUsuario {
 
             // Asignamos el nuevo modelo lleno a la tabla
             jtbAdmin.setModel(modelo);
-        } catch (Exception e) {
+        } catch (SQLException e) {
             logger.log(Level.SEVERE, "Error en buscar Usuario: ", e);
         } finally {
             // Cerrar el ResultSet
@@ -387,13 +387,13 @@ public class AdministrarUsuario {
 
         if (filaSeleccionada != -1) {
             // Obtener los valores de las columnas correspondientes
-            String nombre = vista.jtbAdmin.getValueAt(filaSeleccionada, 1).toString(); // Columna Nombre
-            String usuario = vista.jtbAdmin.getValueAt(filaSeleccionada, 2).toString(); // Columna Usuario
+            String name = vista.jtbAdmin.getValueAt(filaSeleccionada, 1).toString(); // Columna Nombre
+            String user = vista.jtbAdmin.getValueAt(filaSeleccionada, 2).toString(); // Columna Usuario
             String correo = vista.jtbAdmin.getValueAt(filaSeleccionada, 3).toString(); // Columna CorreoElectronico
 
             // Asignar los valores a los campos de texto en la vista
-            vista.txtNombreAdmin.setText(nombre);
-            vista.txtUsuarioAdmin.setText(usuario);
+            vista.txtNombreAdmin.setText(name);
+            vista.txtUsuarioAdmin.setText(user);
             vista.txtCorreoAdmin.setText(correo);
         } else {
             logger.log(Level.SEVERE, ERROR_FILAS);

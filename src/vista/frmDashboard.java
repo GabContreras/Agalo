@@ -202,11 +202,11 @@ public class FrmDashboard extends javax.swing.JPanel {
         txtBuscarEmpresa.addFocusListener(new java.awt.event.FocusAdapter() {
             @Override
             public void focusGained(java.awt.event.FocusEvent evt) {
-                txtBuscarEmpresaFocusGained(evt);
+                txtBuscarEmpresaFocusGained();
             }
             @Override
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtBuscarEmpresaFocusLost(evt);
+                txtBuscarEmpresaFocusLost();
             }
         });
         txtBuscarEmpresa.addActionListener(this::txtBuscarEmpresaActionPerformed);
@@ -391,13 +391,13 @@ public class FrmDashboard extends javax.swing.JPanel {
         //Add your handling code here:
     }//GEN-LAST:event_txtBuscarEmpresaActionPerformed
 
-    private void txtBuscarEmpresaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBuscarEmpresaFocusGained
+    private void txtBuscarEmpresaFocusGained() {//GEN-FIRST:event_txtBuscarEmpresaFocusGained
         if (txtBuscarEmpresa.getText().equals(BUSQUEDA)) {
             txtBuscarEmpresa.setText("");
         }
     }//GEN-LAST:event_txtBuscarEmpresaFocusGained
 
-    private void txtBuscarEmpresaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBuscarEmpresaFocusLost
+    private void txtBuscarEmpresaFocusLost() {//GEN-FIRST:event_txtBuscarEmpresaFocusLost
         if (txtBuscarEmpresa.getText().equals("")) {
             txtBuscarEmpresa.setText(BUSQUEDA);
         }

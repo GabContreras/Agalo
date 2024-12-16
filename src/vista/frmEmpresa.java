@@ -82,11 +82,11 @@ public class FrmEmpresa extends javax.swing.JPanel {
         txtBuscarEmpleador.addFocusListener(new java.awt.event.FocusAdapter() {
             @Override
             public void focusGained(java.awt.event.FocusEvent evt) {
-                txtBuscarEmpleadorFocusGained(evt);
+                txtBuscarEmpleadorFocusGained();
             }
             @Override
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtBuscarEmpleadorFocusLost(evt);
+                txtBuscarEmpleadorFocusLost();
             }
         });
 
@@ -155,12 +155,12 @@ public class FrmEmpresa extends javax.swing.JPanel {
     }//GEN-LAST:event_btnRestringirEmpleadorActionPerformed
     private static final String BUSQUEDA = "Buscar";
 
-    private void txtBuscarEmpleadorFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBuscarEmpleadorFocusGained
+    private void txtBuscarEmpleadorFocusGained() {//GEN-FIRST:event_txtBuscarEmpleadorFocusGained
         if (txtBuscarEmpleador.getText().equals(BUSQUEDA)) {
             txtBuscarEmpleador.setText("");
         }    }//GEN-LAST:event_txtBuscarEmpleadorFocusGained
 
-    private void txtBuscarEmpleadorFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBuscarEmpleadorFocusLost
+    private void txtBuscarEmpleadorFocusLost() {//GEN-FIRST:event_txtBuscarEmpleadorFocusLost
         if (txtBuscarEmpleador.getText().equals("")) {
             txtBuscarEmpleador.setText(BUSQUEDA);
         }    }//GEN-LAST:event_txtBuscarEmpleadorFocusLost

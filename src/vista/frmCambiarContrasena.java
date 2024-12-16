@@ -68,11 +68,11 @@ public class FrmCambiarContrasena extends javax.swing.JFrame {
         txtConfirmarContrasena.addFocusListener(new java.awt.event.FocusAdapter() {
             @Override
             public void focusGained(java.awt.event.FocusEvent evt) {
-                txtConfirmarContrasenaFocusGained(evt);
+                txtConfirmarContrasenaFocusGained();
             }
             @Override
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtConfirmarContrasenaFocusLost(evt);
+                txtConfirmarContrasenaFocusLost();
             }
         });
         getContentPane().add(txtConfirmarContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 350, 510, 40));
@@ -82,11 +82,11 @@ public class FrmCambiarContrasena extends javax.swing.JFrame {
         txtNuevaContrasena.addFocusListener(new java.awt.event.FocusAdapter() {
             @Override
             public void focusGained(java.awt.event.FocusEvent evt) {
-                txtNuevaContrasenaFocusGained(evt);
+                txtNuevaContrasenaFocusGained();
             }
             @Override
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtNuevaContrasenaFocusLost(evt);
+                txtNuevaContrasenaFocusLost();
             }
         });
         getContentPane().add(txtNuevaContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 280, 510, 50));
@@ -103,28 +103,28 @@ public class FrmCambiarContrasena extends javax.swing.JFrame {
     private static final String CONTRA_NUEVA = "Escriba Su Nueva Contraseña";
     private static final String REPETIR_CONTRA = "Repetir Contraseña";
 
-    private void txtNuevaContrasenaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNuevaContrasenaFocusGained
+    private void txtNuevaContrasenaFocusGained() {//GEN-FIRST:event_txtNuevaContrasenaFocusGained
         if (txtNuevaContrasena.getText().equals(CONTRA_NUEVA)) {
          txtNuevaContrasena.setText("");
          txtNuevaContrasena.setForeground(new Color(153,153,153));
      }
     }//GEN-LAST:event_txtNuevaContrasenaFocusGained
 
-    private void txtConfirmarContrasenaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtConfirmarContrasenaFocusLost
+    private void txtConfirmarContrasenaFocusLost() {//GEN-FIRST:event_txtConfirmarContrasenaFocusLost
         if (txtConfirmarContrasena.getText().equals("")) {
          txtConfirmarContrasena.setText(REPETIR_CONTRA);
          txtConfirmarContrasena.setForeground(new Color(153,153,153));
            }
     }//GEN-LAST:event_txtConfirmarContrasenaFocusLost
 
-    private void txtConfirmarContrasenaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtConfirmarContrasenaFocusGained
+    private void txtConfirmarContrasenaFocusGained() {//GEN-FIRST:event_txtConfirmarContrasenaFocusGained
           if (txtConfirmarContrasena.getText().equals(REPETIR_CONTRA)) {
          txtConfirmarContrasena.setText("");
          txtConfirmarContrasena.setForeground(new Color(153,153,153));
            }
     }//GEN-LAST:event_txtConfirmarContrasenaFocusGained
 
-    private void txtNuevaContrasenaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNuevaContrasenaFocusLost
+    private void txtNuevaContrasenaFocusLost() {//GEN-FIRST:event_txtNuevaContrasenaFocusLost
          if (txtNuevaContrasena.getText().equals("")) {
          txtNuevaContrasena.setText(CONTRA_NUEVA);
          txtNuevaContrasena.setForeground(new Color(153,153,153));

@@ -64,12 +64,12 @@ public class AdministrarEmpleadores {
             int filaSeleccionada = tabla.getSelectedRow();
             if (filaSeleccionada != -1) {
                 // Obtenemos el id de la fila seleccionada
-                String ID_EMPLEADOR = tabla.getValueAt(filaSeleccionada, 0).toString(); // El IdEmpleador está en la primera columna
+                String ID = tabla.getValueAt(filaSeleccionada, 0).toString(); // El IdEmpleador está en la primera columna
 
                 // Preparamos la consulta
                 String sql = "UPDATE Empleador SET Estado = 'Restringido' WHERE IdEmpleador = ?";
                 updateEmpleador = conexion.prepareStatement(sql);
-                updateEmpleador.setString(1, ID_EMPLEADOR);
+                updateEmpleador.setString(1, ID);
                 updateEmpleador.executeUpdate();
             } else {
                 logger.log(Level.WARNING, "No se ha seleccionado ningún Empleador.");

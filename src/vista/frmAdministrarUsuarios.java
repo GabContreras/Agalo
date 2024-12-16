@@ -82,11 +82,11 @@ public class FrmAdministrarUsuarios extends javax.swing.JPanel {
         txtCorreoAdmin.addFocusListener(new java.awt.event.FocusAdapter() {
             @Override
             public void focusGained(java.awt.event.FocusEvent evt) {
-                txtCorreoAdminFocusGained(evt);
+                txtCorreoAdminFocusGained();
             }
             @Override
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtCorreoAdminFocusLost(evt);
+                txtCorreoAdminFocusLost();
             }
         });
         add(txtCorreoAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 650, 50));
@@ -96,11 +96,11 @@ public class FrmAdministrarUsuarios extends javax.swing.JPanel {
         txtContrasenaAdmin.addFocusListener(new java.awt.event.FocusAdapter() {
             @Override
             public void focusGained(java.awt.event.FocusEvent evt) {
-                txtContrasenaAdminFocusGained(evt);
+                txtContrasenaAdminFocusGained();
             }
             @Override
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtContrasenaAdminFocusLost(evt);
+                txtContrasenaAdminFocusLost();
             }
         });
         txtContrasenaAdmin.addActionListener(this::txtContrasenaAdminActionPerformed);
@@ -111,11 +111,11 @@ public class FrmAdministrarUsuarios extends javax.swing.JPanel {
         txtUsuarioAdmin.addFocusListener(new java.awt.event.FocusAdapter() {
             @Override
             public void focusGained(java.awt.event.FocusEvent evt) {
-                txtUsuarioAdminFocusGained(evt);
+                txtUsuarioAdminFocusGained();
             }
             @Override
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtUsuarioAdminFocusLost(evt);
+                txtUsuarioAdminFocusLost();
             }
         });
         add(txtUsuarioAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 360, 50));
@@ -125,11 +125,11 @@ public class FrmAdministrarUsuarios extends javax.swing.JPanel {
         txtNombreAdmin.addFocusListener(new java.awt.event.FocusAdapter() {
             @Override
             public void focusGained(java.awt.event.FocusEvent evt) {
-                txtNombreAdminFocusGained(evt);
+                txtNombreAdminFocusGained();
             }
             @Override
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtNombreAdminFocusLost(evt);
+                txtNombreAdminFocusLost();
             }
         });
         txtNombreAdmin.addActionListener(this::txtNombreAdminActionPerformed);
@@ -170,11 +170,11 @@ public class FrmAdministrarUsuarios extends javax.swing.JPanel {
         txtBuscarUsuarios.addFocusListener(new java.awt.event.FocusAdapter() {
             @Override
             public void focusGained(java.awt.event.FocusEvent evt) {
-                txtBuscarUsuariosFocusGained(evt);
+                txtBuscarUsuariosFocusGained();
             }
             @Override
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtBuscarUsuariosFocusLost(evt);
+                txtBuscarUsuariosFocusLost();
             }
         });
         jPanel1.add(txtBuscarUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 520, 50));
@@ -194,11 +194,11 @@ public class FrmAdministrarUsuarios extends javax.swing.JPanel {
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 20, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtContrasenaAdminActionPerformed(java.awt.event.ActionEvent _evt) {//GEN-FIRST:event_txtContrasenaAdminActionPerformed
+    private void txtContrasenaAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContrasenaAdminActionPerformed
 
     }//GEN-LAST:event_txtContrasenaAdminActionPerformed
 
-    private void txtNombreAdminActionPerformed(java.awt.event.ActionEvent _evt) {//GEN-FIRST:event_txtNombreAdminActionPerformed
+    private void txtNombreAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreAdminActionPerformed
 
     }//GEN-LAST:event_txtNombreAdminActionPerformed
 
@@ -209,70 +209,70 @@ public class FrmAdministrarUsuarios extends javax.swing.JPanel {
     private static final String CONTRA_ADMIN = "Contraseña Administrador";
     private static final String BUSQUEDA = "Buscar";
 
-    private void txtUsuarioAdminFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsuarioAdminFocusGained
+    private void txtUsuarioAdminFocusGained() {//GEN-FIRST:event_txtUsuarioAdminFocusGained
         if (txtUsuarioAdmin.getText().equals(USUARIO_ADMIN)) {
             txtUsuarioAdmin.setText("");
             txtUsuarioAdmin.setForeground(new Color(153, 153, 153));
         }
     }//GEN-LAST:event_txtUsuarioAdminFocusGained
 
-    private void txtUsuarioAdminFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsuarioAdminFocusLost
+    private void txtUsuarioAdminFocusLost() {//GEN-FIRST:event_txtUsuarioAdminFocusLost
         if (txtUsuarioAdmin.getText().equals("")) {
             txtUsuarioAdmin.setText(USUARIO_ADMIN);
             txtUsuarioAdmin.setForeground(new Color(153, 153, 153));
         }
     }//GEN-LAST:event_txtUsuarioAdminFocusLost
 
-    private void txtNombreAdminFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreAdminFocusGained
+    private void txtNombreAdminFocusGained() {//GEN-FIRST:event_txtNombreAdminFocusGained
         if (txtNombreAdmin.getText().equals(NOMBRE_ADMIN)) {
             txtNombreAdmin.setText("");
             txtNombreAdmin.setForeground(new Color(153, 153, 153));
         }
     }//GEN-LAST:event_txtNombreAdminFocusGained
 
-    private void txtNombreAdminFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreAdminFocusLost
+    private void txtNombreAdminFocusLost() {//GEN-FIRST:event_txtNombreAdminFocusLost
         if (txtNombreAdmin.getText().equals("")) {
             txtNombreAdmin.setText(NOMBRE_ADMIN);
             txtNombreAdmin.setForeground(new Color(153, 153, 153));
         }
     }//GEN-LAST:event_txtNombreAdminFocusLost
 
-    private void txtCorreoAdminFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCorreoAdminFocusGained
+    private void txtCorreoAdminFocusGained() {//GEN-FIRST:event_txtCorreoAdminFocusGained
         if (txtCorreoAdmin.getText().equals(CORREO_ADMIN)) {
             txtCorreoAdmin.setText("");
             txtCorreoAdmin.setForeground(new Color(153, 153, 153));
         }
     }//GEN-LAST:event_txtCorreoAdminFocusGained
 
-    private void txtCorreoAdminFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCorreoAdminFocusLost
+    private void txtCorreoAdminFocusLost() {//GEN-FIRST:event_txtCorreoAdminFocusLost
         if (txtCorreoAdmin.getText().equals("")) {
             txtCorreoAdmin.setText(CORREO_ADMIN);
             txtCorreoAdmin.setForeground(new Color(153, 153, 153));
         }
     }//GEN-LAST:event_txtCorreoAdminFocusLost
 
-    private void txtContrasenaAdminFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtContrasenaAdminFocusGained
+    private void txtContrasenaAdminFocusGained() {//GEN-FIRST:event_txtContrasenaAdminFocusGained
         if (Arrays.equals(txtContrasenaAdmin.getPassword(), CONTRA_ADMIN.toCharArray())) {
             txtContrasenaAdmin.setText("");
             txtContrasenaAdmin.setForeground(new Color(153, 153, 153));
         }
     }//GEN-LAST:event_txtContrasenaAdminFocusGained
 
-    private void txtContrasenaAdminFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtContrasenaAdminFocusLost
+    private void txtContrasenaAdminFocusLost() {//GEN-FIRST:event_txtContrasenaAdminFocusLost
         if (txtContrasenaAdmin.getPassword().length == 0) {
             txtContrasenaAdmin.setText(CONTRA_ADMIN);
             txtContrasenaAdmin.setForeground(new Color(153, 153, 153));
         }
     }//GEN-LAST:event_txtContrasenaAdminFocusLost
 
-    private void txtBuscarUsuariosFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBuscarUsuariosFocusGained
+    private void txtBuscarUsuariosFocusGained() {//GEN-FIRST:event_txtBuscarUsuariosFocusGained
         if (txtBuscarUsuarios.getText().equals(BUSQUEDA)) {
             txtBuscarUsuarios.setText("");
         }
 
     }//GEN-LAST:event_txtBuscarUsuariosFocusGained
 
-    private void txtBuscarUsuariosFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBuscarUsuariosFocusLost
+    private void txtBuscarUsuariosFocusLost() {//GEN-FIRST:event_txtBuscarUsuariosFocusLost
         if (txtBuscarUsuarios.getText().equals("")) {
             txtBuscarUsuarios.setText(BUSQUEDA);
         }
