@@ -73,8 +73,12 @@ public class AdministrarUsuario {
 
     // Guardar en la base de datos
     public void guardar() {
-        try (Connection conexion = ClaseConexion.getConexion()) {
-            PreparedStatement addAdmin = conexion.prepareStatement(
+        Connection conexion = null;
+        PreparedStatement addAdmin = null;
+
+        try {
+            conexion = ClaseConexion.getConexion();
+            addAdmin = conexion.prepareStatement(
                     "INSERT INTO UsuarioEscritorio (Nombre, Usuario, Contrasena, CorreoElectronico, IdRol) VALUES (?, ?, ?, ?, ?)"
             );
             addAdmin.setString(1, getNombre());
@@ -86,14 +90,30 @@ public class AdministrarUsuario {
             addAdmin.executeUpdate();
         } catch (SQLException ex) {
             logger.log(Level.SEVERE, "Error en el método Guardar: ", ex);
+        } finally {
+            // Cerrar el PreparedStatement
+            if (addAdmin != null) {
+                try {
+                    addAdmin.close();
+                } catch (SQLException e) {
+                    logger.log(Level.SEVERE, "Error al cerrar el PreparedStatement: ", e);
+                }
+            }
+            // Cerrar la conexión
+            if (conexion != null) {
+                try {
+                    conexion.close();
+                } catch (SQLException e) {
+                    logger.log(Level.SEVERE, "Error al cerrar la conexión: ", e);
+                }
+            }
         }
     }
 
     public void mostrar(JTable jtbAdmin) {
-        // Creamos una variable de la clase de conexión
-        Connection conexion = ClaseConexion.getConexion();
-
-        // Definimos el modelo de la tabla
+        Connection conexion = null;
+        Statement statement = null;
+        ResultSet rs = null;
         DefaultTableModel modeloDeDatos = new DefaultTableModel();
 
         modeloDeDatos.setColumnIdentifiers(new Object[]{
@@ -101,12 +121,11 @@ public class AdministrarUsuario {
         });
 
         try {
-            // Creamos un Statement
-            Statement statement = conexion.createStatement();
+            conexion = ClaseConexion.getConexion();
+            statement = conexion.createStatement();
 
-            // Ejecutamos el Statement con la consulta y lo asignamos a una variable de tipo ResultSet
-            ResultSet rs = statement.executeQuery(
-                    "select IdAdmin, Nombre, Usuario, CorreoElectronico from usuarioescritorio where idrol = 1"
+            rs = statement.executeQuery(
+                    "SELECT IdAdmin, Nombre, Usuario, CorreoElectronico FROM UsuarioEscritorio WHERE IdRol = 1"
             );
 
             // Recorremos el ResultSet
@@ -124,13 +143,38 @@ public class AdministrarUsuario {
             jtbAdmin.setModel(modeloDeDatos);
         } catch (SQLException e) {
             logger.log(Level.SEVERE, "Error en el método Mostrar: ", e);
+        } finally {
+            // Cerrar el ResultSet
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    logger.log(Level.SEVERE, "Error al cerrar el ResultSet: ", e);
+                }
+            }
+            // Cerrar el Statement
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    logger.log(Level.SEVERE, "Error al cerrar el Statement: ", e);
+                }
+            }
+            // Cerrar la conexión
+            if (conexion != null) {
+                try {
+                    conexion.close();
+                } catch (SQLException e) {
+                    logger.log(Level.SEVERE, "Error al cerrar la conexión: ", e);
+                }
+            }
         }
     }
 
-    // Actualizar usuario en la base de datos
+// Actualizar usuario en la base de datos
     public void actualizar(JTable jtbAdmin) {
-        // Código de actualización similar al de guardar
-        Connection conexion = ClaseConexion.getConexion();
+        Connection conexion = null;
+        PreparedStatement updateUser = null;
 
         // Obtener la fila seleccionada
         int filaSeleccionada = jtbAdmin.getSelectedRow();
@@ -140,9 +184,10 @@ public class AdministrarUsuario {
             String miUUId = jtbAdmin.getValueAt(filaSeleccionada, 0).toString();
 
             try {
+                conexion = ClaseConexion.getConexion();
                 // Sentencia SQL para actualizar
                 String sql = "UPDATE UsuarioEscritorio SET Nombre = ?, Usuario = ?, Contrasena = ?, CorreoElectronico = ? WHERE IdAdmin = ?";
-                PreparedStatement updateUser = conexion.prepareStatement(sql);
+                updateUser = conexion.prepareStatement(sql);
 
                 // Asignar los nuevos valores al PreparedStatement
                 updateUser.setString(1, getNombre());
@@ -157,17 +202,33 @@ public class AdministrarUsuario {
                 logger.log(Level.INFO, "Usuario actualizado correctamente.");
             } catch (SQLException e) {
                 logger.log(Level.SEVERE, "Error al actualizar el usuario: ", e);
-
+            } finally {
+                // Cerrar el PreparedStatement
+                if (updateUser != null) {
+                    try {
+                        updateUser.close();
+                    } catch (SQLException e) {
+                        logger.log(Level.SEVERE, "Error al cerrar el PreparedStatement: ", e);
+                    }
+                }
+                // Cerrar la conexión
+                if (conexion != null) {
+                    try {
+                        conexion.close();
+                    } catch (SQLException e) {
+                        logger.log(Level.SEVERE, "Error al cerrar la conexión: ", e);
+                    }
+                }
             }
         } else {
             logger.log(Level.SEVERE, ERROR_FILAS);
         }
     }
 
-    // Actualizar usuario en la base de datos
+// Actualizar usuario en la base de datos sin cambiar la contraseña
     public void actualizarSinContrasena(JTable jtbAdmin) {
-        // Código de actualización similar al de guardar
-        Connection conexion = ClaseConexion.getConexion();
+        Connection conexion = null;
+        PreparedStatement updateUser = null;
 
         // Obtener la fila seleccionada
         int filaSeleccionada = jtbAdmin.getSelectedRow();
@@ -177,9 +238,10 @@ public class AdministrarUsuario {
             String miUUId = jtbAdmin.getValueAt(filaSeleccionada, 0).toString();
 
             try {
+                conexion = ClaseConexion.getConexion();
                 // Sentencia SQL para actualizar
                 String sql = "UPDATE UsuarioEscritorio SET Nombre = ?, Usuario = ?, CorreoElectronico = ? WHERE IdAdmin = ?";
-                PreparedStatement updateUser = conexion.prepareStatement(sql);
+                updateUser = conexion.prepareStatement(sql);
 
                 // Asignar los nuevos valores al PreparedStatement
                 updateUser.setString(1, getNombre());
@@ -193,53 +255,88 @@ public class AdministrarUsuario {
                 logger.log(Level.INFO, "Usuario actualizado correctamente.");
             } catch (SQLException e) {
                 logger.log(Level.SEVERE, "Error al actualizar el usuario: ", e);
-
+            } finally {
+                // Cerrar el PreparedStatement
+                if (updateUser != null) {
+                    try {
+                        updateUser.close();
+                    } catch (SQLException e) {
+                        logger.log(Level.SEVERE, "Error al cerrar el PreparedStatement: ", e);
+                    }
+                }
+                // Cerrar la conexión
+                if (conexion != null) {
+                    try {
+                        conexion.close();
+                    } catch (SQLException e) {
+                        logger.log(Level.SEVERE, "Error al cerrar la conexión: ", e);
+                    }
+                }
             }
         } else {
             logger.log(Level.SEVERE, ERROR_FILAS);
         }
     }
 
-    // Eliminar usuario
+// Eliminar usuario
     public void eliminar(JTable jtbAdmin) {
-        Connection conexion = ClaseConexion.getConexion();
+        Connection conexion = null;
+        PreparedStatement deleteEstudiante = null;
 
-        //obtenemos que fila seleccionó el usuario
+        // Obtenemos qué fila seleccionó el usuario
         int filaSeleccionada = jtbAdmin.getSelectedRow();
-        //Obtenemos el id de la fila seleccionada
 
-        //borramos 
         if (filaSeleccionada != -1) {
-            // Obtenemos el IdEmpleador de la fila seleccionada
+            // Obtenemos el IdAdmin de la fila seleccionada
             String miId = jtbAdmin.getValueAt(filaSeleccionada, 0).toString();
 
             try {
-                String sql = "delete from UsuarioEscritorio where IDadmin = ?";
-                PreparedStatement deleteEstudiante = conexion.prepareStatement(sql);
+                conexion = ClaseConexion.getConexion();
+                String sql = "DELETE FROM UsuarioEscritorio WHERE IdAdmin = ?";
+                deleteEstudiante = conexion.prepareStatement(sql);
                 deleteEstudiante.setString(1, miId);
                 deleteEstudiante.executeUpdate();
             } catch (Exception e) {
-                logger.log(Level.SEVERE, "este es el error metodo de eliminar", e);
+                logger.log(Level.SEVERE, "Este es el error en el método de eliminar: ", e);
+            } finally {
+                // Cerrar el PreparedStatement
+                if (deleteEstudiante != null) {
+                    try {
+                        deleteEstudiante.close();
+                    } catch (SQLException e) {
+                        logger.log(Level.SEVERE, "Error al cerrar el PreparedStatement: ", e);
+                    }
+                }
+                // Cerrar la conexión
+                if (conexion != null) {
+                    try {
+                        conexion.close();
+                    } catch (SQLException e) {
+                        logger.log(Level.SEVERE, "Error al cerrar la conexión: ", e);
+                    }
+                }
             }
         } else {
             logger.log(Level.SEVERE, ERROR_FILAS);
         }
-
     }
 
     public void buscarUsuario(JTable jtbAdmin, JTextField txtBuscarUsuario) {
-        Connection conexion = ClaseConexion.getConexion();
+        Connection conexion = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
         DefaultTableModel modelo = (DefaultTableModel) jtbAdmin.getModel(); // Reutiliza el modelo existente
 
         // Limpia el modelo antes de llenarlo con los nuevos resultados
         modelo.setRowCount(0); // Limpia las filas existentes
 
         try {
-            PreparedStatement ps = conexion.prepareStatement(
-                    "select IdAdmin, Nombre, Usuario, CorreoElectronico from usuarioescritorio where idrol = 1 AND Nombre LIKE ? "
+            conexion = ClaseConexion.getConexion();
+            ps = conexion.prepareStatement(
+                    "SELECT IdAdmin, Nombre, Usuario, CorreoElectronico FROM UsuarioEscritorio WHERE IdRol = 1 AND Nombre LIKE ?"
             );
             ps.setString(1, txtBuscarUsuario.getText() + "%"); // Agregar el '%' aquí
-            ResultSet rs = ps.executeQuery();
+            rs = ps.executeQuery();
 
             // Recorremos el ResultSet
             while (rs.next()) {
@@ -256,10 +353,35 @@ public class AdministrarUsuario {
             jtbAdmin.setModel(modelo);
         } catch (Exception e) {
             logger.log(Level.SEVERE, "Error en buscar Usuario: ", e);
+        } finally {
+            // Cerrar el ResultSet
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    logger.log(Level.SEVERE, "Error al cerrar el ResultSet: ", e);
+                }
+            }
+            // Cerrar el PreparedStatement
+            if (ps != null) {
+                try {
+                    ps.close();
+                } catch (SQLException e) {
+                    logger.log(Level.SEVERE, "Error al cerrar el PreparedStatement: ", e);
+                }
+            }
+            // Cerrar la conexión
+            if (conexion != null) {
+                try {
+                    conexion.close();
+                } catch (SQLException e) {
+                    logger.log(Level.SEVERE, "Error al cerrar la conexión: ", e);
+                }
+            }
         }
     }
 
-    // Cargar los datos del usuario seleccionado desde la tabla
+// Cargar los datos del usuario seleccionado desde la tabla
     public void cargarDatosTabla(FrmAdministrarUsuarios vista) {
         int filaSeleccionada = vista.jtbAdmin.getSelectedRow();
 
@@ -276,6 +398,5 @@ public class AdministrarUsuario {
         } else {
             logger.log(Level.SEVERE, ERROR_FILAS);
         }
-
     }
 }

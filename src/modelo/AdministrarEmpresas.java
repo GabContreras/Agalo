@@ -11,6 +11,7 @@ import java.sql.Statement;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import java.sql.SQLException;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -52,9 +53,9 @@ public class AdministrarEmpresas {
     }
 
     public void mostrarEmpresas(JTable jtSolicitudEmpresa) {
-        // Creamos una variable de la clase de conexión
-        Connection conexion = ClaseConexion.getConexion();
-        // Definimos el modelo de la tabla
+        Connection conexion = null;
+        Statement statement = null;
+        ResultSet rs = null;
         DefaultTableModel modeloDeDatos = new DefaultTableModel();
 
         modeloDeDatos.setColumnIdentifiers(new Object[]{
@@ -62,107 +63,212 @@ public class AdministrarEmpresas {
         });
 
         try {
+            // Creamos una variable de la clase de conexión
+            conexion = ClaseConexion.getConexion();
+
             // Creamos un Statement
-            Statement statement = conexion.createStatement();
+            statement = conexion.createStatement();
+
             // Ejecutamos el Statement con la consulta y lo asignamos a una variable de tipo ResultSet
-            ResultSet rs = statement.executeQuery(
-                    "SELECT e.IdEmpleador as Id,e.NombreEmpresa as Empresa, e.NombreRepresentante as Representante, e.CorreoElectronico as Correo,e.NumeroTelefono as Teléfono, e.Direccion as Dirección, d.Nombre AS Departamento FROM Empleador e INNER JOIN DEPARTAMENTO d ON e.IdDepartamento = d.IdDepartamento WHERE e.Estado = 'Pendiente'"
+            rs = statement.executeQuery(
+                    "SELECT e.IdEmpleador as Id, e.NombreEmpresa as Empresa, e.NombreRepresentante as Representante, "
+                    + "e.CorreoElectronico as Correo, e.NumeroTelefono as Teléfono, e.Direccion as Dirección, "
+                    + "d.Nombre AS Departamento "
+                    + "FROM Empleador e "
+                    + "INNER JOIN DEPARTAMENTO d ON e.IdDepartamento = d.IdDepartamento "
+                    + "WHERE e.Estado = 'Pendiente'"
             );
 
             // Recorremos el ResultSet
             while (rs.next()) {
                 // Llenamos el modelo por cada vez que recorremos el ResultSet
                 modeloDeDatos.addRow(new Object[]{
-                    rs.getString(ID_EMPLEADOR),
-                    rs.getString(NOMBRE_EMPRESA),
-                    rs.getString(NOMBRE_REPRESENTANTE),
-                    rs.getString(CORREO_REPRESENTANTE),
-                    rs.getString(TELEFONO_REPRESENTANTE),
-                    rs.getString(DIRECCION_REPRESENTANTE),
-                    rs.getString(DEPARTAMENTO_REPRESENTANTE)
+                    rs.getString("Id"),
+                    rs.getString("Empresa"),
+                    rs.getString("Representante"),
+                    rs.getString("Correo"),
+                    rs.getString("Teléfono"),
+                    rs.getString("Dirección"),
+                    rs.getString("Departamento")
                 });
             }
+
             // Asignamos el nuevo modelo lleno a la tabla
             jtSolicitudEmpresa.setModel(modeloDeDatos);
         } catch (Exception e) {
             logger.log(Level.SEVERE, "Este es el error en el modelo, método mostrar ", e);
+        } finally {
+            // Cerrar el ResultSet
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    logger.log(Level.SEVERE, "Error al cerrar el ResultSet: ", e);
+                }
+            }
+            // Cerrar el Statement
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    logger.log(Level.SEVERE, "Error al cerrar el Statement: ", e);
+                }
+            }
+            // Cerrar la conexión
+            if (conexion != null) {
+                try {
+                    conexion.close();
+                } catch (SQLException e) {
+                    logger.log(Level.SEVERE, "Error al cerrar la conexión: ", e);
+                }
+            }
         }
     }
 
-    // Eliminar empresa
+// Eliminar empresa
     public void rechazarEmpresa(JTable tabla) {
-        Connection conexion = ClaseConexion.getConexion();
-        int filaSeleccionada = tabla.getSelectedRow();
+        Connection conexion = null;
+        PreparedStatement ps = null;
 
-        if (filaSeleccionada != -1) {
-            // Obtenemos el IdEmpleador de la fila seleccionada
-            String idEmpleador = tabla.getValueAt(filaSeleccionada, 0).toString(); // Asumiendo que el IdEmpleador está en la primera columna
+        try {
+            conexion = ClaseConexion.getConexion();
+            int filaSeleccionada = tabla.getSelectedRow();
 
-            try {
-                PreparedStatement ps = conexion.prepareStatement("DELETE FROM empleador WHERE IdEmpleador = ?");
+            if (filaSeleccionada != -1) {
+                // Obtenemos el IdEmpleador de la fila seleccionada
+                String idEmpleador = tabla.getValueAt(filaSeleccionada, 0).toString(); // Asumiendo que el IdEmpleador está en la primera columna
+
+                ps = conexion.prepareStatement("DELETE FROM empleador WHERE IdEmpleador = ?");
                 ps.setString(1, idEmpleador);
                 ps.executeUpdate();
-            } catch (Exception e) {
-                logger.log(Level.SEVERE, "Error al rechazar a la empresa: ", e);
-
+            } else {
+                logger.log(Level.WARNING, "No se ha seleccionado ninguna empresa.");
             }
-        } else {
-            logger.log(Level.WARNING, "No se ha seleccionado ninguna empresa.");
+        } catch (Exception e) {
+            logger.log(Level.SEVERE, "Error al rechazar a la empresa: ", e);
+        } finally {
+            // Cerrar el PreparedStatement
+            if (ps != null) {
+                try {
+                    ps.close();
+                } catch (SQLException e) {
+                    logger.log(Level.SEVERE, "Error al cerrar el PreparedStatement: ", e);
+                }
+            }
+            // Cerrar la conexión
+            if (conexion != null) {
+                try {
+                    conexion.close();
+                } catch (SQLException e) {
+                    logger.log(Level.SEVERE, "Error al cerrar la conexión: ", e);
+                }
+            }
         }
     }
 
     public void actualizarEstadoActivo(JTable tabla) {
-        // Creamos una variable igual a ejecutar el método de la clase de conexión
-        Connection conexion = ClaseConexion.getConexion();
+        Connection conexion = null;
+        PreparedStatement updateEmpresa = null;
 
-        // Obtenemos qué fila seleccionó el usuario
-        int filaSeleccionada = tabla.getSelectedRow();
-        if (filaSeleccionada != -1) {
-            // Obtenemos el id de la fila seleccionada
-            String idEmpleador = tabla.getValueAt(filaSeleccionada, 0).toString(); //El IdEmpleador está en la primera columna
-            try {
-                // Ejecutamos la Query
-                PreparedStatement updateEmpresa = conexion.prepareStatement("UPDATE empleador SET Estado = 'Activo' WHERE IdEmpleador = ?");
+        try {
+            // Creamos una variable igual a ejecutar el método de la clase de conexión
+            conexion = ClaseConexion.getConexion();
+
+            // Obtenemos qué fila seleccionó el usuario
+            int filaSeleccionada = tabla.getSelectedRow();
+            if (filaSeleccionada != -1) {
+                // Obtenemos el id de la fila seleccionada
+                String idEmpleador = tabla.getValueAt(filaSeleccionada, 0).toString(); // El IdEmpleador está en la primera columna
+                updateEmpresa = conexion.prepareStatement("UPDATE empleador SET Estado = 'Activo' WHERE IdEmpleador = ?");
                 updateEmpresa.setString(1, idEmpleador);
                 updateEmpresa.executeUpdate();
-            } catch (Exception e) {
-                logger.log(Level.SEVERE, "Este es el error en el método de actualizar: ", e);
+            } else {
+                logger.log(Level.WARNING, "No se ha seleccionado ninguna empresa.");
             }
-        } else {
-            logger.log(Level.WARNING, "No se ha seleccionado ninguna empresa.");
-
+        } catch (Exception e) {
+            logger.log(Level.SEVERE, "Este es el error en el método de actualizar: ", e);
+        } finally {
+            // Cerrar el PreparedStatement
+            if (updateEmpresa != null) {
+                try {
+                    updateEmpresa.close();
+                } catch (SQLException e) {
+                    logger.log(Level.SEVERE, "Error al cerrar el PreparedStatement: ", e);
+                }
+            }
+            // Cerrar la conexión
+            if (conexion != null) {
+                try {
+                    conexion.close();
+                } catch (SQLException e) {
+                    logger.log(Level.SEVERE, "Error al cerrar la conexión: ", e);
+                }
+            }
         }
     }
 
     public void buscarEmpresa(JTable jtSolicitudEmpresa, JTextField txtBuscarEmpresa) {
-        Connection conexion = ClaseConexion.getConexion();
+        Connection conexion = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
         DefaultTableModel modelo = (DefaultTableModel) jtSolicitudEmpresa.getModel(); // Reutiliza el modelo existente
 
         // Limpia el modelo antes de llenarlo con los nuevos resultados
         modelo.setRowCount(0); // Limpia las filas existentes
 
         try {
-            PreparedStatement ps = conexion.prepareStatement(
-                    "SELECT e.IdEmpleador as Id, e.NombreEmpresa as Empresa, e.NombreRepresentante as Representante, e.CorreoElectronico as Correo, e.NumeroTelefono as Teléfono, e.Direccion as Dirección, d.Nombre as Departamento FROM Empleador e INNER JOIN DEPARTAMENTO d ON e.IdDepartamento = d.IdDepartamento WHERE e.NombreEmpresa LIKE ? AND e.Estado = 'Pendiente'"
+            conexion = ClaseConexion.getConexion();
+            ps = conexion.prepareStatement(
+                    "SELECT e.IdEmpleador as Id, e.NombreEmpresa as Empresa, e.NombreRepresentante as Representante, "
+                    + "e.CorreoElectronico as Correo, e.NumeroTelefono as Teléfono, e.Direccion as Dirección, "
+                    + "d.Nombre as Departamento "
+                    + "FROM Empleador e "
+                    + "INNER JOIN DEPARTAMENTO d ON e.IdDepartamento = d.IdDepartamento "
+                    + "WHERE e.NombreEmpresa LIKE ? AND e.Estado = 'Pendiente'"
             );
             ps.setString(1, txtBuscarEmpresa.getText() + "%"); // Agregar el '%' aquí
-            ResultSet rs = ps.executeQuery();
+            rs = ps.executeQuery();
 
             while (rs.next()) {
                 modelo.addRow(new Object[]{
-                    rs.getString(ID_EMPLEADOR),
-                    rs.getString(NOMBRE_EMPRESA),
-                    rs.getString(NOMBRE_REPRESENTANTE),
-                    rs.getString(CORREO_REPRESENTANTE),
-                    rs.getString(TELEFONO_REPRESENTANTE),
-                    rs.getString(DIRECCION_REPRESENTANTE),
-                    rs.getString(DEPARTAMENTO_REPRESENTANTE)
+                    rs.getString("Id"),
+                    rs.getString("Empresa"),
+                    rs.getString("Representante"),
+                    rs.getString("Correo"),
+                    rs.getString("Teléfono"),
+                    rs.getString("Dirección"),
+                    rs.getString("Departamento")
                 });
             }
             // Asigna el modelo actualizado a la tabla
             jtSolicitudEmpresa.setModel(modelo);
         } catch (Exception e) {
             logger.log(Level.SEVERE, "Error en buscar empresa: ", e);
+        } finally {
+            // Cerrar el ResultSet
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    logger.log(Level.SEVERE, "Error al cerrar el ResultSet: ", e);
+                }
+            }
+            // Cerrar el PreparedStatement
+            if (ps != null) {
+                try {
+                    ps.close();
+                } catch (SQLException e) {
+                    logger.log(Level.SEVERE, "Error al cerrar el PreparedStatement: ", e);
+                }
+            }
+            // Cerrar la conexión
+            if (conexion != null) {
+                try {
+                    conexion.close();
+                } catch (SQLException e) {
+                    logger.log(Level.SEVERE, "Error al cerrar la conexión: ", e);
+                }
+            }
         }
     }
 }

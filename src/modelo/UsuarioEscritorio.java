@@ -65,15 +65,17 @@ public class UsuarioEscritorio {
     }
 
     public void GuardarUsuario() throws SQLException {
-        Connection conexion = ClaseConexion.getConexion();
-        if (conexion == null) {
-            throw new SQLException("No se pudo establecer conexión con la base de datos.");
-        }
+        Connection conexion = null;
         PreparedStatement addUsuarioEscritorio = null;
         PreparedStatement checkSuperAdmin = null;
         ResultSet rs = null;
 
         try {
+            conexion = ClaseConexion.getConexion();
+            if (conexion == null) {
+                throw new SQLException("No se pudo establecer conexión con la base de datos.");
+            }
+
             // Verificar si ya existe un superadmin
             String sqlCheckSuperAdmin = "SELECT COUNT(*) FROM UsuarioEscritorio WHERE idrol = 2";
             checkSuperAdmin = conexion.prepareStatement(sqlCheckSuperAdmin);
@@ -99,6 +101,36 @@ public class UsuarioEscritorio {
         } catch (SQLException ex) {
             // Manejo de errores de la base de datos
             throw new SQLException(ex.getMessage());
+        } finally {
+            // Cerrar recursos
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    logger.log(Level.SEVERE, "Error al cerrar el ResultSet: ", e);
+                }
+            }
+            if (checkSuperAdmin != null) {
+                try {
+                    checkSuperAdmin.close();
+                } catch (SQLException e) {
+                    logger.log(Level.SEVERE, "Error al cerrar el PreparedStatement: ", e);
+                }
+            }
+            if (addUsuarioEscritorio != null) {
+                try {
+                    addUsuarioEscritorio.close();
+                } catch (SQLException e) {
+                    logger.log(Level.SEVERE, "Error al cerrar el PreparedStatement: ", e);
+                }
+            }
+            if (conexion != null) {
+                try {
+                    conexion.close();
+                } catch (SQLException e) {
+                    logger.log(Level.SEVERE, "Error al cerrar la conexión: ", e);
+                }
+            }
         }
     }
 
@@ -118,15 +150,16 @@ public class UsuarioEscritorio {
         return -1;  // Retorna -1 si no se encuentra el Usuario
     }
 
-    // Método para iniciar sesión
+// Método para iniciar sesión
     public boolean iniciarSesion() {
-        Connection conexion = ClaseConexion.getConexion();
+        Connection conexion = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         boolean resultado = false;
 
         try {
-            String sql = "SELECT idAdmin, idRol, Nombre, Usuario, Contrasena, correoelectronico FROM UsuarioEscritorio WHERE CorreoElectronico = ? AND Contrasena = ?";
+            conexion = ClaseConexion.getConexion();
+            String sql = "SELECT idAdmin, idRol, Nombre, Usuario, Contrasena, CorreoElectronico FROM UsuarioEscritorio WHERE CorreoElectronico = ? AND Contrasena = ?";
             statement = conexion.prepareStatement(sql);
             statement.setString(1, getCorreo());
             statement.setString(2, getContrasena());
@@ -140,7 +173,6 @@ public class UsuarioEscritorio {
 
         } catch (SQLException ex) {
             logger.log(Level.SEVERE, "Error en el método iniciarSesion:", ex);
-
         } finally {
             // Cerrar recursos
             try {
@@ -170,7 +202,7 @@ public class UsuarioEscritorio {
             con = ClaseConexion.getConexion();
 
             // Primero, verificamos si el correo existe en la base de datos
-            String sqlSelect = "SELECT COUNT(*) FROM UsuarioEscritorio WHERE correoelectronico = ?";
+            String sqlSelect = "SELECT COUNT(*) FROM UsuarioEscritorio WHERE CorreoElectronico = ?";
             query = con.prepareStatement(sqlSelect);
             query.setString(1, correo);
 
@@ -178,7 +210,7 @@ public class UsuarioEscritorio {
 
             if (rs.next() && rs.getInt(1) > 0) {
                 // El correo existe, ahora actualizamos la contraseña
-                String sqlUpdate = "UPDATE UsuarioEscritorio SET contrasena = ? WHERE correoelectronico = ?";
+                String sqlUpdate = "UPDATE UsuarioEscritorio SET Contrasena = ? WHERE CorreoElectronico = ?";
                 query = con.prepareStatement(sqlUpdate);
                 query.setString(1, contrasena);
                 query.setString(2, correo);
@@ -196,24 +228,57 @@ public class UsuarioEscritorio {
 
         } catch (Exception e) {
             logger.log(Level.SEVERE, "Error al actualizar la contraseña:", e);
+        } finally {
+            // Cerrar recursos
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (query != null) {
+                    query.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                logger.log(Level.SEVERE, "Error al cerrar recursos: ", ex);
+            }
         }
     }
 
     public boolean verificarCorreoExistente(String correo) {
+        Connection con = null;
+        PreparedStatement query = null;
+        ResultSet rs = null;
+
         try {
-            Connection con = ClaseConexion.getConexion();
-            String sql = "SELECT COUNT(*) FROM UsuarioEscritorio WHERE correoelectronico = ?";
-            PreparedStatement query = con.prepareStatement(sql);
+            con = ClaseConexion.getConexion();
+            String sql = "SELECT COUNT(*) FROM UsuarioEscritorio WHERE CorreoElectronico = ?";
+            query = con.prepareStatement(sql);
             query.setString(1, correo);
 
-            ResultSet rs = query.executeQuery();
+            rs = query.executeQuery();
             if (rs.next()) {
                 return rs.getInt(1) > 0; // Retorna true si existe al menos un registro
             }
         } catch (Exception e) {
             logger.log(Level.SEVERE, "Error al verificar el correo: ", e);
+        } finally {
+            // Cerrar recursos
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (query != null) {
+                    query.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                logger.log(Level.SEVERE, "Error al cerrar recursos: ", ex);
+            }
         }
         return false; // Retorna false si no se encontró el correo
     }
-
 }
