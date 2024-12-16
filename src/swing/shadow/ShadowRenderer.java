@@ -79,10 +79,9 @@ public class ShadowRenderer {
                 // Ensure aSum is within bounds
                 aSum = Math.max(0, Math.min(aSum, hSumLookup.length - 1));
 
-                // Use a temporary variable to hold the value before assigning
-                int valueToAssign = hSumLookup[aSum] << 24;
-                dstBuffer[dstOffset] = valueToAssign; // Assign outside the loop
-                dstOffset++; // Increment the offset here
+                // Calculate the destination index
+                int dstIndex = dstOffset + srcX; // Calculate the index based on srcX
+                dstBuffer[dstIndex] = hSumLookup[aSum] << 24; // Assign the value
 
                 // Update history index
                 historyIdx = (historyIdx + 1) % shadowSize;
@@ -95,14 +94,16 @@ public class ShadowRenderer {
                 // Ensure aSum is within bounds
                 aSum = Math.max(0, Math.min(aSum, hSumLookup.length - 1));
 
-                // Use a temporary variable to hold the value before assigning
-                int valueToAssign = hSumLookup[aSum] << 24;
-                dstBuffer[dstOffset] = valueToAssign; // Assign outside the loop
-                dstOffset++; // Increment the offset here
+                // Calculate the destination index
+                int dstIndex = dstOffset + srcWidth + i; // Calculate the index for remaining pixels
+                dstBuffer[dstIndex] = hSumLookup[aSum] << 24; // Assign the value
 
                 // Update history index
                 historyIdx = (historyIdx + 1) % shadowSize;
             }
+
+            // Update dstOffset for the next row
+            dstOffset += dstWidth; // Move to the next row
         }
 
         // Vertical pass
@@ -126,9 +127,9 @@ public class ShadowRenderer {
                 // Ensure aSum is within bounds
                 aSum = Math.max(0, Math.min(aSum, vSumLookup.length - 1));
 
-                // Use a temporary variable to hold the value before assigning
-                int valueToAssign = (vSumLookup[aSum] << 24) | shadowRgb;
-                dstBuffer[y * dstWidth + x] = valueToAssign; // Assign outside the loop
+                // Calculate the destination index
+                int dstIndex = y * dstWidth + x; // Calculate the index for the current pixel
+                dstBuffer[dstIndex] = (vSumLookup[aSum] << 24) | shadowRgb; // Assign the value
                 aSum -= aHistory[historyIdx];
                 int a = dstBuffer[(y + right) * dstWidth + x] >>> 24;
                 aHistory[historyIdx] = a;
@@ -142,9 +143,9 @@ public class ShadowRenderer {
                 // Ensure aSum is within bounds
                 aSum = Math.max(0, Math.min(aSum, vSumLookup.length - 1));
 
-                // Use a temporary variable to hold the value before assigning
-                int valueToAssign = (vSumLookup[aSum] << 24) | shadowRgb;
-                dstBuffer[y * dstWidth + x] = valueToAssign; // Assign outside the loop
+                // Calculate the destination index
+                int dstIndex = y * dstWidth + x; // Calculate the index for the current pixel
+                dstBuffer[dstIndex] = (vSumLookup[aSum] << 24) | shadowRgb; // Assign the value
                 aSum -= aHistory[historyIdx];
 
                 // Update history index
