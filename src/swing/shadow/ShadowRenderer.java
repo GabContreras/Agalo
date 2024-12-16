@@ -79,7 +79,10 @@ public class ShadowRenderer {
                 // Ensure aSum is within bounds
                 aSum = Math.max(0, Math.min(aSum, hSumLookup.length - 1));
 
-                dstBuffer[dstOffset++] = hSumLookup[aSum] << 24;
+                // Use a temporary variable to hold the value before assigning
+                int valueToAssign = hSumLookup[aSum] << 24;
+                dstBuffer[dstOffset] = valueToAssign; // Assign outside the loop
+                dstOffset++; // Increment the offset here
 
                 // Update history index
                 historyIdx = (historyIdx + 1) % shadowSize;
@@ -92,7 +95,10 @@ public class ShadowRenderer {
                 // Ensure aSum is within bounds
                 aSum = Math.max(0, Math.min(aSum, hSumLookup.length - 1));
 
-                dstBuffer[dstOffset++] = hSumLookup[aSum] << 24;
+                // Use a temporary variable to hold the value before assigning
+                int valueToAssign = hSumLookup[aSum] << 24;
+                dstBuffer[dstOffset] = valueToAssign; // Assign outside the loop
+                dstOffset++; // Increment the offset here
 
                 // Update history index
                 historyIdx = (historyIdx + 1) % shadowSize;
@@ -120,7 +126,9 @@ public class ShadowRenderer {
                 // Ensure aSum is within bounds
                 aSum = Math.max(0, Math.min(aSum, vSumLookup.length - 1));
 
-                dstBuffer[y * dstWidth + x] = (vSumLookup[aSum] << 24) | shadowRgb;
+                // Use a temporary variable to hold the value before assigning
+                int valueToAssign = (vSumLookup[aSum] << 24) | shadowRgb;
+                dstBuffer[y * dstWidth + x] = valueToAssign; // Assign outside the loop
                 aSum -= aHistory[historyIdx];
                 int a = dstBuffer[(y + right) * dstWidth + x] >>> 24;
                 aHistory[historyIdx] = a;
@@ -134,7 +142,9 @@ public class ShadowRenderer {
                 // Ensure aSum is within bounds
                 aSum = Math.max(0, Math.min(aSum, vSumLookup.length - 1));
 
-                dstBuffer[y * dstWidth + x] = (vSumLookup[aSum] << 24) | shadowRgb;
+                // Use a temporary variable to hold the value before assigning
+                int valueToAssign = (vSumLookup[aSum] << 24) | shadowRgb;
+                dstBuffer[y * dstWidth + x] = valueToAssign; // Assign outside the loop
                 aSum -= aHistory[historyIdx];
 
                 // Update history index
