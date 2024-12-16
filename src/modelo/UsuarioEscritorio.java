@@ -65,7 +65,7 @@ public class UsuarioEscritorio {
         this.contrasena = contrasena;
     }
 
-    public void GuardarUsuario() throws SQLException {
+    public void guardarUsuario() throws SQLException {
         Connection conexion = null;
         PreparedStatement checkSuperAdmin = null;
         ResultSet rs = null;

@@ -35,8 +35,6 @@ public class AdministrarEmpleadores {
     private static final String DIRECCION_REPRESENTANTE = "Dirección";
     private static final String DEPARTAMENTO_REPRESENTANTE = "Departamento";
 
-    
-
     private String correoEmpleador;
     private String uuidEmpleador;
 
@@ -68,12 +66,11 @@ public class AdministrarEmpleadores {
             int filaSeleccionada = tabla.getSelectedRow();
             if (filaSeleccionada != -1) {
                 // Obtenemos el id de la fila seleccionada
-                String ID = tabla.getValueAt(filaSeleccionada, 0).toString(); // El IdEmpleador está en la primera columna
-
+                String idEmpleador = tabla.getValueAt(filaSeleccionada, 0).toString(); // El IdEmpleador está en la primera columna
                 // Preparamos la consulta
                 String sql = "UPDATE Empleador SET Estado = 'Restringido' WHERE IdEmpleador = ?";
                 updateEmpleador = conexion.prepareStatement(sql);
-                updateEmpleador.setString(1, ID);
+                updateEmpleador.setString(1, idEmpleador);
                 updateEmpleador.executeUpdate();
             } else {
                 logger.log(Level.WARNING, "No se ha seleccionado ningún Empleador.");
@@ -94,7 +91,7 @@ public class AdministrarEmpleadores {
                 try {
                     conexion.close();
                 } catch (SQLException e) {
-                    logger.log(Level.SEVERE,ERR_CONEX, e);
+                    logger.log(Level.SEVERE, ERR_CONEX, e);
                 }
             }
         }

@@ -34,7 +34,7 @@ public class CtrlLogin implements ActionListener, MouseListener {
 
     private UsuarioEscritorio modelo;
     private FrmLogin vista;
-    public static String correoUsuario;
+    private static String correoUsuario; // Cambiado a privado
 
     public CtrlLogin(UsuarioEscritorio modelo, FrmLogin vista) {
         this.modelo = modelo;
@@ -49,7 +49,7 @@ public class CtrlLogin implements ActionListener, MouseListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == vista.btnIngresar) {
             String correo = vista.txtCorreo.getText();
-            correoUsuario = correo;
+            setCorreoUsuario(correo); // Usar el setter
             String contrasena = vista.txtContrasena.getText();
 
             // Validar entradas
@@ -78,6 +78,16 @@ public class CtrlLogin implements ActionListener, MouseListener {
             FrmRegistro.initFrmRegistro();
             vista.dispose();
         }
+    }
+
+    //Getter para correoUsuario
+    public static String getCorreoUsuario() {
+        return correoUsuario;
+    }
+
+    // Setter para correoUsuario
+    private static void setCorreoUsuario(String correo) {
+        correoUsuario = correo;
     }
 
     /**

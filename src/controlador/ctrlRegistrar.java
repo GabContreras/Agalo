@@ -1,5 +1,6 @@
 package controlador;
 
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
@@ -10,6 +11,7 @@ import java.util.regex.Pattern;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.nio.charset.StandardCharsets;
+import java.sql.SQLException;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,8 +27,8 @@ public class CtrlRegistrar implements ActionListener {
 
     private static final String TITULO_ERROR = "Error";
 
-    private UsuarioEscritorio modelo;
-    private FrmRegistro vista;
+    private final UsuarioEscritorio modelo;
+    private final FrmRegistro vista;
 
     // Constructor 
     public CtrlRegistrar(UsuarioEscritorio modelo, FrmRegistro vista) {
@@ -67,12 +69,12 @@ public class CtrlRegistrar implements ActionListener {
             modelo.setContrasena(contrasenaEncriptada);
 
             try {
-                modelo.GuardarUsuario(); // Llamada para guardar el usuario
+                modelo.guardarUsuario(); // Llamada para guardar el usuario
                 // Solo si no se lanza excepción mostramos el mensaje de éxito
                 JOptionPane.showMessageDialog(vista, "Usuario Guardado con éxito.");
                 FrmLogin.initFrmLogin();
                 vista.dispose();
-            } catch (Exception ex) {
+            } catch (HeadlessException | SQLException ex) {
                 logger.log(Level.SEVERE, "Error al guardar el usuario:", ex);
                 // Si ocurre una excepción, mostramos el mensaje de error
                 JOptionPane.showMessageDialog(vista, "Error al guardar el usuario: " + ex.getMessage(), TITULO_ERROR, JOptionPane.ERROR_MESSAGE);
