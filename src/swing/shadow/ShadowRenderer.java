@@ -61,9 +61,10 @@ public class ShadowRenderer {
         }
 
         // Horizontal pass
-        for (int srcY = 0, dstOffset = left * dstWidth; srcY < srcHeight; srcY++) {
+        for (int srcY = 0; srcY < srcHeight; srcY++) {
             aSum = 0;
             int historyIdx = 0;
+            int dstOffset = left * dstWidth + srcY * dstWidth; // Calculate dstOffset for the current row
 
             // Initialize history
             for (int i = 0; i < shadowSize; i++) {
@@ -101,9 +102,6 @@ public class ShadowRenderer {
                 // Update history index
                 historyIdx = (historyIdx + 1) % shadowSize;
             }
-
-            // Update dstOffset for the next row
-            dstOffset += dstWidth; // Move to the next row
         }
 
         // Vertical pass
