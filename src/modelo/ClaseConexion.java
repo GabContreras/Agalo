@@ -17,36 +17,43 @@ public class ClaseConexion {
     // Instancia de logger para sustituir los system out 
     private static final Logger logger = Logger.getLogger(ClaseConexion.class.getName());
 
-    // Cargar las propiedades desde el archivo
-    static {
+    // Método para cargar las propiedades desde el archivo
+    private static Properties loadProperties() {
         Properties properties = new Properties();
-        try (InputStream input = ClaseConexion.class.getClassLoader().getResourceAsStream("config.properties")) {
+        String configFile = System.getProperty("config.file", "config.properties"); // Usa el archivo especificado o el predeterminado
+        try (InputStream input = ClaseConexion.class.getClassLoader().getResourceAsStream(configFile)) {
             if (input == null) {
-                logger.log(Level.SEVERE, "No se pudo encontrar el archivo de configuración.");
+                logger.log(Level.SEVERE, "No se pudo encontrar el archivo de configuración: ", configFile);
+                return null;
             }
-            // Cargar las propiedades
             properties.load(input);
-            url = properties.getProperty("db.url");
-            usuario = properties.getProperty("db.user");
-            cont = properties.getProperty("db.password");
         } catch (IOException ex) {
             logger.log(Level.SEVERE, "Error al cargar el archivo de propiedades: ", ex);
+        }
+        return properties;
+    }
+
+    // Creación del método de conexión que retorna la conexión
+    public static Connection getConexion() {
+        Properties properties = loadProperties();
+        if (properties == null) {
+            return null; // Si no se pudieron cargar las propiedades, devuelve null
+        }
+
+         url = properties.getProperty("db.url");
+         usuario = properties.getProperty("db.user");
+         cont = properties.getProperty("db.password");
+
+        try {
+            return DriverManager.getConnection(url, usuario, cont);
+        } catch (SQLException e) {
+            logger.log(Level.SEVERE, "Error de SQL: ", e);
+            return null;
         }
     }
 
     // Constructor privado para evitar instanciación
     private ClaseConexion() {
         // No se permite la instanciación
-    }
-
-    // Creación del método de conexión que retorna la conexión
-    public static Connection getConexion() {
-        try {
-            // Obtener la conexión en una variable
-            return DriverManager.getConnection(url, usuario, cont);
-        } catch (SQLException e) {
-            logger.log(Level.SEVERE, "Error de SQL: ", e);
-            return null;
-        }
     }
 }

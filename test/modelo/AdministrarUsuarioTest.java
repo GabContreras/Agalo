@@ -9,38 +9,63 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import vista.FrmAdministrarUsuarios;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class AdministrarUsuarioTest {
 
+    private Connection connection; // Declarar la variable de conexión
     private AdministrarUsuario instance;
-    private List<AdministrarUsuario> usuarios; // Simulación de base de datos
+    private JTable jtbAdmin;
+    private FrmAdministrarUsuarios vista;
 
     @Before
     public void setUp() {
+        // Configurar la conexión y la transacción
+        connection = ClaseConexion.getConexion();
+        try {
+            connection.setAutoCommit(false); // Desactivar el autocommit
+        } catch (SQLException ex) {
+            Logger.getLogger(AdministrarUsuarioTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        // Inicializar la instancia y la vista
         instance = new AdministrarUsuario();
-        usuarios = new ArrayList<>(); // Inicializar la lista de usuarios
+        jtbAdmin = new JTable(new DefaultTableModel(new Object[]{"IdAdmin", "Nombre", "Usuario", "CorreoElectronico"}, 0));
+        vista = new FrmAdministrarUsuarios(); // Simular la vista
     }
 
     @After
     public void tearDown() {
-        instance = null;
-        usuarios = null;
+        // Revertir la transacción
+        if (connection != null) {
+            try {
+                connection.rollback();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
     @Test
     public void testGetIDadmin() {
-        System.out.println("getIDadmin");
         String expectedId = "1";
         instance.setIDadmin(expectedId);
-        String result = instance.getIDadmin();
-        assertEquals(expectedId, result);
+        assertEquals(expectedId, instance.getIDadmin());
     }
 
     @Test
     public void testSetIDadmin() {
-        System.out.println("setIDadmin");
         String idAdmin = "2";
         instance.setIDadmin(idAdmin);
         assertEquals(idAdmin, instance.getIDadmin());
@@ -48,16 +73,13 @@ public class AdministrarUsuarioTest {
 
     @Test
     public void testGetNombre() {
-        System.out.println("getNombre");
         String expectedName = "John Doe";
         instance.setNombre(expectedName);
-        String result = instance.getNombre();
-        assertEquals(expectedName, result);
+        assertEquals(expectedName, instance.getNombre());
     }
 
     @Test
     public void testSetNombre() {
-        System.out.println("setNombre");
         String nombre = "John Doe";
         instance.setNombre(nombre);
         assertEquals(nombre, instance.getNombre());
@@ -65,16 +87,13 @@ public class AdministrarUsuarioTest {
 
     @Test
     public void testGetUsuario() {
-        System.out.println("getUsuario");
-        String expectedUser  = "johndoe";
-        instance.setUsuario(expectedUser );
-        String result = instance.getUsuario();
-        assertEquals(expectedUser , result);
+        String expectedUser = "johndoe";
+        instance.setUsuario(expectedUser);
+        assertEquals(expectedUser, instance.getUsuario());
     }
 
     @Test
     public void testSetUsuario() {
-        System.out.println("setUsuario");
         String usuario = "johndoe";
         instance.setUsuario(usuario);
         assertEquals(usuario, instance.getUsuario());
@@ -82,16 +101,13 @@ public class AdministrarUsuarioTest {
 
     @Test
     public void testGetContrasena() {
-        System.out.println("getContrasena");
         String expectedPassword = "password123";
         instance.setContrasena(expectedPassword);
-        String result = instance.getContrasena();
-        assertEquals(expectedPassword, result);
+        assertEquals(expectedPassword, instance.getContrasena());
     }
 
     @Test
     public void testSetContrasena() {
-        System.out.println("setContrasena");
         String contrasena = "password123";
         instance.setContrasena(contrasena);
         assertEquals(contrasena, instance.getContrasena());
@@ -99,16 +115,13 @@ public class AdministrarUsuarioTest {
 
     @Test
     public void testGetCorreoElectronico() {
-        System.out.println("getCorreoElectronico");
         String expectedEmail = "johndoe@example.com";
         instance.setCorreoElectronico(expectedEmail);
-        String result = instance.getCorreoElectronico();
-        assertEquals(expectedEmail, result);
+        assertEquals(expectedEmail, instance.getCorreoElectronico());
     }
 
     @Test
     public void testSetCorreoElectronico() {
-        System.out.println("setCorreoElectronico");
         String correoElectronico = "johndoe@example.com";
         instance.setCorreoElectronico(correoElectronico);
         assertEquals(correoElectronico, instance.getCorreoElectronico());
@@ -116,50 +129,45 @@ public class AdministrarUsuarioTest {
 
     @Test
     public void testGuardar() {
-        System.out.println("guardar");
+        // Asegúrate de que el usuario no exista antes de la prueba
+        eliminarUsuarioSiExiste("johndoe");
+        eliminarUsuarioSiExiste("janedoe");
+
         instance.setNombre("John Doe");
         instance.setUsuario("johndoe");
-        instance.setContrasena("password123");
+        instance.setContrasena("password123"); // Asegúrate de establecer la contraseña
         instance.setCorreoElectronico("johndoe@example.com");
 
-        // Simular guardar en la "base de datos"
-        usuarios.add(instance); // Agregar el usuario a la lista
+        // Guardar en la base de datos
+        instance.guardar();
 
         // Verificar que el usuario se ha guardado correctamente
-        assertEquals(1, usuarios.size());
-        assertEquals(" John Doe", usuarios.get(0).getNombre());
-        assertEquals("johndoe", usuarios.get(0).getUsuario());
-        assertEquals("password123", usuarios.get(0).getContrasena());
-        assertEquals("johndoe@example.com", usuarios.get(0).getCorreoElectronico());
-    }
-
-    @Test
-    public void testMostrar() {
-        System.out.println("mostrar");
-        JTable jtbAdmin = new JTable(); // Crear una tabla para pasar al método
-        instance.setNombre("John Doe");
-        instance.setUsuario("johndoe");
-        instance.setCorreoElectronico("johndoe@example.com");
-        usuarios.add(instance); // Agregar el usuario a la lista
-
-        instance.mostrar(jtbAdmin);
-
-        // Verificar que los datos se muestran correctamente en la tabla
-        DefaultTableModel model = (DefaultTableModel) jtbAdmin.getModel();
-        assertEquals(1, model.getRowCount());
-        assertEquals("John Doe", model.getValueAt(0, 1)); // Nombre
-        assertEquals("johndoe", model.getValueAt(0, 2)); // Usuario
-        assertEquals("johndoe@example.com", model.getValueAt(0, 3)); // Correo
+        try {
+            PreparedStatement ps = connection.prepareStatement("SELECT * FROM UsuarioEscritorio WHERE Usuario = ?");
+            ps.setString(1, "johndoe");
+            ResultSet rs = ps.executeQuery();
+            assertTrue(rs.next()); // Debe haber al menos un resultado
+            assertEquals("John Doe", rs.getString("Nombre"));
+            assertEquals("johndoe@example.com", rs.getString("CorreoElectronico"));
+            rs.close();
+            ps.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
     public void testActualizar() {
-        System.out.println("actualizar");
-        JTable jtbAdmin = new JTable(); // Crear una tabla para pasar al método
+        // Primero, guardar un usuario
         instance.setNombre("John Doe");
         instance.setUsuario("johndoe");
+        instance.setContrasena("password123");
         instance.setCorreoElectronico("johndoe@example.com");
-        usuarios.add(instance); // Agregar el usuario a la lista
+        instance.guardar();
+
+        // Simular la carga de datos en la tabla
+        instance.mostrar(jtbAdmin);
+        jtbAdmin.setRowSelectionInterval(0, 0); // Seleccionar la primera fila
 
         // Simular la actualización
         instance.setNombre("Jane Doe");
@@ -167,21 +175,33 @@ public class AdministrarUsuarioTest {
         instance.setCorreoElectronico("janedoe@example.com");
         instance.actualizar(jtbAdmin);
 
-        // Verificar que el usuario se actualiza correctamente
-        assertEquals("Jane Doe", usuarios.get(0).getNombre());
-        assertEquals("janedoe", usuarios.get(0).getUsuario());
-        assertEquals("janedoe@example.com", usuarios.get(0).getCorreoElectronico());
+        // Verificar que el usuario se actualiza correctamente en la base de datos
+        try {
+            PreparedStatement ps = connection.prepareStatement("SELECT * FROM UsuarioEscritorio WHERE Usuario = ?");
+            ps.setString(1, "janedoe");
+            ResultSet rs = ps.executeQuery();
+            assertTrue(rs.next()); // Debe haber al menos un resultado
+            assertEquals("Jane Doe", rs.getString("Nombre"));
+            assertEquals("janedoe@example.com", rs.getString("CorreoElectronico"));
+            rs.close();
+            ps.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
     public void testActualizarSinContrasena() {
-        System.out.println("actualizarSinContrasena");
-        JTable jtbAdmin = new JTable(); // Crear una tabla para pasar al método
+        // Primero, guardar un usuario
         instance.setNombre("John Doe");
         instance.setUsuario("johndoe");
         instance.setContrasena("password123");
         instance.setCorreoElectronico("johndoe@example.com");
-        usuarios.add(instance); // Agregar el usuario a la lista
+        instance.guardar();
+
+        // Simular la carga de datos en la tabla
+        instance.mostrar(jtbAdmin);
+        jtbAdmin.setRowSelectionInterval(0, 0); // Seleccionar la primera fila
 
         // Simular la actualización sin cambiar la contraseña
         instance.setNombre("Jane Doe");
@@ -189,39 +209,36 @@ public class AdministrarUsuarioTest {
         instance.setCorreoElectronico("janedoe@example.com");
         instance.actualizarSinContrasena(jtbAdmin);
 
-        // Verificar que el usuario se actualiza correctamente
-        assertEquals("Jane Doe", usuarios.get(0).getNombre());
-        assertEquals("janedoe", usuarios.get(0).getUsuario());
-        assertEquals("janedoe@example.com", usuarios.get(0).getCorreoElectronico());
-        assertEquals("password123", usuarios.get(0).getContrasena()); // La contraseña no debe cambiar
-    }
-
-    @Test
-    public void testEliminar() {
-        System.out.println("eliminar");
-        JTable jtbAdmin = new JTable(); // Crear una tabla para pasar al método
-        instance.setNombre("John Doe");
-        instance.setUsuario("johndoe");
-        instance.setCorreoElectronico("johndoe@example.com");
-        usuarios.add(instance); // Agregar el usuario a la lista
-
-        // Simular la eliminación
-        usuarios.remove(0);
-
-        // Verificar que el usuario se ha eliminado
-        assertEquals(0, usuarios.size());
+        // Verificar que el usuario se actualiza correctamente en la base de datos
+        try {
+            PreparedStatement ps = connection.prepareStatement("SELECT * FROM UsuarioEscritorio WHERE Usuario = ?");
+            ps.setString(1, "janedoe");
+            ResultSet rs = ps.executeQuery();
+            assertTrue(rs.next()); // Debe haber al menos un resultado
+            assertEquals("Jane Doe", rs.getString("Nombre"));
+            assertEquals("janedoe@example.com", rs.getString("CorreoElectronico"));
+            assertEquals("password123", rs.getString("Contrasena")); // La contraseña no debe cambiar
+            rs.close();
+            ps.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
     public void testBuscarUsuario() {
-        System.out.println("buscarUsuario");
-        JTable jtbAdmin = new JTable(); // Crear una tabla para pasar al método
-        JTextField txtBuscarUsuario = new JTextField("John");
+        // Primero, guardar un usuario
         instance.setNombre("John Doe");
         instance.setUsuario("johndoe");
+        instance.setContrasena("password123"); // Asegúrate de establecer la contraseña
         instance.setCorreoElectronico("johndoe@example.com");
-        usuarios.add(instance); // Agregar el usuario a la lista
+        instance.guardar();
 
+        // Simular la carga de datos en la tabla
+        instance.mostrar(jtbAdmin);
+        jtbAdmin.setRowSelectionInterval(0, 0); // Seleccionar la primera fila
+
+        JTextField txtBuscarUsuario = new JTextField("John");
         instance.buscarUsuario(jtbAdmin, txtBuscarUsuario);
 
         // Verificar que los resultados de búsqueda son correctos
@@ -232,12 +249,16 @@ public class AdministrarUsuarioTest {
 
     @Test
     public void testCargarDatosTabla() {
-        System.out.println("cargarDatosTabla");
-        FrmAdministrarUsuarios vista = new FrmAdministrarUsuarios(); // Crear una vista para pasar al método
+        // Primero, guardar un usuario
         instance.setNombre("John Doe");
         instance.setUsuario("johndoe");
+        instance.setContrasena("password123"); // Asegúrate de establecer la contraseña
         instance.setCorreoElectronico("johndoe@example.com");
-        usuarios.add(instance); // Agregar el usuario a la lista
+        instance.guardar();
+
+        // Simular la carga de datos en la tabla
+        instance.mostrar(jtbAdmin);
+        jtbAdmin.setRowSelectionInterval(0, 0); // Seleccionar la primera fila
 
         // Simular la carga de datos en la vista
         instance.cargarDatosTabla(vista);
@@ -246,5 +267,46 @@ public class AdministrarUsuarioTest {
         assertEquals("John Doe", vista.txtNombreAdmin.getText());
         assertEquals("johndoe", vista.txtUsuarioAdmin.getText());
         assertEquals("johndoe@example.com", vista.txtCorreoAdmin.getText());
+    }
+
+    @Test
+    public void testEliminar() {
+        // Primero, guardar un usuario
+        instance.setNombre("John Doe");
+        instance.setUsuario("johndoe");
+        instance.setContrasena("password123");
+        instance.setCorreoElectronico("johndoe@example.com");
+        instance.guardar();
+
+        // Simular la carga de datos en la tabla
+        instance.mostrar(jtbAdmin);
+        jtbAdmin.setRowSelectionInterval(0, 0); // Seleccionar la primera fila
+
+        // Ahora, eliminar el usuario
+        instance.eliminar(jtbAdmin);
+
+        // Verificar que el usuario se ha eliminado
+        try {
+            PreparedStatement ps = connection.prepareStatement("SELECT * FROM UsuarioEscritorio WHERE Usuario = ?");
+            ps.setString(1, "johndoe");
+            ResultSet rs = ps.executeQuery();
+            assertFalse(rs.next()); // No debe haber resultados
+            rs.close();
+            ps.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+// Método auxiliar para eliminar un usuario si existe 
+
+    private void eliminarUsuarioSiExiste(String usuario) {
+        try {
+            PreparedStatement ps = connection.prepareStatement("DELETE FROM UsuarioEscritorio WHERE Usuario = ?");
+            ps.setString(1, usuario);
+            ps.executeUpdate();
+            ps.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
