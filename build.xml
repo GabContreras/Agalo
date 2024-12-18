@@ -9,6 +9,9 @@
 <!-- in the project's Project Properties dialog box.-->
 <project name="EXPO" default="default" basedir=".">
     <description>Builds, tests, and runs the project EXPO.</description>
+    <property name="jacoco.agent" value="lib/jacocoagent.jar"/>
+    <property name="jacoco.destfile" value="${build.dir}/jacoco.exec"/>
+    <property name="jacoco.reportdir" value="${build.dir}/reports/jacoco"/>
     <import file="nbproject/build-impl.xml"/>
     <!--
 
