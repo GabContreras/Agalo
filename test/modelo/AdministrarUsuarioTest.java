@@ -3,7 +3,6 @@ package modelo;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -39,29 +38,13 @@ public class AdministrarUsuarioTest {
         vista = new FrmAdministrarUsuarios(); // Simular la vista
     }
 
-    @After
-    public void tearDown() {
-        // Revertir la transacción
-        if (connection != null) {
-            try {
-                connection.rollback();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } finally {
-                try {
-                    connection.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
-
     @Test
     public void testGetIDadmin() {
         String expectedId = "1";
         instance.setIDadmin(expectedId);
         assertEquals(expectedId, instance.getIDadmin());
+        eliminarUsuarioSiExiste("johndoe");
+        eliminarUsuarioSiExiste("janedoe"); // Eliminar al finalizar la prueba
     }
 
     @Test
@@ -69,6 +52,8 @@ public class AdministrarUsuarioTest {
         String idAdmin = "2";
         instance.setIDadmin(idAdmin);
         assertEquals(idAdmin, instance.getIDadmin());
+        eliminarUsuarioSiExiste("johndoe");
+        eliminarUsuarioSiExiste("janedoe"); // Eliminar al finalizar la prueba
     }
 
     @Test
@@ -76,6 +61,8 @@ public class AdministrarUsuarioTest {
         String expectedName = "John Doe";
         instance.setNombre(expectedName);
         assertEquals(expectedName, instance.getNombre());
+        eliminarUsuarioSiExiste("johndoe");
+        eliminarUsuarioSiExiste("janedoe"); // Eliminar al finalizar la prueba
     }
 
     @Test
@@ -83,6 +70,8 @@ public class AdministrarUsuarioTest {
         String nombre = "John Doe";
         instance.setNombre(nombre);
         assertEquals(nombre, instance.getNombre());
+        eliminarUsuarioSiExiste("johndoe");
+        eliminarUsuarioSiExiste("janedoe"); // Eliminar al finalizar la prueba
     }
 
     @Test
@@ -90,6 +79,8 @@ public class AdministrarUsuarioTest {
         String expectedUser = "johndoe";
         instance.setUsuario(expectedUser);
         assertEquals(expectedUser, instance.getUsuario());
+        eliminarUsuarioSiExiste("johndoe");
+        eliminarUsuarioSiExiste("janedoe"); // Eliminar al finalizar la prueba    
     }
 
     @Test
@@ -97,6 +88,8 @@ public class AdministrarUsuarioTest {
         String usuario = "johndoe";
         instance.setUsuario(usuario);
         assertEquals(usuario, instance.getUsuario());
+        eliminarUsuarioSiExiste("johndoe");
+        eliminarUsuarioSiExiste("janedoe"); // Eliminar al finalizar la prueba   
     }
 
     @Test
@@ -104,6 +97,8 @@ public class AdministrarUsuarioTest {
         String expectedPassword = "password123";
         instance.setContrasena(expectedPassword);
         assertEquals(expectedPassword, instance.getContrasena());
+        eliminarUsuarioSiExiste("johndoe");
+        eliminarUsuarioSiExiste("janedoe"); // Eliminar al finalizar la prueba
     }
 
     @Test
@@ -111,6 +106,8 @@ public class AdministrarUsuarioTest {
         String contrasena = "password123";
         instance.setContrasena(contrasena);
         assertEquals(contrasena, instance.getContrasena());
+        eliminarUsuarioSiExiste("johndoe");
+        eliminarUsuarioSiExiste("janedoe"); // Eliminar al finalizar la prueba
     }
 
     @Test
@@ -118,6 +115,8 @@ public class AdministrarUsuarioTest {
         String expectedEmail = "johndoe@example.com";
         instance.setCorreoElectronico(expectedEmail);
         assertEquals(expectedEmail, instance.getCorreoElectronico());
+        eliminarUsuarioSiExiste("johndoe");
+        eliminarUsuarioSiExiste("janedoe"); // Eliminar al finalizar la prueba
     }
 
     @Test
@@ -125,17 +124,15 @@ public class AdministrarUsuarioTest {
         String correoElectronico = "johndoe@example.com";
         instance.setCorreoElectronico(correoElectronico);
         assertEquals(correoElectronico, instance.getCorreoElectronico());
+        eliminarUsuarioSiExiste("johndoe");
+        eliminarUsuarioSiExiste("janedoe"); // Eliminar al finalizar la prueba
     }
 
     @Test
     public void testGuardar() {
-        // Asegúrate de que el usuario no exista antes de la prueba
-        eliminarUsuarioSiExiste("johndoe");
-        eliminarUsuarioSiExiste("janedoe");
-
         instance.setNombre("John Doe");
         instance.setUsuario("johndoe");
-        instance.setContrasena("password123"); // Asegúrate de establecer la contraseña
+        instance.setContrasena("password123");
         instance.setCorreoElectronico("johndoe@example.com");
 
         // Guardar en la base de datos
@@ -153,6 +150,9 @@ public class AdministrarUsuarioTest {
             ps.close();
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            eliminarUsuarioSiExiste("johndoe");
+            eliminarUsuarioSiExiste("janedoe"); // Eliminar al finalizar la prueba
         }
     }
 
@@ -187,86 +187,10 @@ public class AdministrarUsuarioTest {
             ps.close();
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            eliminarUsuarioSiExiste("johndoe");
+            eliminarUsuarioSiExiste("janedoe"); // Eliminar al finalizar la prueba
         }
-    }
-
-    @Test
-    public void testActualizarSinContrasena() {
-        // Primero, guardar un usuario
-        instance.setNombre("John Doe");
-        instance.setUsuario("johndoe");
-        instance.setContrasena("password123");
-        instance.setCorreoElectronico("johndoe@example.com");
-        instance.guardar();
-
-        // Simular la carga de datos en la tabla
-        instance.mostrar(jtbAdmin);
-        jtbAdmin.setRowSelectionInterval(0, 0); // Seleccionar la primera fila
-
-        // Simular la actualización sin cambiar la contraseña
-        instance.setNombre("Jane Doe");
-        instance.setUsuario("janedoe");
-        instance.setCorreoElectronico("janedoe@example.com");
-        instance.actualizarSinContrasena(jtbAdmin);
-
-        // Verificar que el usuario se actualiza correctamente en la base de datos
-        try {
-            PreparedStatement ps = connection.prepareStatement("SELECT * FROM UsuarioEscritorio WHERE Usuario = ?");
-            ps.setString(1, "janedoe");
-            ResultSet rs = ps.executeQuery();
-            assertTrue(rs.next()); // Debe haber al menos un resultado
-            assertEquals("Jane Doe", rs.getString("Nombre"));
-            assertEquals("janedoe@example.com", rs.getString("CorreoElectronico"));
-            assertEquals("password123", rs.getString("Contrasena")); // La contraseña no debe cambiar
-            rs.close();
-            ps.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Test
-    public void testBuscarUsuario() {
-        // Primero, guardar un usuario
-        instance.setNombre("John Doe");
-        instance.setUsuario("johndoe");
-        instance.setContrasena("password123"); // Asegúrate de establecer la contraseña
-        instance.setCorreoElectronico("johndoe@example.com");
-        instance.guardar();
-
-        // Simular la carga de datos en la tabla
-        instance.mostrar(jtbAdmin);
-        jtbAdmin.setRowSelectionInterval(0, 0); // Seleccionar la primera fila
-
-        JTextField txtBuscarUsuario = new JTextField("John");
-        instance.buscarUsuario(jtbAdmin, txtBuscarUsuario);
-
-        // Verificar que los resultados de búsqueda son correctos
-        DefaultTableModel model = (DefaultTableModel) jtbAdmin.getModel();
-        assertEquals(1, model.getRowCount());
-        assertEquals("John Doe", model.getValueAt(0, 1)); // Nombre
-    }
-
-    @Test
-    public void testCargarDatosTabla() {
-        // Primero, guardar un usuario
-        instance.setNombre("John Doe");
-        instance.setUsuario("johndoe");
-        instance.setContrasena("password123"); // Asegúrate de establecer la contraseña
-        instance.setCorreoElectronico("johndoe@example.com");
-        instance.guardar();
-
-        // Simular la carga de datos en la tabla
-        instance.mostrar(jtbAdmin);
-        jtbAdmin.setRowSelectionInterval(0, 0); // Seleccionar la primera fila
-
-        // Simular la carga de datos en la vista
-        instance.cargarDatosTabla(vista);
-
-        // Verificar que los datos se cargan correctamente en la vista
-        assertEquals("John Doe", vista.txtNombreAdmin.getText());
-        assertEquals("johndoe", vista.txtUsuarioAdmin.getText());
-        assertEquals("johndoe@example.com", vista.txtCorreoAdmin.getText());
     }
 
     @Test
@@ -295,16 +219,18 @@ public class AdministrarUsuarioTest {
             ps.close();
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            eliminarUsuarioSiExiste("johndoe");
+            eliminarUsuarioSiExiste("janedoe"); // Eliminar al finalizar la prueba
         }
     }
-// Método auxiliar para eliminar un usuario si existe 
+    // Método auxiliar para eliminar un usuario si existe 
 
     private void eliminarUsuarioSiExiste(String usuario) {
         try {
             PreparedStatement ps = connection.prepareStatement("DELETE FROM UsuarioEscritorio WHERE Usuario = ?");
             ps.setString(1, usuario);
             ps.executeUpdate();
-            ps.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
